@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <% if current_user %>
+  	<%= render file: "pages/dashboard.html.erb" %>
+	<% else %>
+  	<%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
     <%= yield %>
+	<% end %>
+
+	
   </body>
 </html>
