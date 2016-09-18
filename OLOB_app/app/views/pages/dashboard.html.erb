@@ -1,0 +1,8 @@
+<% if current_user %>
+  <h1>Log In Successful</h1>
+  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+
+<% else %>
+
+  <h1>Log In Fail</h1>
+<% end %>
