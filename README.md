@@ -15,6 +15,7 @@ before_filter :authorize
 Also make sure to run these before running the rails server:
 
 bundle install
+
 rake db:migrate
 
 Here is the tutorial I used:
