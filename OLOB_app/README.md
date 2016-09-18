@@ -5,6 +5,7 @@ application up and running.
 
 Things you may want to cover:
 
+Small edit to make sure I push correctly
 * Ruby version
 
 * System dependencies
