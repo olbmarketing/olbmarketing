@@ -7,7 +7,7 @@
     table {
         border-collapse: collapse;
     }
-    
+
     table th {
         padding: 5px;
     }
@@ -19,7 +19,7 @@
 }
 
 .new_student {
-    
+
     label {
         float: left;
         width: 10em;
@@ -34,4 +34,25 @@
 
 .list_line_odd {
     background: #f8b0f8;
+}
+.form-new-student{
+  background-color: #f8f8f8;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 15px;
+  border-color: #d2d2d2;
+  border-width: 5px;
+  box-shadow: 0 1px 0 #cfcfcf;
+}
+.buttons{
+  padding-top: 10px;
+}
+.field{
+  padding-bottom: 5px;
+}
+.create-student-heading{
+  color: #777;
+  text-align: center;
 }

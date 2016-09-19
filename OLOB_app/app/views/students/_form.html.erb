@@ -1,77 +1,80 @@
 <%= form_for(student) do |f| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+<% if student.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <ul>
+    <% student.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="container" style="width:40%">
+  <div class="form-new-student">
+    <div class="form-group">
+      <h2 class="create-student-heading">New Student</h2>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :required=>"", :autofocus=>"" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+    <div class="field">
+      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :required=>"", :autofocus=>"" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
+    <div class="field">
+      <%= f.number_field :school_year,:class => "form-control", :placeholder=>"School Year", :required=>"", :autofocus=>"" %>
+    </div>
+    <div class="field">
+      <%= f.select :new_or_return, ['New', 'Return'], {:prompt => 'New or Return'},  {class: "form-control"} %>
+    </div>
 
-  <div class="field">
-    <%= f.label :school_year %>
-    <%= f.number_field :school_year %>
-  </div>
+    <div class="field">
+      <%= f.select :student_class, ['AMPrek', 'K','PMPrek','PS','TTT'], {:prompt => 'Class'},  {class: "form-control"} %>
 
-  <div class="field">
-    <%= f.label :new_or_return %>
-    <%= f.text_field :new_or_return %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :student_class %>
-    <%= f.text_field :student_class %>
-  </div>
+    <div class="field">
+      <%= f.select :catholic, ['Yes', 'No'], {:prompt => 'Catholic'},  {class: "form-control"} %>
 
-  <div class="field">
-    <%= f.label :catholic %>
-    <%= f.text_field :catholic %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :parish %>
-    <%= f.text_field :parish %>
-  </div>
+    <div class="field">
+      <%= f.select :parish, ['Corpus Christi', 'Holy Family','Immaculate Conception','OLP','St. Agatha','St. Andrew', 'St. Brendan', 'St. Brigid of Kildare', 'St. Catherine','St. Joan of Arc','St. John the Baptist', 'St. Joseph', 'St. Mary', 'St. Michael', 'St. Patrick', 'St. Paul', 'St. Peter', 'St. Stephen', 'St. Timothy' , 'Not Listed'], {:prompt => 'Parish'},  {class: "form-control"} %>
+    </div>
 
-  <div class="field">
-    <%= f.label :race %>
-    <%= f.text_field :race %>
-  </div>
+    <div class="field">
+      <%= f.select :race, ['Asian', 'Black/African American','Hispanic','Multi-Racial','White/Caucasian'], {:prompt => 'Race'},  {class: "form-control"} %>
 
-  <div class="field">
-    <%= f.label :resides_with %>
-    <%= f.text_field :resides_with %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :reference_from %>
-    <%= f.text_field :reference_from %>
-  </div>
+    <div class="field">
+      <%= f.select :resides_with, ['Both', 'Father','Mother'], {:prompt => 'Resides With'},  {class: "form-control"} %>
 
-  <div class="field">
-    <%= f.label :student_transfer %>
-    <%= f.text_field :student_transfer %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :preK_to_K %>
-    <%= f.text_field :preK_to_K %>
-  </div>
+    <div class="field">
+      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Reference From", :required=>"", :autofocus=>"" %>
 
-  <div class="actions">
-    <%= f.submit %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :required=>"", :autofocus=>"" %>
+
+    </div>
+
+    <div class="field">
+      <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Prek to K", :required=>"", :autofocus=>"" %>
+
+    </div>
+
+    <div class="actions">
+      <div class="buttons">
+      <%= f.submit "Save", :class=>"btn btn-primary" %>
+      <%= link_to 'Cancel', students_path, :class=>"btn btn-default " %>
+      <div>
+    </div>
   </div>
+</div>
 <% end %>
