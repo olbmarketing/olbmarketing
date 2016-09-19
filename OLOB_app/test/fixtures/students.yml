@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  school_year: 1
+  new_or_return: MyString
+  class: MyString
+  catholic: MyString
+  parish: MyString
+  race: MyString
+  resides_with: MyString
+  reference_from: MyString
+  student_transfer: MyString
+  preK_to_K: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  school_year: 1
+  new_or_return: MyString
+  class: MyString
+  catholic: MyString
+  parish: MyString
+  race: MyString
+  resides_with: MyString
+  reference_from: MyString
+  student_transfer: MyString
+  preK_to_K: MyString

@@ -1,0 +1,77 @@
+<%= form_for(student) do |f| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :school_year %>
+    <%= f.number_field :school_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :new_or_return %>
+    <%= f.text_field :new_or_return %>
+  </div>
+
+  <div class="field">
+    <%= f.label :student_class %>
+    <%= f.text_field :student_class %>
+  </div>
+
+  <div class="field">
+    <%= f.label :catholic %>
+    <%= f.text_field :catholic %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parish %>
+    <%= f.text_field :parish %>
+  </div>
+
+  <div class="field">
+    <%= f.label :race %>
+    <%= f.text_field :race %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resides_with %>
+    <%= f.text_field :resides_with %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reference_from %>
+    <%= f.text_field :reference_from %>
+  </div>
+
+  <div class="field">
+    <%= f.label :student_transfer %>
+    <%= f.text_field :student_transfer %>
+  </div>
+
+  <div class="field">
+    <%= f.label :preK_to_K %>
+    <%= f.text_field :preK_to_K %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
