@@ -10,16 +10,18 @@
 
   <body class='<%= controller.controller_name %>'>
     <% if current_user %>
-  	<%= render file: "pages/dashboard.html.erb" %>
-	<% else %>
-      <nav class="navbar navbar-default">
-<%= link_to 'OLOB Marketing', '/home', :class=>"navbar-brand" %>
-  <%= link_to 'Login', '/login', :class=>"btn btn-default navbar-btn" %>
-   <%= link_to 'Signup', '/signup', :class=>"btn btn-default navbar-btn" %>
-  </nav>
-
+    <nav class="navbar navbar-default">
+      <%= link_to 'OLOB Marketing', '/static_pages/dashboard', :class=>"navbar-brand" %>
+      <%= link_to 'Logout', '/logout', :class=>"btn btn-default navbar-btn" %>
+     </nav>
     <%= yield %>
-	<% end %>
-
+  <% else %>
+  	 <nav class="navbar navbar-default">
+      <%= link_to 'OLOB Marketing', '/home', :class=>"navbar-brand" %>
+      <%= link_to 'Login', '/login', :class=>"btn btn-default navbar-btn" %>
+      <%= link_to 'Signup', '/signup', :class=>"btn btn-default navbar-btn" %>
+     </nav>
+     <%= yield %>
+	  <% end %>
   </body>
 </html>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static_pages/dashboard'
+
   resources :students
 	root to: 'sessions#new'
 

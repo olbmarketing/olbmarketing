@@ -1,0 +1,10 @@
+<% if current_user %>
+<h1>Dashboard</h1>
+<ul>
+  <li><%= link_to "Add New Student", '/students/new' %></li>
+  <li><%= link_to "View Current Students", '/students' %></li>
+</ul>
+<% else %>
+
+  <h1>An error has occured. Log out and try again.</h1>
+<% end %>
