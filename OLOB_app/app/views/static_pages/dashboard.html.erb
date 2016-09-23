@@ -1,10 +1,15 @@
-<% if current_user %>
-<h1>Dashboard</h1>
-<ul>
-  <li><%= link_to "Add New Student", '/students/new' %></li>
-  <li><%= link_to "View Current Students", '/students' %></li>
-</ul>
-<% else %>
-
-  <h1>An error has occured. Log out and try again.</h1>
-<% end %>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Our Lady of Bethlehem</a>
+		</div>
+		<ul class="nav navbar-nav">
+		<li class="active"><a href="#">Home</a></li>
+      <li><%= link_to "Add New Students", '/students/new' %></li>
+      <li><%= link_to "View Current Students", '/students' %></li>
+      <li><a href="#">View Student Test Data</a></li> 
+      <li><a href="#">View Parish/Stakeholder Map</a></li> 
+      <li><a href="#">Exit Survey</a></li> 
+    </ul>
+  </div>
+</nav>
