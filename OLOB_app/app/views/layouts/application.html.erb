@@ -14,6 +14,12 @@
       <%= link_to 'OLOB Marketing', '/static_pages/dashboard', :class=>"navbar-brand" %>
       <%= link_to 'Logout', '/logout', :class=>"btn btn-default navbar-btn" %>
      </nav>
+     <% flash.each do |key, message| %>
+      <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
+        <button class="close" data-dismiss="alert">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   <% else %>
   	 <nav class="navbar navbar-default">
@@ -21,6 +27,12 @@
       <%= link_to 'Login', '/login', :class=>"btn btn-default navbar-btn" %>
       <%= link_to 'Signup', '/signup', :class=>"btn btn-default navbar-btn" %>
      </nav>
+     <% flash.each do |key, message| %>
+      <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
+        <button class="close" data-dismiss="alert">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
      <%= yield %>
 	  <% end %>
   </body>
