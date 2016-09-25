@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
       redirect_to '/static_pages/dashboard'
     else
     # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+      flash.now[:error] = 'Invalid email/password combination'
+      render 'new'
     end
   end
 
