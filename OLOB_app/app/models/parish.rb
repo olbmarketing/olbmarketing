@@ -1,0 +1,2 @@
+class Parish < ApplicationRecord
+end

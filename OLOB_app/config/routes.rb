@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :parishes
   get 'static_pages/dashboard'
 
   resources :students
