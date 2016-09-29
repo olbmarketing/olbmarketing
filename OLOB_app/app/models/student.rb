@@ -5,11 +5,8 @@ class Student < ApplicationRecord
         message: "must be the following format: YYYY-YY i.e. 2020-21"
     }
     validates :catholic, allow_blank: true, format: {
-        with: /(Y|N|not listed)/,
-        message: "must be Y or N" 
+        with: /\A(Y|N|not listed)\z/,
+        message: "must be \"Y\" or \"N\" or \"not listed\"" 
     }
-    validates :last_name, format: {
-        with: /(Y|N|not listed)/,
-        message: "must be Y or N" 
-    }
+    
 end
