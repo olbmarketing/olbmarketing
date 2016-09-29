@@ -16,15 +16,15 @@
       <h2 class="create-student-heading">New Student</h2>
     </div>
     <div class="field">
-      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :autofocus=>"" %>
     </div>
 
     <div class="field">
-      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :autofocus=>"" %>
     </div>
 
     <div class="field">
-      <%= f.number_field :school_year,:class => "form-control", :placeholder=>"School Year", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :school_year,:class => "form-control", :placeholder=>"School Year", :autofocus=>"" %>
     </div>
     <div class="field">
       <%= f.select :new_or_return, ['New', 'Return'], {:prompt => 'New or Return'},  {class: "form-control"} %>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="field">
-      <%= f.select :catholic, ['Yes', 'No'], {:prompt => 'Catholic'},  {class: "form-control"} %>
+      <%= f.select :catholic, ['Y', 'N'], {:prompt => 'Catholic'},  {class: "form-control"} %>
 
     </div>
 
@@ -55,17 +55,17 @@
     </div>
 
     <div class="field">
-      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Reference From", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Reference From", :autofocus=>"" %>
 
     </div>
 
     <div class="field">
-      <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :autofocus=>"" %>
 
     </div>
 
     <div class="field">
-      <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Prek to K", :required=>"", :autofocus=>"" %>
+      <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Prek to K", :autofocus=>"" %>
 
     </div>
 
