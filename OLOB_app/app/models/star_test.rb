@@ -1,0 +1,2 @@
+class StarTest < ApplicationRecord
+end

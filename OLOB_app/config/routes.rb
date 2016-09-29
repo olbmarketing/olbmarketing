@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :schools
   resources :parishes
   resources :employees
+  resources :star_tests
   get 'static_pages/dashboard'
 
   resources :students
