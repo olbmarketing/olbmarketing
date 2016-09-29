@@ -1,0 +1,2 @@
+json.extract! star_test, :id, :first_name, :, :last_name, :, :test_date, :, :scaled_score, :, :developmental_stage, :, :alphabetic_principle, :, :concept_of_word, :, :visual_discrimination, :, :phonemic_awareness, :, :phonics, :, :structural_analysis, :, :vocabulary, :, :sentence_level_comprehension, :, :paragraph_level_comprehension, :, :early_numeracy, :, :created_at, :updated_at
+json.url star_test_url(star_test, format: :json)

@@ -1,0 +1,167 @@
+<%= form_for(star_test) do |f| %>
+  <% if star_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(star_test.errors.count, "error") %> prohibited this star_test from being saved:</h2>
+
+      <ul>
+      <% star_test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.text_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.text_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :test_date %>
+    <%= f.text_field :test_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.date_select : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :scaled_score %>
+    <%= f.text_field :scaled_score %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :developmental_stage %>
+    <%= f.text_field :developmental_stage %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.text_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :alphabetic_principle %>
+    <%= f.text_field :alphabetic_principle %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :concept_of_word %>
+    <%= f.text_field :concept_of_word %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :visual_discrimination %>
+    <%= f.text_field :visual_discrimination %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phonemic_awareness %>
+    <%= f.text_field :phonemic_awareness %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phonics %>
+    <%= f.text_field :phonics %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :structural_analysis %>
+    <%= f.text_field :structural_analysis %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vocabulary %>
+    <%= f.text_field :vocabulary %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sentence_level_comprehension %>
+    <%= f.text_field :sentence_level_comprehension %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :paragraph_level_comprehension %>
+    <%= f.text_field :paragraph_level_comprehension %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="field">
+    <%= f.label :early_numeracy %>
+    <%= f.text_field :early_numeracy %>
+  </div>
+
+  <div class="field">
+    <%= f.label : %>
+    <%= f.number_field : %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

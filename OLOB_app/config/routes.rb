@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :star_tests
   get 'static_pages/dashboard'
 
   resources :students
