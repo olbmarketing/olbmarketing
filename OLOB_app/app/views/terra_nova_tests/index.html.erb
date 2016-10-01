@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Terra Nova Tests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Test date</th>
+      <th>Reading scale score</th>
+      <th>Reading national percentile</th>
+      <th>Oral comprehension opi</th>
+      <th>Oral comprehension level</th>
+      <th>Basic understanding opi</th>
+      <th>Basic understanding level</th>
+      <th>Introduction to print opi</th>
+      <th>Introduction to print level</th>
+      <th>Math scale score</th>
+      <th>Math national percentile</th>
+      <th>Number and number relations opi</th>
+      <th>Number and number relations level</th>
+      <th>Measurement opi</th>
+      <th>Measurement level</th>
+      <th>Geometry and spatial sense opi</th>
+      <th>Geometry and spatial sense level</th>
+      <th>Data stats and probability opi</th>
+      <th>Data stats and probability level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @terra_nova_tests.each do |terra_nova_test| %>
+      <tr>
+        <td><%= terra_nova_test.student %></td>
+        <td><%= terra_nova_test.test_date %></td>
+        <td><%= terra_nova_test.reading_scale_score %></td>
+        <td><%= terra_nova_test.reading_national_percentile %></td>
+        <td><%= terra_nova_test.oral_comprehension_opi %></td>
+        <td><%= terra_nova_test.oral_comprehension_level %></td>
+        <td><%= terra_nova_test.basic_understanding_opi %></td>
+        <td><%= terra_nova_test.basic_understanding_level %></td>
+        <td><%= terra_nova_test.introduction_to_print_opi %></td>
+        <td><%= terra_nova_test.introduction_to_print_level %></td>
+        <td><%= terra_nova_test.math_scale_score %></td>
+        <td><%= terra_nova_test.math_national_percentile %></td>
+        <td><%= terra_nova_test.number_and_number_relations_opi %></td>
+        <td><%= terra_nova_test.number_and_number_relations_level %></td>
+        <td><%= terra_nova_test.measurement_opi %></td>
+        <td><%= terra_nova_test.measurement_level %></td>
+        <td><%= terra_nova_test.geometry_and_spatial_sense_opi %></td>
+        <td><%= terra_nova_test.geometry_and_spatial_sense_level %></td>
+        <td><%= terra_nova_test.data_stats_and_probability_opi %></td>
+        <td><%= terra_nova_test.data_stats_and_probability_level %></td>
+        <td><%= link_to 'Show', terra_nova_test %></td>
+        <td><%= link_to 'Edit', edit_terra_nova_test_path(terra_nova_test) %></td>
+        <td><%= link_to 'Destroy', terra_nova_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Terra Nova Test', new_terra_nova_test_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929134845) do
+ActiveRecord::Schema.define(version: 20161001141427) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -92,6 +92,44 @@ ActiveRecord::Schema.define(version: 20160929134845) do
     t.string   "preK_to_K"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "terra_nova_test_benchmarks", force: :cascade do |t|
+    t.date     "test_date"
+    t.integer  "oral_comprehension_opi"
+    t.integer  "basic_understanding_opi"
+    t.integer  "introduction_to_print_opi"
+    t.integer  "number_and_number_relations_opi"
+    t.integer  "measurement_opi"
+    t.integer  "geometry_and_spatial_sense_opi"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "terra_nova_tests", force: :cascade do |t|
+    t.integer  "student_id"
+    t.date     "test_date"
+    t.integer  "reading_scale_score"
+    t.integer  "reading_national_percentile"
+    t.integer  "oral_comprehension_opi"
+    t.string   "oral_comprehension_level"
+    t.integer  "basic_understanding_opi"
+    t.string   "basic_understanding_level"
+    t.integer  "introduction_to_print_opi"
+    t.string   "introduction_to_print_level"
+    t.integer  "math_scale_score"
+    t.integer  "math_national_percentile"
+    t.integer  "number_and_number_relations_opi"
+    t.string   "number_and_number_relations_level"
+    t.integer  "measurement_opi"
+    t.string   "measurement_level"
+    t.integer  "geometry_and_spatial_sense_opi"
+    t.string   "geometry_and_spatial_sense_level"
+    t.integer  "data_stats_and_probability_opi"
+    t.string   "data_stats_and_probability_level"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["student_id"], name: "index_terra_nova_tests_on_student_id"
   end
 
   create_table "users", force: :cascade do |t|
