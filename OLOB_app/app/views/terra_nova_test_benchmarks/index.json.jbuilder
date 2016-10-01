@@ -1,0 +1,1 @@
+json.array! @terra_nova_test_benchmarks, partial: 'terra_nova_test_benchmarks/terra_nova_test_benchmark', as: :terra_nova_test_benchmark

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_date: 2016-10-01
+  oral_comprehension_opi: 1
+  basic_understanding_opi: 1
+  introduction_to_print_opi: 1
+  number_and_number_relations_opi: 1
+  measurement_opi: 1
+  geometry_and_spatial_sense_opi: 1
+
+two:
+  test_date: 2016-10-01
+  oral_comprehension_opi: 1
+  basic_understanding_opi: 1
+  introduction_to_print_opi: 1
+  number_and_number_relations_opi: 1
+  measurement_opi: 1
+  geometry_and_spatial_sense_opi: 1
