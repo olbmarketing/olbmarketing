@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :exit_surveys
   resources :terra_nova_test_benchmarks
   resources :terra_nova_tests
   resources :schools

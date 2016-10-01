@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001141427) do
+ActiveRecord::Schema.define(version: 20161001144022) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -23,6 +23,30 @@ ActiveRecord::Schema.define(version: 20161001141427) do
     t.string   "email_work"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "exit_surveys", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "how_likely_to_recommend"
+    t.string   "how_satisfied_with_education"
+    t.string   "how_is_spiritual_environment"
+    t.string   "spiritual_environment_comment"
+    t.string   "how_is_physical_facilities"
+    t.string   "physical_facilities_comment"
+    t.string   "how_is_academic_program"
+    t.string   "academic_program_comment"
+    t.string   "how_is_social_environment"
+    t.string   "social_environment_comment"
+    t.string   "how_is_admin_faculty_and_staff"
+    t.string   "admin_faculty_and_staff_comment"
+    t.string   "how_is_communication"
+    t.string   "communication_comment"
+    t.string   "reason_for_leaving"
+    t.string   "reason_for_leaving_explan"
+    t.string   "comments_questions_concerns"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["student_id"], name: "index_exit_surveys_on_student_id"
   end
 
   create_table "parishes", force: :cascade do |t|
