@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :star_tests
   resources :terra_nova_test_benchmarks
   resources :terra_nova_tests
   resources :schools
   resources :parishes
   resources :employees
-  resources :star_tests
   get 'static_pages/dashboard'
 
   resources :students
