@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
     has_many :exit_surveys, dependent: :destroy 
-    has_many :terra_nova_test_benchmarks, dependent: :destroy
+    has_many :terra_nova_tests, dependent: :destroy
     has_many :star_tests, dependent: :destroy
     validates :first_name, :last_name, :school_year, presence: true
     validates :school_year, format: {
