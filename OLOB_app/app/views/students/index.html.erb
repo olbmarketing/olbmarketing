@@ -17,6 +17,14 @@
       <th>Reference from</th>
       <th>Student transfer</th>
       <th>Prek to k</th>
+      <th>Father name</th>
+      <th>Mother name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Email1</th>
+      <th>Email2</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,6 +44,14 @@
         <td><%= student.reference_from %></td>
         <td><%= student.student_transfer %></td>
         <td><%= student.preK_to_K %></td>
+        <td><%= student.father_name %></td>
+        <td><%= student.mother_name %></td>
+        <td><%= student.address %></td>
+        <td><%= student.city %></td>
+        <td><%= student.state %></td>
+        <td><%= student.zip %></td>
+        <td><%= student.email1 %></td>
+        <td><%= student.email2 %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>

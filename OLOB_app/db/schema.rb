@@ -115,6 +115,14 @@ ActiveRecord::Schema.define(version: 20161002010644) do
     t.string   "preK_to_K"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "father_name"
+    t.string   "mother_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "email1"
+    t.string   "email2"
   end
 
   create_table "terra_nova_test_benchmarks", force: :cascade do |t|
