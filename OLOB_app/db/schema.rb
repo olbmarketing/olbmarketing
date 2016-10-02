@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001144022) do
+ActiveRecord::Schema.define(version: 20161002010644) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -82,23 +82,22 @@ ActiveRecord::Schema.define(version: 20161001144022) do
   end
 
   create_table "star_tests", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "test_date"
-    t.string   "scaled_score"
+    t.integer  "student_id"
+    t.date     "test_date"
+    t.integer  "scaled_score"
     t.string   "developmental_stage"
-    t.string   "alphabetic_principle"
-    t.string   "concept_of_word"
-    t.string   "visual_discrimination"
-    t.string   "phonemic_awareness"
-    t.string   "phonics"
-    t.string   "structural_analysis"
-    t.string   "vocabulary"
-    t.string   "sentence_level_comprehension"
-    t.string   "paragraph_level_comprehension"
-    t.string   "early_numeracy"
+    t.integer  "alphabetic_principle"
+    t.integer  "concept_of_word"
+    t.integer  "visual_discrimination"
+    t.integer  "phonemic_awareness"
+    t.integer  "phonics"
+    t.integer  "structural_analysis"
+    t.integer  "vocabulary"
+    t.integer  "sentence_level_comprehension"
+    t.integer  "paragraph_level_comprehension"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.index ["student_id"], name: "index_star_tests_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
