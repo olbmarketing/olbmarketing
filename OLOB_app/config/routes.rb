@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :employees
   get 'static_pages/dashboard'
 
-  resources :students
+  resources :students do 
+    collection {post :import}
+  end 
 	root to: 'sessions#new'
 
 	# these routes are for showing users a login form, logging them in, and logging them out.

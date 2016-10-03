@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Students</h1>
-
+<p>student count: <%= @students.count %></p>
 <table>
   <thead>
     <tr>
@@ -63,3 +62,12 @@
 <br>
 
 <%= link_to 'New Student', new_student_path %>
+
+<hr>
+<div>
+  <h4>Import Data</h4>
+  <%= form_tag import_students_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV/xlsx" %>
+  <% end %>
+</div>

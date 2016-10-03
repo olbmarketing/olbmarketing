@@ -62,6 +62,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  def import
+    Student.import(params[:file])
+    redirect_to students_url, notice: "Data imported!"
+  end 
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
