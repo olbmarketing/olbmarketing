@@ -1,8 +1,11 @@
+<!== ideally this div should not have set parameters, but should dynamically size to fit the whole page ==>
 <div style="height: 900px; width: 1500px">
   <div id="map_canvas" style="height: 100%; width: 100%;"></div>
 </div>
 <script type="text/javascript">
+  // Callback for initializing the map once the API is loaded
   function initMap() {
+    // OLB's coordinates
     var OLBPos = new google.maps.LatLng(40.053930, -83.035042);
     var myOptions = {
         zoom: 13,
@@ -12,6 +15,7 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
 
+    // "Drops" a marker on OLB
     marker = new google.maps.Marker({
       map: map,
       draggable: false,
@@ -21,6 +25,7 @@
     marker.addListener('click', toggleBounce);
   }
 
+  // Toggles the bouncing animation of the marker.
   function toggleBounce() {
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
