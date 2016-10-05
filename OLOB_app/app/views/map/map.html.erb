@@ -1,12 +1,34 @@
-<div id="map"></div>
-<script>
-  var map;
+<div style="height: 900px; width: 1500px">
+  <div id="map_canvas" style="height: 100%; width: 100%;"></div>
+</div>
+<script type="text/javascript">
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.397, lng: -80.644},
-      zoom: 8
+    var OLBPos = new google.maps.LatLng(40.053930, -83.035042);
+    var myOptions = {
+        zoom: 13,
+        center: OLBPos,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+
+    marker = new google.maps.Marker({
+      map: map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      position: OLBPos
     });
+    marker.addListener('click', toggleBounce);
   }
+
+  function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initMap"
-async defer></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initMap">
+</script>
