@@ -1,3 +1,26 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div.column{
+  padding-left: 70px;
+  float: left;
+  width: 50%;
+}
+div.column-left{
+  padding-left: 80px;
+  float: left;
+  width: 50%;
+}
+
+.form-group {
+    margin-bottom: .1px;
+    background-color: #f8f8f8;
+}
+.panel-primary {
+  border-color: #fff;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
