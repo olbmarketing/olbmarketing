@@ -1,16 +1,52 @@
+
+<% if false %>
+
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Our Lady of Bethlehem</a>
 		</div>
 		<ul class="nav navbar-nav">
-		<li class="active"><a href="#">Home</a></li>
-      <li><a href="/students/new">Add New Students</a></li>
-      <li><a href="/students">View Current Students</a></li> 
-      <li><a href="#">View Student Test Data</a></li> 
-      <li><a href="#">View Parish/Stakeholder Map</a></li> 
-      <li><a href="#">Exit Survey</a></li>
-      <li><%= link_to "Download Students", students_path(format: "xls") %></li> 
-    </ul>
-  </div>  
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="/students/new">Add New Students</a></li>
+			<li><a href="/students">View Current Students</a></li>
+			<li><a href="#">View Student Test Data</a></li>
+			<li><a href="#">View Parish/Stakeholder Map</a></li>
+			<li><a href="#">Exit Survey</a></li>
+			<li><%= link_to "Download Students", students_path(format: "xls") %></li>
+		</ul>
+	</div>
 </nav>
+<% end %>
+<div class="container" style="width:65%; padding-top:75px;">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<span class="glyphicon glyphicon-bookmark"></span> Dashboad</h3>
+			</div>
+			<div class="form-group">
+				<div class="panel-body">
+					<div class=column-left>
+						<a href="/students/new" class="btn btn-success btn-lg" role="button" style="width:250px;"><span class="glyphicon glyphicon-user"></span> <br/>Add New Student</a>
+
+						<br/>	<br/> <br/>
+						<a href="#" class="btn btn-primary btn-lg" role="button" style="width:250px;"><span class="glyphicon glyphicon-signal" ></span> <br/>Student Test Data</a>
+						<br/>	<br/> <br/>
+						<a href="#" class="btn btn-danger btn-lg" role="button" style="width:250px;"><span class="glyphicon glyphicon-th-list" ></span> <br/>Exit Survey</a>
+					</div>
+					<div class=column>
+						<a href="/students" class="btn btn-info btn-lg" role="button" style="width:250px;"><span class="glyphicon glyphicon-list-alt"></span> <br/>View Current Students</a>
+
+
+						<br/>	<br/> <br/>
+						<a href="/map" class="btn btn-warning btn-lg" role="button" style="width:250px;" ><span class="glyphicon glyphicon-map-marker"></span> <br/>View Map</a>
+
+						<br/>	<br/> <br/>
+						<%= link_to students_path(format: "xls"), :class=>"btn btn-primary btn-lg", :role=>"button", :style=>'width:250px;'  do %>
+						<span class="glyphicon glyphicon-save-file"></span> <br/>Download Students
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

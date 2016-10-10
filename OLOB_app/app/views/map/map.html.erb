@@ -1,0 +1,59 @@
+<!== ideally this div should not have set parameters, but should dynamically size to fit the whole page ==>
+<div style="height: 900px; width: 1500px">
+  <div id="map_canvas" style="height: 100%; width: 100%;"></div>
+  <div>
+    <input id="address" type="textbox" value="Sydney, NSW">
+    <input type="button" value="Encode" onclick="codeAddress()">
+  </div>
+</div>
+<script type="text/javascript">
+  // Callback for initializing the map once the API is loaded
+  function initMap() {
+    // OLB's coordinates
+    var OLBPos = new google.maps.LatLng(40.053930, -83.035042);
+    var myOptions = {
+        zoom: 13,
+        center: OLBPos,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+
+    // "Drops" a marker on OLB
+    marker = new google.maps.Marker({
+      map: map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      position: OLBPos
+    });
+    marker.addListener('click', toggleBounce);
+  }
+
+  // Toggles the bouncing animation of the marker.
+  function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+}
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initMap">
+</script>
