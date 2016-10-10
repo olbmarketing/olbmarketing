@@ -4,7 +4,14 @@ class StarTestsController < ApplicationController
   # GET /star_tests
   # GET /star_tests.json
   def index
+    @student = Student.find(params[:student_id])
     @star_tests = StarTest.all
+  end
+
+  # GET /star_tests/students
+  def students
+    @star_tests = StarTest.all
+    @students = Student.all
   end
 
   # GET /star_tests/1
@@ -14,7 +21,9 @@ class StarTestsController < ApplicationController
 
   # GET /star_tests/new
   def new
+    student = Student.find(params[:student_id])
     @star_test = StarTest.new
+    @star_test.student = student
   end
 
   # GET /star_tests/1/edit
@@ -54,9 +63,10 @@ class StarTestsController < ApplicationController
   # DELETE /star_tests/1
   # DELETE /star_tests/1.json
   def destroy
+    student_id = @star_test.student.id
     @star_test.destroy
     respond_to do |format|
-      format.html { redirect_to star_tests_url, notice: 'Star test was successfully destroyed.' }
+      format.html { redirect_to star_tests_url(student_id: @star_test.student.id), notice: 'Star test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

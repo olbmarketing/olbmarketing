@@ -18,3 +18,40 @@ Student.create!(school_year: '2016-17',new_or_return: 'Return',student_class: 'A
 Student.create!(school_year: '2016-17',new_or_return: 'Return',student_class: 'AMPreK',last_name: 'Brown',first_name: 'Sophia',father_name: 'Sunny',mother_name: 'Megan',address: '255 Blenheim Road',city: 'Columbus',state: 'OH',zip: '43214',email1: 'sbrown@skurnikwines.com',email2: 'megmc75@hotmail.com',catholic: 'Y',parish: 'St. Andrew',race: 'White/Caucasian',resides_with: 'Both',reference_from: 'Current / Alumni Family')
 Student.create!(school_year: '2016-17',new_or_return: '',student_class: 'TTT',last_name: 'Brown',first_name: 'Carter',father_name: 'Sunny',mother_name: 'Megan',address: '',city: '',state: '',zip: '',email1: 'sbrown@skurnikwines.com',email2: 'megmc75@hotmail.com',catholic: '',parish: '',race: '',resides_with: '',reference_from: '')
 Student.create!(school_year: '2016-17',new_or_return: 'New',student_class: 'PMPreK',last_name: 'Burgess',first_name: 'Mary-Maginn',father_name: 'Joseph',mother_name: 'Jennifer',address: '249 East Kelso Road ',city: 'Columbus',state: 'OH',zip: '43202',email1: 'joeburgess3@gmail.com',email2: 'jcburgess25@gmail.com',catholic: 'Y',parish: 'Immaculate Conception',race: 'White/Caucasian',resides_with: 'Both',reference_from: 'Current / Alumni Family')
+
+# seed star test data 
+StarTest.delete_all
+
+StarTest.create!(
+  student: Student.all.first,
+  test_date: Date.new(2015,11,20),
+  scaled_score: 781,
+  developmental_stage: 'Emergent Reader Stage',
+  alphabetic_principle: 93,
+  concept_of_word: 94,
+  visual_discrimination: 96,
+  phonemic_awareness: 81,
+  phonics: 81,
+  structural_analysis: 76,
+  vocabulary: 81,
+  sentence_level_comprehension: 79,
+  paragraph_level_comprehension: 74, 
+  early_numeracy: 92
+)
+
+StarTest.create!(
+  student: Student.all.first,
+  test_date: Date.new(2016,01,14),
+  scaled_score: 781,
+  developmental_stage: 'Emergent Reader Stage',
+  alphabetic_principle: 81,
+  concept_of_word: 82,
+  visual_discrimination: 88,
+  phonemic_awareness: 60,
+  phonics: 58,
+  structural_analysis: 50,
+  vocabulary: 60,
+  sentence_level_comprehension: 53,
+  paragraph_level_comprehension: 49, 
+  early_numeracy: 79
+)
