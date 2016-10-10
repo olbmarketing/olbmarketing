@@ -45,4 +45,9 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to star_tests_url
   end
+
+  test "should get students" do 
+    get star_tests_students_url
+    assert_response :success
+  end 
 end

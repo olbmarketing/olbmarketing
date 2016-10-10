@@ -1,11 +1,32 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Star Tests</h1>
+<div>
+  <table>
+  <thead>
+    <tr>
+      <th>Student id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>School year</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td><%= @student.id %></td>
+      <td><%= @student.first_name %></td>
+      <td><%= @student.last_name %></td>
+      <td><%= @student.school_year %></td>
+      <td><%= @student.student_class %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <table>
   <thead>
     <tr>
-      <th>Student</th>
       <th>Test date</th>
       <th>Scaled score</th>
       <th>Developmental stage</th>
@@ -25,7 +46,6 @@
   <tbody>
     <% @star_tests.each do |star_test| %>
       <tr>
-        <td><%= star_test.student %></td>
         <td><%= star_test.test_date %></td>
         <td><%= star_test.scaled_score %></td>
         <td><%= star_test.developmental_stage %></td>
@@ -48,4 +68,4 @@
 
 <br>
 
-<%= link_to 'New Star Test', new_star_test_path %>
+<%= link_to 'New Star Test', new_star_test_path(student_id: @student.id) %>
