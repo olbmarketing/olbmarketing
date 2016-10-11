@@ -24,22 +24,22 @@
 </table>
 </div>
 
-<table>
+<table id="star_tests_table">
   <thead>
     <tr>
-      <th>Test date</th>
-      <th>Scaled score</th>
-      <th>Developmental stage</th>
-      <th>Alphabetic principle</th>
-      <th>Concept of word</th>
-      <th>Visual discrimination</th>
-      <th>Phonemic awareness</th>
-      <th>Phonics</th>
-      <th>Structural analysis</th>
-      <th>Vocabulary</th>
-      <th>Sentence level comprehension</th>
-      <th>Paragraph level comprehension</th>
-      <th colspan="3"></th>
+<th class="<%= StarTest.columns_hash["test_date"].type %>">Test date</th>
+<th class="<%= StarTest.columns_hash["scaled_score"].type %>">Scaled score</th>
+<th class="<%= StarTest.columns_hash["developmental_stage"].type %>">Developmental stage</th>
+<th class="<%= StarTest.columns_hash["alphabetic_principle"].type %>">Alphabetic principle</th>
+<th class="<%= StarTest.columns_hash["concept_of_word"].type %>">Concept of word</th>
+<th class="<%= StarTest.columns_hash["visual_discrimination"].type %>">Visual discrimination</th>
+<th class="<%= StarTest.columns_hash["phonemic_awareness"].type %>">Phonemic awareness</th>
+<th class="<%= StarTest.columns_hash["phonics"].type %>">Phonics</th>
+<th class="<%= StarTest.columns_hash["structural_analysis"].type %>">Structural analysis</th>
+<th class="<%= StarTest.columns_hash["vocabulary"].type %>">Vocabulary</th>
+<th class="<%= StarTest.columns_hash["sentence_level_comprehension"].type %>">Sentence level comprehension</th>
+<th class="<%= StarTest.columns_hash["paragraph_level_comprehension"].type %>">Paragraph level comprehension</th>
+<th colspan="3"></th>
     </tr>
   </thead>
 
@@ -69,3 +69,8 @@
 <br>
 
 <%= link_to 'New Star Test', new_star_test_path(student_id: @student.id) %>
+
+<hr>
+
+     <!--Div that will hold the pie chart-->
+    <div id="star_test_chart_div"></div>

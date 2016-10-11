@@ -55,3 +55,37 @@ StarTest.create!(
   paragraph_level_comprehension: 49, 
   early_numeracy: 79
 )
+
+StarTest.create!(
+  student: Student.all.first,
+  test_date: Date.new(2016,4,5),
+  scaled_score: 781,
+  developmental_stage: 'Emergent Reader Stage',
+  alphabetic_principle: 75,
+  concept_of_word: 77,
+  visual_discrimination: 84,
+  phonemic_awareness: 52,
+  phonics: 50,
+  structural_analysis: 42,
+  vocabulary: 53,
+  sentence_level_comprehension: 45,
+  paragraph_level_comprehension: 41, 
+  early_numeracy: 73
+)
+
+StarTest.create!(
+  student: Student.all.first,
+  test_date: Date.new(2016,5,12),
+  scaled_score: 781,
+  developmental_stage: 'Emergent Reader Stage',
+  alphabetic_principle: 94,
+  concept_of_word: 95,
+  visual_discrimination: 97,
+  phonemic_awareness: 84,
+  phonics: 84,
+  structural_analysis: 79,
+  vocabulary: 84,
+  sentence_level_comprehension: 82,
+  paragraph_level_comprehension: 78, 
+  early_numeracy: 94
+)
