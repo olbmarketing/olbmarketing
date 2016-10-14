@@ -2,21 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.students {
-  margin-left: 5px;
-  table {
-    border-collapse: collapse;
-  }
 
-  table th {
-    padding: 5px;
-  }
-
-  table tr td {
-    padding: 5px;
-    vertical-align: top;
-  }
-}
 
 .new_student {
 
@@ -28,13 +14,7 @@
   }
 }
 
-.list_line_even {
-  background: #e0f8f8;
-}
 
-.list_line_odd {
-  background: #f8b0f8;
-}
 .form-new-student{
   background-color: #f8f8f8;
   padding-top: 10px;
