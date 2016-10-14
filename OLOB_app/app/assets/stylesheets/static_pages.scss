@@ -1,26 +1,58 @@
-div.column{
-  padding-left: 70px;
-  float: left;
-  width: 50%;
-}
-div.column-left{
-  padding-left: 80px;
-  float: left;
-  width: 50%;
+.container{
+  padding-top: 75px;
 }
 
-.form-group {
-    margin-bottom: .1px;
-    background-color: #f8f8f8;
-}
-.panel-primary {
-  border-color: #fff;
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
 }
 
-.panel {
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+  text-align: center;
+  display: block;
+  margin: auto;
+
+}
+div.menu{
+
+}
+#wrapper {
+  margin: auto;
+  width: 50%;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-radius: 15px;
+  border-color: #d2d2d2;
+  border-width: 5px;
+  box-shadow: 0 1px 0 #cfcfcf;
+}
+div.left-column{
+  float: left;
+  margin: auto;
+  width: 50%;
+  padding-right: 10px;
+
+}
+ div.right-column {
+   float: left;
+   margin: auto;
+   width: 50%;
+   padding-left: 10px;
+
+
 }
