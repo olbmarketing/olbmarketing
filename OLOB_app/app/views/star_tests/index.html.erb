@@ -39,6 +39,7 @@
 <th class="<%= StarTest.columns_hash["vocabulary"].type %>">Vocabulary</th>
 <th class="<%= StarTest.columns_hash["sentence_level_comprehension"].type %>">Sentence level comprehension</th>
 <th class="<%= StarTest.columns_hash["paragraph_level_comprehension"].type %>">Paragraph level comprehension</th>
+<th class="<%= StarTest.columns_hash["early_numeracy"].type %>">Early numeracy</th>
 <th colspan="3"></th>
     </tr>
   </thead>
@@ -58,6 +59,7 @@
         <td><%= star_test.vocabulary %></td>
         <td><%= star_test.sentence_level_comprehension %></td>
         <td><%= star_test.paragraph_level_comprehension %></td>
+        <td><%= star_test.early_numeracy %></td>
         <td><%= link_to 'Show', star_test %></td>
         <td><%= link_to 'Edit', edit_star_test_path(star_test) %></td>
         <td><%= link_to 'Destroy', star_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>

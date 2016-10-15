@@ -53,12 +53,12 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update star_test" do
     # initial vocabulary is 1
-    assert_equal(@star_test.vocabulary, 1)
+    assert_equal(1, @star_test.vocabulary)
     # update the vocabulary to be 99
     patch star_test_url(@star_test), params: { star_test: @new_star_test }
     assert_redirected_to star_test_url(@star_test)
     get star_test_url(@star_test) + '.json'
-    assert_equal JSON.parse(response.body)['vocabulary'], 99, "after update the vocabulary should be 99"
+    assert_equal 99, JSON.parse(response.body)['vocabulary'], "after update the vocabulary should be 99"
   end
 
   test "should destroy star_test" do
@@ -73,5 +73,15 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     get star_tests_students_url(student_id: @first_student.id)
     assert_response :success
   end 
+
+  test "should update star_test early_numeracy" do
+    # initial early_numeracy is 92
+    assert_equal(92, @star_test.early_numeracy)
+    # update the early_numeracy to be 94
+    patch star_test_url(@star_test), params: { star_test: @new_star_test }
+    assert_redirected_to star_test_url(@star_test)
+    get star_test_url(@star_test) + '.json'
+    assert_equal 94, JSON.parse(response.body)['early_numeracy'], "after update the early_numeracy should be 94"
+  end
   
 end
