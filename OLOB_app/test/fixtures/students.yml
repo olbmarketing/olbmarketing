@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   first_name: fname1
   last_name: lname1
   school_year: 2015-16
@@ -15,6 +16,7 @@ one:
   preK_to_K: MyString
 
 two:
+  id: 2
   first_name: MyString
   last_name: MyString
   school_year: 1
