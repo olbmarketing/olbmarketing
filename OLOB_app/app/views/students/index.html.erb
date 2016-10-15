@@ -1,97 +1,136 @@
 
+
+<table ng-table="vm.tableParams" class="table" show-filter="true">
+    <tr ng-repeat="user in $data">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}</td>
+        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+            {{user.age}}</td>
+    </tr>
+</table>
+
+
+
 <h1>Students</h1>
 <div class="table-responsive">
-<p>student count: <%= @students.count %></p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>School year</th>
-      <th>New or return</th>
-      <th>Class</th>
-      <th>Catholic</th>
-      <th>Parish</th>
-      <th>Race</th>
-      <th>Resides with</th>
-      <th>Reference from</th>
-      <th>Student transfer</th>
-      <th>Prek to k</th>
-      <th>Father name</th>
-      <th>Mother name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Email1</th>
-      <th>Email2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p>student count: <%= @students.count %></p>
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+        <div class="pull-right">
+          <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr class="filters">
+            <th><input type="text" class="form-control" placeholder="First Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Last Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="School Year" disabled></th>
+            <th><input type="text" class="form-control" placeholder="New or Return" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Class" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Catholic" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Parish" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Resides With" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Reference From" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Transfer" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Prek to K" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Father's Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Mother's Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Address" disabled></th>
+            <th><input type="text" class="form-control" placeholder="City" disabled></th>
+            <th><input type="text" class="form-control" placeholder="State" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Zip" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Email" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Email 2" disabled></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @students.each do |student| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td><%= student.first_name %></td>
-      <td><%= student.last_name %></td>
-      <td><%= student.school_year %></td>
-      <td><%= student.new_or_return %></td>
-      <td><%= student.student_class %></td>
-      <td><%= student.catholic %></td>
-      <td><%= student.parish %></td>
-      <td><%= student.race %></td>
-      <td><%= student.resides_with %></td>
-      <td><%= student.reference_from %></td>
-      <td><%= student.student_transfer %></td>
-      <td><%= student.preK_to_K %></td>
-      <td><%= student.father_name %></td>
-      <td><%= student.mother_name %></td>
-      <td><%= student.address %></td>
-      <td><%= student.city %></td>
-      <td><%= student.state %></td>
-      <td><%= student.zip %></td>
-      <td><%= student.email1 %></td>
-      <td><%= student.email2 %></td>
-      <td><div class="dropdown">
-        <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
-          <span class="button-content">
-            <i class="glyphicon glyphicon-cog font-size-11"></i>
-            <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
-          </span>
-        </a>
-        <ul class="dropdown-menu float-right">
-          <li>
-            <%= link_to 'Show', student %>
-          </li>
-          <li>
-            <%= link_to 'Edit', edit_student_path(student) %>
-          </li>
-          <li>
-            <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-        </ul>
-      </div></td>
-    </tr>
+        <tbody>
+          <% @students.each do |student| %>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+            <td><%= student.first_name %></td>
+            <td><%= student.last_name %></td>
+            <td><%= student.school_year %></td>
+            <td><%= student.new_or_return %></td>
+            <td><%= student.student_class %></td>
+            <td><%= student.catholic %></td>
+            <td><%= student.parish %></td>
+            <td><%= student.race %></td>
+            <td><%= student.resides_with %></td>
+            <td><%= student.reference_from %></td>
+            <td><%= student.student_transfer %></td>
+            <td><%= student.preK_to_K %></td>
+            <td><%= student.father_name %></td>
+            <td><%= student.mother_name %></td>
+            <td><%= student.address %></td>
+            <td><%= student.city %></td>
+            <td><%= student.state %></td>
+            <td><%= student.zip %></td>
+            <td><%= student.email1 %></td>
+            <td><%= student.email2 %></td>
+            <td><div class="dropdown">
+              <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
+                <span class="button-content">
+                  <i class="glyphicon glyphicon-cog font-size-11"></i>
+                  <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
+                </span>
+              </a>
+              <ul class="dropdown-menu float-right">
+                <li>
+                  <%= link_to 'Show', student %>
+                </li>
+                <li>
+                  <%= link_to 'Edit', edit_student_path(student) %>
+                </li>
+                <li>
+                  <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
+              </ul>
+            </div></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <br>
+
+
+
+  <%= link_to 'New Student', new_student_path %>
+
+  <hr>
+  <div>
+    <h4>Import Data</h4>
+    <%= form_tag import_students_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV/xlsx" %>
     <% end %>
-  </tbody>
-</table>
-</div>
+  </div>
 
 
-
-
-
-<br>
-
-
-
-<%= link_to 'New Student', new_student_path %>
-
-<hr>
-<div>
-  <h4>Import Data</h4>
-  <%= form_tag import_students_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import CSV/xlsx" %>
-  <% end %>
-</div>
+  <div class="float-left">
+    <span class="btn btn-md btn-success fileinput-button">
+      <i class="glyph-icon icon-plus"></i>
+      Add files...
+      <input type="file" name="files[]" multiple="">
+    </span>
+    <button type="submit" class="btn btn-md btn-default start">
+      <i class="glyph-icon icon-upload"></i>
+      Start upload
+    </button>
+    <button type="reset" class="btn btn-md btn-warning cancel">
+      <i class="glyph-icon icon-ban"></i>
+      Cancel upload
+    </button>
+    <button type="button" class="btn btn-md btn-danger delete">
+      <i class="glyph-icon icon-trash-o"></i>
+      Delete
+    </button>
+  </div>
