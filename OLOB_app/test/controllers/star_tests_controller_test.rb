@@ -58,7 +58,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     patch star_test_url(@star_test), params: { star_test: @new_star_test }
     assert_redirected_to star_test_url(@star_test)
     get star_test_url(@star_test) + '.json'
-    assert_equal JSON.parse(response.body)['vocabulary'], 99
+    assert_equal JSON.parse(response.body)['vocabulary'], 99, "after update the vocabulary should be 99"
   end
 
   test "should destroy star_test" do
