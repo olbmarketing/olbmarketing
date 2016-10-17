@@ -5,7 +5,12 @@ class StarTestsController < ApplicationController
   # GET /star_tests.json
   def index
     @student = Student.find(params[:student_id])
-    @star_tests = StarTest.all
+    if @student 
+      @star_tests = @student.star_tests
+    else 
+      @star_tests = StarTest.all
+    end 
+    
   end
 
   # GET /star_tests/students

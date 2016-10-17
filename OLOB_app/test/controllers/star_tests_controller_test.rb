@@ -4,6 +4,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @star_test = star_tests(:one)
     @first_student = students(:one)
+    @second_student = students(:two)
     @new_star_test = {
       student: @first_student,
       test_date: Date.new(2016,10,5),
@@ -84,4 +85,15 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 94, JSON.parse(response.body)['early_numeracy'], "after update the early_numeracy should be 94"
   end
   
+  test "should get 2 star tests for student one" do
+    get star_tests_url + '.json' + '?student_id=' + @first_student.id.to_s
+    # student's test count is equal to test count from response
+    assert_equal @first_student.star_tests.count, JSON.parse(response.body).count
+  end 
+  test "should get 0 star tests for student two" do
+    get star_tests_url + '.json' + '?student_id=' + @second_student.id.to_s
+    # student's test count is equal to test count from response
+    assert_equal @second_student.star_tests.count, JSON.parse(response.body).count
+  end 
+ 
 end
