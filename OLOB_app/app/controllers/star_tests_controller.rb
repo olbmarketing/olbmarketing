@@ -19,6 +19,12 @@ class StarTestsController < ApplicationController
     @students = Student.all
   end
 
+  # GET /star_test/report 
+  def report
+    @student = Student.find(params[:student_id])
+    #@star_tests = StarTest.all
+  end 
+
   # GET /star_tests/1
   # GET /star_tests/1.json
   def show

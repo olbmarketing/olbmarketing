@@ -95,5 +95,10 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     # student's test count is equal to test count from response
     assert_equal @second_student.star_tests.count, JSON.parse(response.body).count
   end 
+
+  test "should get report" do 
+    get star_tests_students_url(student_id: @first_student.id)
+    assert_response :success
+  end 
  
 end

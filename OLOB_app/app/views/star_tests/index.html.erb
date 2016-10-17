@@ -1,6 +1,9 @@
 
 <h1>Star Tests <%= 'for ' + @student.first_name + ' ' + @student.last_name if @student %></h1>
 <div>
+  <%= link_to 'View Report', star_tests_report_path(student_id: @student.id) %>
+</div>
+<div>
   <table>
   <thead>
     <tr>
