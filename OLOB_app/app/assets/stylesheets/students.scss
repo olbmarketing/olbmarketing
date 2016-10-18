@@ -2,39 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.students {
-    margin-left: 5px;
-    table {
-        border-collapse: collapse;
-    }
 
-    table th {
-        padding: 5px;
-    }
-
-    table tr td {
-        padding: 5px;
-        vertical-align: top;
-    }
-}
 
 .new_student {
 
-    label {
-        float: left;
-        width: 10em;
-        margin-right: 1em;
-        text-align: right;
-    }
+  label {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    text-align: right;
+  }
 }
 
-.list_line_even {
-    background: #e0f8f8;
-}
 
-.list_line_odd {
-    background: #f8b0f8;
-}
 .form-new-student{
   background-color: #f8f8f8;
   padding-top: 10px;
@@ -57,5 +37,35 @@
   text-align: center;
 }
 input {
-    padding: 8px;
+  padding: 8px;
+}
+ul.dropdown-menu {
+  /* position: absolute; */
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+ul.dropdown-menu.float-right {
+  right: 0;
+  left: auto;
+}
+i.glyphicon.glyphicon-cog.font-size-11 {
+  font-size: 11px!important;
+}
+i.glyphicon.glyphicon-chevron-down.font-size-11 {
+  font-size: 11px!important;
 }
