@@ -1,5 +1,5 @@
 // this file generate chart for star test data
-
+/*
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['bar']});
 
@@ -10,6 +10,7 @@ document.addEventListener("turbolinks:load", function() {
         google.charts.setOnLoadCallback(drawChart);    
     }
 });
+*/
 /*
 window.onpageshow = function() {
     console.log("hello");
