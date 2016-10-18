@@ -42,7 +42,7 @@ function create_report() {
 
 function drawAnnotations(tests) {
     if (tests.length === 0) {
-        document.getElementById('star_tests_chart_div').innerHTML = 'Star Tests Chart Not Available';
+        updateChartView();
     } else {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Category');
@@ -76,12 +76,38 @@ function drawAnnotations(tests) {
                 title: 'Test Category',
             }
         }
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('star_tests_chart_div'));
-        chart.draw(data, options);
+        updateChartView(data, options);
         
     }
-    
-    
-
 }
+
+function downloadPDF(img_uri) {
+    var doc = new jsPDF();
+    doc.setFontSize(40);
+    doc.text(35, 25, "Student Report");
+    doc.addImage(img_uri, 'PNG', 15, 40, 180, 80);
+    doc.save('test.pdf');
+}
+
+function updateChartView(data, options) {
+        if (!data) {
+            document.getElementById('star_tests_chart_div').innerHTML = 'Star Tests Chart Not Available';
+        } else {
+            var chart = new google.visualization.ColumnChart(document.getElementById('star_tests_chart_div'));
+
+            // add a button for download when ready 
+            google.visualization.events.addListener(chart, 'ready', function() {
+                var report_div = document.getElementById('star_tests_report');
+                var btn = document.createElement("BUTTON");        // Create a <button> element
+                var t = document.createTextNode("Download");  
+                btn.appendChild(t);   
+                btn.addEventListener('click', function() {
+                    downloadPDF(chart.getImageURI());
+                });
+                report_div.insertBefore(btn, report_div.childNodes[0]);
+            });
+            chart.draw(data, options);
+
+        }
+        
+    }
