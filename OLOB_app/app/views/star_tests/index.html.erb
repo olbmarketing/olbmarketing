@@ -49,7 +49,7 @@
 
   <tbody>
     <% @star_tests.each do |star_test| %>
-      <tr>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td><%= star_test.test_date %></td>
         <td><%= star_test.scaled_score %></td>
         <td><%= star_test.developmental_stage %></td>
