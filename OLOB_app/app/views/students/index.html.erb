@@ -1,19 +1,10 @@
 
-
-<table ng-table="vm.tableParams" class="table" show-filter="true">
-    <tr ng-repeat="user in $data">
-        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-            {{user.name}}</td>
-        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-            {{user.age}}</td>
-    </tr>
-</table>
-
-
-
 <h1>Students</h1>
 <div class="table-responsive">
-  <p>student count: <%= @students.count %></p>
+  <div>
+  <p class="student-count">Student Count: <%= @students.count %></p>
+  <%= link_to 'New Student', new_student_path, :class => "btn btn-md btn-default start"  %>
+</div>
     <div class="panel panel-primary filterable">
       <div class="panel-heading">
         <h3 class="panel-title">Users</h3>
@@ -31,6 +22,7 @@
             <th><input type="text" class="form-control" placeholder="Class" disabled></th>
             <th><input type="text" class="form-control" placeholder="Catholic" disabled></th>
             <th><input type="text" class="form-control" placeholder="Parish" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Resides With" disabled></th>
             <th><input type="text" class="form-control" placeholder="Resides With" disabled></th>
             <th><input type="text" class="form-control" placeholder="Reference From" disabled></th>
             <th><input type="text" class="form-control" placeholder="Transfer" disabled></th>
@@ -95,42 +87,14 @@
       </table>
     </div>
   </div>
-
-
-
-
   <br>
-
-
-
-  <%= link_to 'New Student', new_student_path %>
-
   <hr>
   <div>
     <h4>Import Data</h4>
+    <div>
     <%= form_tag import_students_path, multipart: true do %>
     <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV/xlsx" %>
+    <%= submit_tag "Import CSV/xlsx", :class => "btn btn-md btn-default start" %>
     <% end %>
   </div>
-
-
-  <div class="float-left">
-    <span class="btn btn-md btn-success fileinput-button">
-      <i class="glyph-icon icon-plus"></i>
-      Add files...
-      <input type="file" name="files[]" multiple="">
-    </span>
-    <button type="submit" class="btn btn-md btn-default start">
-      <i class="glyph-icon icon-upload"></i>
-      Start upload
-    </button>
-    <button type="reset" class="btn btn-md btn-warning cancel">
-      <i class="glyph-icon icon-ban"></i>
-      Cancel upload
-    </button>
-    <button type="button" class="btn btn-md btn-danger delete">
-      <i class="glyph-icon icon-trash-o"></i>
-      Delete
-    </button>
   </div>
