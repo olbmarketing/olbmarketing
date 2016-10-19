@@ -1,15 +1,10 @@
+<%= content_tag :div, class: "students_class", data: {students: @students} do %>
+<% end %>
+<%= content_tag :div, class: "parishes_class", data: {parishes: @parishes} do %>
+<% end %>
 <div class="row">
   <div id="layer_select" class="col-sm-3 col-md-2 sidebar">
     <!--Sidebar content-->
-    <div class="checkbox">
-      <label><input type="checkbox" value="">Option 1</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" value="">Option 2</label>
-    </div>
-    <div class="checkbox disabled">
-      <label><input type="checkbox" value="" disabled>Option 3</label>
-    </div>
   </div>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
     <div class="map-container">
@@ -17,54 +12,13 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  // Callback for initializing the map once the API is loaded
-  function initMap() {
-    // OLB's coordinates
-    var OLBPos = new google.maps.LatLng(40.053930, -83.035042);
-    var myOptions = {
-        zoom: 13,
-        center: OLBPos,
-        streetViewControl: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-
-    // "Drops" a marker on OLB
-    marker = new google.maps.Marker({
-      map: map,
-      draggable: false,
-      animation: google.maps.Animation.DROP,
-      position: OLBPos
-    });
-    marker.addListener('click', toggleBounce);
-  }
-
-  // Toggles the bouncing animation of the marker.
-  function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-
-  function codeAddress() {
-    var address = document.getElementById('address').value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-}
-</script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initMap">
+<!-- div style="height: 600px; width: 900px;">
+  <div id="map_canvas" style="height: 100%; width: 100%" ></div>
+  <div>
+    <input id="address" type="textbox" value="Sydney, NSW">
+    <input type="button" value="Encode" onclick="codeAddress()">
+  </div>
+</div>
+</div -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initialize">
 </script>
