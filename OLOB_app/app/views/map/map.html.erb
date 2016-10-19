@@ -1,9 +1,20 @@
-<!== ideally this div should not have set parameters, but should dynamically size to fit the whole page ==>
-<div style="height: 900px; width: 1500px">
-  <div id="map_canvas" style="height: 100%; width: 100%;"></div>
-  <div>
-    <input id="address" type="textbox" value="Sydney, NSW">
-    <input type="button" value="Encode" onclick="codeAddress()">
+<div class="row">
+  <div id="layer_select" class="col-sm-3 col-md-2 sidebar">
+    <!--Sidebar content-->
+    <div class="checkbox">
+      <label><input type="checkbox" value="">Option 1</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="">Option 2</label>
+    </div>
+    <div class="checkbox disabled">
+      <label><input type="checkbox" value="" disabled>Option 3</label>
+    </div>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <div class="map-container">
+      <div id="map-canvas"></div>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
