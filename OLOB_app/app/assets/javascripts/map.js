@@ -97,11 +97,11 @@ function initializeStudentLayers() {
   displayStudentLayer = false;
   studentLayers = [];
   var students = $('.students_class').data('students');
-  console.log(students);
+  //console.log(students);
   for ( var _class in students ) {
     if ( students.hasOwnProperty(_class) ) {
       var markers = [];
-      console.log(students[_class]);
+      //console.log(students[_class]);
       students[_class].forEach( function ( student, index, array ) {
         var address = assembleAddress( student.address, student.city,
             student.state, student.zip );
@@ -135,27 +135,12 @@ function initializeStudentLayers() {
       studentLayers.push( {[_class]: { display: true, markers: markers } } );
     }
   }
-  console.log(studentLayers);
+  //console.log(studentLayers);
 }
 
 function setMarkersToMap( markers, map ) {
   markers.forEach( function( marker, index, array ) {
     marker.map = map;
-  });
-}
-
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: pageMap,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
   });
 }
 
