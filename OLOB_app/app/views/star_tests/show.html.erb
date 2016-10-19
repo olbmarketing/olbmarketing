@@ -65,5 +65,10 @@
   <%= @star_test.paragraph_level_comprehension %>
 </p>
 
+<p>
+  <strong>Early numeracy:</strong>
+  <%= @star_test.early_numeracy %>
+</p>
+
 <%= link_to 'Edit', edit_star_test_path(@star_test) %> |
-<%= link_to 'Back', star_tests_path %>
+<%= link_to 'Back', star_tests_path(student_id: @star_test.student.id) %>

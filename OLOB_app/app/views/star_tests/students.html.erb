@@ -1,0 +1,31 @@
+
+<h1>Student Tests</h1>
+<p>student count: <%= @students.count %></p>
+<table>
+  <thead>
+    <tr>
+      <th>Student id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>School year</th>
+      <th>Class</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= student.id %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.school_year %></td>
+        <td><%= student.student_class %></td>
+
+        <td><%= link_to 'STAR', star_tests_path(student_id: student.id) %></td>
+        <td><%= link_to 'Terra Nova', terra_nova_tests_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

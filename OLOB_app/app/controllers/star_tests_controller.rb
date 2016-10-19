@@ -4,8 +4,26 @@ class StarTestsController < ApplicationController
   # GET /star_tests
   # GET /star_tests.json
   def index
-    @star_tests = StarTest.all
+    @student = Student.find(params[:student_id])
+    if @student 
+      @star_tests = @student.star_tests
+    else 
+      @star_tests = StarTest.all
+    end 
+    
   end
+
+  # GET /star_tests/students
+  def students
+    @star_tests = StarTest.all
+    @students = Student.all
+  end
+
+  # GET /star_test/report 
+  def report
+    @student = Student.find(params[:student_id])
+    #@star_tests = StarTest.all
+  end 
 
   # GET /star_tests/1
   # GET /star_tests/1.json
@@ -14,7 +32,9 @@ class StarTestsController < ApplicationController
 
   # GET /star_tests/new
   def new
+    student = Student.find(params[:student_id])
     @star_test = StarTest.new
+    @star_test.student = student
   end
 
   # GET /star_tests/1/edit
@@ -54,9 +74,10 @@ class StarTestsController < ApplicationController
   # DELETE /star_tests/1
   # DELETE /star_tests/1.json
   def destroy
+    student_id = @star_test.student.id
     @star_test.destroy
     respond_to do |format|
-      format.html { redirect_to star_tests_url, notice: 'Star test was successfully destroyed.' }
+      format.html { redirect_to star_tests_url(student_id: @star_test.student.id), notice: 'Star test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +90,6 @@ class StarTestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def star_test_params
-      params.require(:star_test).permit(:student_id, :test_date, :scaled_score, :developmental_stage, :alphabetic_principle, :concept_of_word, :visual_discrimination, :phonemic_awareness, :phonics, :structural_analysis, :vocabulary, :sentence_level_comprehension, :paragraph_level_comprehension)
+      params.require(:star_test).permit(:student_id, :test_date, :scaled_score, :developmental_stage, :alphabetic_principle, :concept_of_word, :visual_discrimination, :phonemic_awareness, :phonics, :structural_analysis, :vocabulary, :sentence_level_comprehension, :paragraph_level_comprehension, :early_numeracy)
     end
 end
