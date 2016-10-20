@@ -14,8 +14,6 @@
 //= require datatables
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery.turbolinks
 //= require turbolinks
-//= require angular/angular
-//= require ng-table
+//= require jquery.turbolinks
 //= require_tree .

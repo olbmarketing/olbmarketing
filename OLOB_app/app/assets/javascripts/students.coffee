@@ -1,3 +1,3 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('#studentsTable').dataTable()
   return

@@ -38,8 +38,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 
-gem 'bower-rails'
-gem 'angular-ng-table-rails'
 gem 'jquery-datatables'
 gem 'jquery-turbolinks'
 
