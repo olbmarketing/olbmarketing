@@ -1,0 +1,1 @@
+json.array! @star_tests, partial: 'star_tests/star_test', as: :star_test

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  first_name: fname1
+  last_name: lname1
+  school_year: 2015-16
+  new_or_return: New
+  student_class: PreK
+  catholic: Y
+  parish: MyString
+  race: MyString
+  resides_with: Mom
+  reference_from: MyString
+  student_transfer: MyString
+  preK_to_K: MyString
+
+two:
+  id: 2
+  first_name: MyString
+  last_name: MyString
+  school_year: 1
+  new_or_return: MyString
+  student_class: MyString
+  catholic: MyString
+  parish: MyString
+  race: MyString
+  resides_with: MyString
+  reference_from: MyString
+  student_transfer: MyString
+  preK_to_K: MyString

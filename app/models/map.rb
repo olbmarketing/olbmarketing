@@ -1,0 +1,2 @@
+class Maps < ApplicationRecord
+end
