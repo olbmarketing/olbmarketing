@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bower-rails'
 gem 'angular-ng-table-rails'
+gem 'jquery-datatables'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do
