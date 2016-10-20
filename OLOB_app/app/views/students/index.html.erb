@@ -60,3 +60,12 @@
     </tbody>
   </table>
 </div>
+
+<h4>Import Data</h4>
+ <div>
+ <%= form_tag import_students_path, multipart: true do %>
+ <%= file_field_tag :file %>
+ <%= submit_tag "Import CSV/xlsx", :class => "btn btn-md btn-default start" %>
+ <% end %>
+</div>
+</div>
