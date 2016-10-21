@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  test_date: 2016-10-01
+  reading_scale_score: 1
+  reading_national_percentile: 1
+  oral_comprehension_opi: 1
+  oral_comprehension_level: MyString
+  basic_understanding_opi: 1
+  basic_understanding_level: MyString
+  introduction_to_print_opi: 1
+  introduction_to_print_level: MyString
+  math_scale_score: 1
+  math_national_percentile: 1
+  number_and_number_relations_opi: 1
+  number_and_number_relations_level: MyString
+  measurement_opi: 1
+  measurement_level: MyString
+  geometry_and_spatial_sense_opi: 1
+  geometry_and_spatial_sense_level: MyString
+  data_stats_and_probability_opi: 1
+  data_stats_and_probability_level: MyString
+
+two:
+  student: two
+  test_date: 2016-10-01
+  reading_scale_score: 1
+  reading_national_percentile: 1
+  oral_comprehension_opi: 1
+  oral_comprehension_level: MyString
+  basic_understanding_opi: 1
+  basic_understanding_level: MyString
+  introduction_to_print_opi: 1
+  introduction_to_print_level: MyString
+  math_scale_score: 1
+  math_national_percentile: 1
+  number_and_number_relations_opi: 1
+  number_and_number_relations_level: MyString
+  measurement_opi: 1
+  measurement_level: MyString
+  geometry_and_spatial_sense_opi: 1
+  geometry_and_spatial_sense_level: MyString
+  data_stats_and_probability_opi: 1
+  data_stats_and_probability_level: MyString

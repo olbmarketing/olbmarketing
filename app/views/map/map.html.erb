@@ -1,0 +1,26 @@
+<%= content_tag :div, class: "students_class", data: {students: @students} do %>
+<% end %>
+<%= content_tag :div, class: "parishes_class", data: {parishes: @parishes} do %>
+<% end %>
+<div class="row">
+  <div id="layer_select" class="col-sm-3 col-md-2 sidebar">
+    <!--Sidebar content-->
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <div class="map-container">
+      <div id="map-canvas"></div>
+    </div>
+  </div>
+</div>
+<!-- div style="height: 600px; width: 900px;">
+  <div id="map_canvas" style="height: 100%; width: 100%" ></div>
+  <div>
+    <input id="address" type="textbox" value="Sydney, NSW">
+    <input type="button" value="Encode" onclick="codeAddress()">
+  </div>
+</div>
+</div -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4vktIoMQVL_yYcVCmJMQVjiuWv8EtLE&callback=initialize">
+  </script>
+  <% javascript_include_tag 'layers' %>

@@ -1,0 +1,71 @@
+<link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
+
+<div class="container">
+  <h1>Students</h1>
+  <div>
+    <%= link_to 'New Student', new_student_path, :class => "btn btn-md btn-default start"  %>
+  </div>
+  <table id="studentsTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>School Year</th>
+        <th>New or Return</th>
+        <th>Class</th>
+        <th>Catholic</th>
+        <th>Parish</th>
+        <th>Resides With </th>
+        <th>Race</th>
+        <th>Reference From</th>
+        <th>Transfer</th>
+        <th>Pre K to K</th>
+        <th>Father's Name</th>
+        <th>Mother's Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Email</th>
+        <th>Email 2</th>
+        <%-#  <th colspan="3"></th>-%>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @students.each do |student| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.school_year %></td>
+        <td><%= student.new_or_return %></td>
+        <td><%= student.student_class %></td>
+        <td><%= student.catholic %></td>
+        <td><%= student.parish %></td>
+        <td><%= student.race %></td>
+        <td><%= student.resides_with %></td>
+        <td><%= student.reference_from %></td>
+        <td><%= student.student_transfer %></td>
+        <td><%= student.preK_to_K %></td>
+        <td><%= student.father_name %></td>
+        <td><%= student.mother_name %></td>
+        <td><%= student.address %></td>
+        <td><%= student.city %></td>
+        <td><%= student.state %></td>
+        <td><%= student.zip %></td>
+        <td><%= student.email1 %></td>
+        <td><%= student.email2 %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h4>Import Data</h4>
+ <div>
+ <%= form_tag import_students_path, multipart: true do %>
+ <%= file_field_tag :file %>
+ <%= submit_tag "Import CSV/xlsx", :class => "btn btn-md btn-default start" %>
+ <% end %>
+</div>
+</div>

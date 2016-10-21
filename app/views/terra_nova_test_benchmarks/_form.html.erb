@@ -1,0 +1,52 @@
+<%= form_for(terra_nova_test_benchmark) do |f| %>
+  <% if terra_nova_test_benchmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(terra_nova_test_benchmark.errors.count, "error") %> prohibited this terra_nova_test_benchmark from being saved:</h2>
+
+      <ul>
+      <% terra_nova_test_benchmark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :test_date %>
+    <%= f.date_select :test_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :oral_comprehension_opi %>
+    <%= f.number_field :oral_comprehension_opi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :basic_understanding_opi %>
+    <%= f.number_field :basic_understanding_opi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction_to_print_opi %>
+    <%= f.number_field :introduction_to_print_opi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number_and_number_relations_opi %>
+    <%= f.number_field :number_and_number_relations_opi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :measurement_opi %>
+    <%= f.number_field :measurement_opi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :geometry_and_spatial_sense_opi %>
+    <%= f.number_field :geometry_and_spatial_sense_opi %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

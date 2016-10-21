@@ -1,0 +1,26 @@
+
+<div class="container">
+	<div id="wrapper">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<span class="glyphicon glyphicon-bookmark"></span> Dashboard</h3>
+				</div></div>
+				<div class="left-column">
+					<a href="/students/new" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Add New Student</a>
+				</br></br>
+				<a href="/star_tests/students" class="btn btn-primary btn-lg" role="button" ><span class="glyphicon glyphicon-signal" ></span> <br/>Student Test Data</a>
+			</br></br>
+			<a href="#" class="btn btn-danger btn-lg" role="button" ><span class="glyphicon glyphicon-th-list" ></span> <br/>Exit Survey</a>
+		</div>
+		<div class="right-column">
+			<a href="/students" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>View Current Students</a>
+		</br></br>
+		<a href="/map" class="btn btn-warning btn-lg" role="button" ><span class="glyphicon glyphicon-map-marker"></span> <br/>View Map</a>
+	</br></br>
+	<%= link_to students_path(format: "xls"), :class=>"btn btn-primary btn-lg", :role=>"button"  do %>
+	<span class="glyphicon glyphicon-save-file"></span> <br/>Download Students
+	<% end %>
+</div>
+</div>
+</div>
