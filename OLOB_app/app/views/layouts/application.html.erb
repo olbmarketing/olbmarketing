@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>OLOBApp</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :js %>
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <% if current_user %>
-    <nav class="navbar navbar-default">
-      <%= link_to 'OLOB Marketing', '/static_pages/dashboard', :class=>"navbar-brand" %>
-      <%= link_to 'Logout', '/logout', :class=>"btn btn-default navbar-btn" %>
-     </nav>
-     <% flash.each do |key, message| %>
-      <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
-        <button class="close" data-dismiss="alert">&times;</button>
-        <%= message %>
-      </div>
-    <% end %>
-    <%= yield %>
-  <% else %>
-  	 <nav class="navbar navbar-default">
-      <%= link_to 'OLOB Marketing', '/home', :class=>"navbar-brand" %>
-      <%= link_to 'Login', '/login', :class=>"btn btn-default navbar-btn" %>
-      <%= link_to 'Signup', '/signup', :class=>"btn btn-default navbar-btn" %>
-     </nav>
-     <% flash.each do |key, message| %>
-      <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
-        <button class="close" data-dismiss="alert">&times;</button>
-        <%= message %>
-      </div>
-    <% end %>
-     <%= yield %>
-	  <% end %>
+    <div id="header">
+      <% if current_user %>
+      <nav class="navbar navbar-default">
+        <%= link_to 'OLOB Marketing', '/static_pages/dashboard', :class=>"navbar-brand" %>
+        <%= link_to 'Logout', '/logout', :class=>"btn btn-default navbar-btn" %>
+       </nav>
+       <% flash.each do |key, message| %>
+        <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
+          <button class="close" data-dismiss="alert">&times;</button>
+          <%= message %>
+        </div>
+      <% end %>
+      <% else %>
+      	 <nav class="navbar navbar-default">
+          <%= link_to 'OLOB Marketing', '/home', :class=>"navbar-brand" %>
+          <%= link_to 'Login', '/login', :class=>"btn btn-default navbar-btn" %>
+          <%= link_to 'Signup', '/signup', :class=>"btn btn-default navbar-btn" %>
+         </nav>
+         <% flash.each do |key, message| %>
+          <div id="flash-<%= key %>" class="alert alert-<%= key %> fade in">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <%= message %>
+          </div>
+        <% end %>
+  	  <% end %>
+    </div>
+    <div id="content" class="container-fluid">
+       <%= yield %>
+    </div>
   </body>
 </html>
