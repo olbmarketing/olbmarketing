@@ -1,1 +1,0 @@
-json.partial! "terra_nova_tests/terra_nova_test", terra_nova_test: @terra_nova_test

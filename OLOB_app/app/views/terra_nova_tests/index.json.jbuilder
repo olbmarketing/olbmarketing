@@ -1,1 +1,0 @@
-json.array! @terra_nova_tests, partial: 'terra_nova_tests/terra_nova_test', as: :terra_nova_test

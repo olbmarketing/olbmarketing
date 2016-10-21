@@ -1,2 +1,0 @@
-class TerraNovaTestBenchmark < ApplicationRecord
-end
