@@ -52,7 +52,7 @@ function initializeLayers() {
 
 function initializeParishLayer() {
   displayParishLayer = false;
-  parishMarkers = [];
+  parishLayer = [];
   var parishes = $('.parishes_class').data('parishes');
   parishes.forEach( function (parish, index, array) {
     geocoder.geocode( { 'address': assembleAddress( parish.address,
@@ -136,12 +136,6 @@ function initializeStudentLayers() {
     }
   }
   //console.log(studentLayers);
-}
-
-function setMarkersToMap( markers, map ) {
-  markers.forEach( function( marker, index, array ) {
-    marker.map = map;
-  });
 }
 
 function assembleAddress( street, city, state, zip ) {

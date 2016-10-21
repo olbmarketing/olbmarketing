@@ -1,11 +1,8 @@
-function Layer( name, markers, map ) {
+function Layer( name, markers, map = null, removable = true ) {
   this.name = name;
   this.markers = markers;
-  var map = map || null;
-  this.addMarker = function( marker ) {
-    marker.map = map;
-    this.markers.push( marker );
-  }
+  this.removable = removable
+  var map = map;
   this.setMap = function( map ) {
     this.markers.forEach( function( marker, index, array ) {
       marker.map = map;
@@ -13,9 +10,12 @@ function Layer( name, markers, map ) {
   }
 }
 
-function LayerGroup( name, layers ) {
+function LayerGroup( name, layers = [] ) {
   this.name = name;
-  this.layers = layers || [];
+  this.layers = layers;
+  this.addLayer( layer ) {
+    this.layers.push( layer );
+  }
   this.setMap = function( map ) {
     this.layers.forEach( function( layer, index, array ) {
       layer.setMap( map )
