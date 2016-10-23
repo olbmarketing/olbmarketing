@@ -70,13 +70,8 @@ function drawAnnotations(tests) {
             }
             data.addRow(my_row);
         }
-        var options = {
-            title: 'Student Performance', 
-            hAxis: {
-                title: 'Test Category',
-            }
-        }
-        updateChartView(data, options);
+        
+        updateChartView(data);
         
     }
 }
@@ -89,7 +84,7 @@ function downloadPDF(img_uri) {
     doc.save('test.pdf');
 }
 
-function updateChartView(data, options) {
+function updateChartView(data) {
         if (!data) {
             document.getElementById('star_tests_chart_div').innerHTML = 'Star Tests Chart Not Available';
         } else {
@@ -106,6 +101,26 @@ function updateChartView(data, options) {
                 });
                 report_div.insertBefore(btn, report_div.childNodes[0]);
             });
+            var options = {
+                // see color reference http://www.tayloredmktg.com/rgb/
+                colors:['4169e1','0000ff','1e90ff', '00bfff'],
+                animation: {"startup": true},
+                annotations: {
+                    alwaysOutside: false, 
+                    textStyle: {
+                        color: '#000'
+                    }
+                },
+                bar: {groupWidth: "80%"},
+                title: 'STAR EARLY LITERACY - SUB-DOMAIN SCORES', 
+                hAxis: {
+                    title: 'Test Category',
+                },
+                vAxis: {
+                    maxValue: 110, 
+                    ticks: [0, 20, 40, 60, 80, 100]
+                }
+            }
             chart.draw(data, options);
 
         }

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161010043854) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.string   "comments_questions_concerns"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.index ["student_id"], name: "index_exit_surveys_on_student_id"
+    t.index ["student_id"], name: "index_exit_surveys_on_student_id", using: :btree
   end
 
   create_table "parishes", force: :cascade do |t|
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parish_id"], name: "index_schools_on_parish_id"
+    t.index ["parish_id"], name: "index_schools_on_parish_id", using: :btree
   end
 
   create_table "star_tests", force: :cascade do |t|
@@ -98,7 +101,7 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "early_numeracy"
-    t.index ["student_id"], name: "index_star_tests_on_student_id"
+    t.index ["student_id"], name: "index_star_tests_on_student_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -161,7 +164,7 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.string   "data_stats_and_probability_level"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.index ["student_id"], name: "index_terra_nova_tests_on_student_id"
+    t.index ["student_id"], name: "index_terra_nova_tests_on_student_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -172,4 +175,8 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "exit_surveys", "students"
+  add_foreign_key "schools", "parishes"
+  add_foreign_key "star_tests", "students"
+  add_foreign_key "terra_nova_tests", "students"
 end

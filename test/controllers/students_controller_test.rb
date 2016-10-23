@@ -61,37 +61,6 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to students_url
   end
 
-  test "school_year must be valid" do
-    student = Student.new(@new_student)
-    wrong_formats = ["2000", "2000-1", "2000-111"]
-    wrong_formats.each do |wrong_format|
-      student.school_year = wrong_format
-      assert student.invalid?
-      assert_equal ["must be the following format: YYYY-YY i.e. 2020-21"], student.errors[:school_year]
-    end 
-
-    valid_formats = ["2001-02", "2011-12"]
-    valid_formats.each do |valid_format|
-      student.school_year = valid_format
-      assert student.valid?
-    end 
-  end 
-
-  test "catholic must be valid" do 
-    student = Student.new(@new_student)
-    wrong_formats = ["fnee", "ac", "YYY"]
-    wrong_formats.each do |wrong_format|
-      student.catholic = wrong_format
-      assert student.invalid?
-      assert_equal ["must be \"Y\" or \"N\" or \"not listed\"" ], student.errors[:catholic]
-    end 
-
-    valid_formats = ["Y", "N", "not listed", ""]
-    valid_formats.each do |valid_format|
-      student.catholic = valid_format
-      assert student.valid?
-    end 
-  end 
 =begin
 
   test "should be true" do 
