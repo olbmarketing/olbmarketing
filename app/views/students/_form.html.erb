@@ -15,13 +15,6 @@
     <div class="form-group">
       <h2 class="create-student-heading">New Student</h2>
     </div>
-    <div class="field">
-      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :autofocus=>"" %>
-    </div>
-
-    <div class="field">
-      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :autofocus=>"" %>
-    </div>
 
     <div class="field">
       <%= f.text_field :school_year,:class => "form-control", :placeholder=>"School Year", :autofocus=>"" %>
@@ -34,6 +27,24 @@
       <%= f.select :student_class, ['AMPrek', 'K','PMPrek','PS','TTT'], {:prompt => 'Class'},  {class: "form-control"} %>
 
     </div>
+
+    <div class="field">
+      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :autofocus=>"" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :autofocus=>"" %>
+    </div>
+
+    <div class="field">	 <%= f.text_field :father_name,:class => "form-control", :placeholder=>"father name", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :mother_name, :class => "form-control", :placeholder=>"mother name", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :address, :class => "form-control", :placeholder=>"address", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :city, :class => "form-control", :placeholder=>"city", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :state, :class => "form-control", :placeholder=>"state", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :zip, :class => "form-control", :placeholder=>"zip", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :email1, :class => "form-control", :placeholder=>"father email", :autofocus=>"" %>	</div>
+    <div class="field">	 <%= f.text_field :email2, :class => "form-control", :placeholder=>"mother email", :autofocus=>"" %>	</div>
+
 
     <div class="field">
       <%= f.select :catholic, ['Y', 'N'], {:prompt => 'Catholic'},  {class: "form-control"} %>
@@ -55,24 +66,16 @@
     </div>
 
     <div class="field">
-      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Reference From", :autofocus=>"" %>
+      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Referred By", :autofocus=>"" %>
 
     </div>
 
-    <div class="field">
+    <div class="field">  <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Transfer from Prek to K", :autofocus=>"" %></div>
+
+     <div class="field">
       <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :autofocus=>"" %>
 
     </div>
-
-    <div class="field">  <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Prek to K", :autofocus=>"" %></div>
-    <div class="field">	 <%= f.text_field :father_name,:class => "form-control", :placeholder=>"father name", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :mother_name, :class => "form-control", :placeholder=>"mother name", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :address, :class => "form-control", :placeholder=>"address", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :city, :class => "form-control", :placeholder=>"city", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :state, :class => "form-control", :placeholder=>"state", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :zip, :class => "form-control", :placeholder=>"zip", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :email1, :class => "form-control", :placeholder=>"email1", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :email2, :class => "form-control", :placeholder=>"email2", :autofocus=>"" %>	</div>
 
     <div class="actions">
       <div class="buttons">
