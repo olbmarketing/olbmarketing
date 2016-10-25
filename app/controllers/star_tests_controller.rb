@@ -77,7 +77,7 @@ class StarTestsController < ApplicationController
     student_id = @star_test.student.id
     @star_test.destroy
     respond_to do |format|
-      format.html { redirect_to star_tests_url(student_id: @star_test.student.id), notice: 'Star test was successfully deleted.' }
+      format.html { redirect_to star_tests_url(student_id: @star_test.student.id), notice: 'Star test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -56,7 +56,7 @@ class TerraNovaTestBenchmarksController < ApplicationController
   def destroy
     @terra_nova_test_benchmark.destroy
     respond_to do |format|
-      format.html { redirect_to terra_nova_test_benchmarks_url, notice: 'Terra nova test benchmark was successfully deleted.' }
+      format.html { redirect_to terra_nova_test_benchmarks_url, notice: 'Terra nova test benchmark was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -56,7 +56,7 @@ class TerraNovaTestsController < ApplicationController
   def destroy
     @terra_nova_test.destroy
     respond_to do |format|
-      format.html { redirect_to terra_nova_tests_url, notice: 'Terra nova test was successfully deleted.' }
+      format.html { redirect_to terra_nova_tests_url, notice: 'Terra nova test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
