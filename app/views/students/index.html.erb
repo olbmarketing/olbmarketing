@@ -29,6 +29,7 @@
     </tr>
   </thead>
 
+<<<<<<< HEAD
   <tbody>
     <% @students.each do |student| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -75,6 +76,38 @@
     <% end %>
   </tbody>
 </table>
+=======
+    <tbody>
+      <% @students.each do |student| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= student.school_year %></td>
+        <td><%= student.new_or_return %></td>
+        <td><%= student.student_class %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.father_name %></td>
+        <td><%= student.mother_name %></td>
+        <td><%= student.address %></td>
+        <td><%= student.city %></td>
+        <td><%= student.state %></td>
+        <td><%= student.zip %></td>
+        <td><%= student.email1 %></td>
+        <td><%= student.email2 %></td>
+        <td><%= student.catholic %></td>
+        <td><%= student.parish %></td>
+        <td><%= student.race %></td>
+        <td><%= student.resides_with %></td>
+        <td><%= student.reference_from %></td>
+        <td><%= student.preK_to_K %></td>
+        <td><%= student.student_transfer %></td>
+        
+       
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+>>>>>>> 14ff5fdb8105a261e1b9913552acf5d340a81ea9
 </div>
 
 
