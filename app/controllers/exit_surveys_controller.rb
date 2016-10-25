@@ -56,7 +56,7 @@ class ExitSurveysController < ApplicationController
   def destroy
     @exit_survey.destroy
     respond_to do |format|
-      format.html { redirect_to exit_surveys_url, notice: 'Exit survey was successfully destroyed.' }
+      format.html { redirect_to exit_surveys_url, notice: 'Exit survey was successfully deleted.' }
       format.json { head :no_content }
     end
   end
