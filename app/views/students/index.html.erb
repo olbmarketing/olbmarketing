@@ -1,69 +1,5 @@
 <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
 
-<<<<<<< HEAD
-<h1>Students</h1>
-<div class="table-responsive">
-<p>student count: <%= @students.count %></p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>School year</th>
-      <th>New or return</th>
-      <th>Class</th>
-      <th>Catholic</th>
-      <th>Parish</th>
-      <th>Race</th>
-      <th>Resides with</th>
-      <th>Reference from</th>
-      <th>Student transfer</th>
-      <th>Prek to k</th>
-      <th>Father name</th>
-      <th>Mother name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Email1</th>
-      <th>Email2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-    <tbody>
-      <% @students.each do |student| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= student.school_year %></td>
-        <td><%= student.new_or_return %></td>
-        <td><%= student.student_class %></td>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.father_name %></td>
-        <td><%= student.mother_name %></td>
-        <td><%= student.address %></td>
-        <td><%= student.city %></td>
-        <td><%= student.state %></td>
-        <td><%= student.zip %></td>
-        <td><%= student.email1 %></td>
-        <td><%= student.email2 %></td>
-        <td><%= student.catholic %></td>
-        <td><%= student.parish %></td>
-        <td><%= student.race %></td>
-        <td><%= student.resides_with %></td>
-        <td><%= student.reference_from %></td>
-        <td><%= student.preK_to_K %></td>
-        <td><%= student.student_transfer %></td>
-        
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-
-
-=======
 <div class="container">
   <h1>Students</h1>
   <div>
@@ -96,7 +32,6 @@
         <%-#  <th colspan="3"></th>-%>
       </tr>
     </thead>
->>>>>>> parent of 2bcc2b7... Merged master into development.
 
     <tbody>
       <% @students.each do |student| %>
