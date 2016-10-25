@@ -29,54 +29,6 @@
     </tr>
   </thead>
 
-<<<<<<< HEAD
-  <tbody>
-    <% @students.each do |student| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td><%= student.first_name %></td>
-      <td><%= student.last_name %></td>
-      <td><%= student.school_year %></td>
-      <td><%= student.new_or_return %></td>
-      <td><%= student.student_class %></td>
-      <td><%= student.catholic %></td>
-      <td><%= student.parish %></td>
-      <td><%= student.race %></td>
-      <td><%= student.resides_with %></td>
-      <td><%= student.reference_from %></td>
-      <td><%= student.student_transfer %></td>
-      <td><%= student.preK_to_K %></td>
-      <td><%= student.father_name %></td>
-      <td><%= student.mother_name %></td>
-      <td><%= student.address %></td>
-      <td><%= student.city %></td>
-      <td><%= student.state %></td>
-      <td><%= student.zip %></td>
-      <td><%= student.email1 %></td>
-      <td><%= student.email2 %></td>
-      <td><div class="dropdown">
-        <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
-          <span class="button-content">
-            <i class="glyphicon glyphicon-cog font-size-11"></i>
-            <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
-          </span>
-        </a>
-        <ul class="dropdown-menu float-right">
-          <li>
-            <%= link_to 'Show', student %>
-          </li>
-          <li>
-            <%= link_to 'Edit', edit_student_path(student) %>
-          </li>
-          <li>
-            <%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </li>
-        </ul>
-      </div></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-=======
     <tbody>
       <% @students.each do |student| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -101,13 +53,10 @@
         <td><%= student.preK_to_K %></td>
         <td><%= student.student_transfer %></td>
         
-       
-
       </tr>
       <% end %>
     </tbody>
   </table>
->>>>>>> 14ff5fdb8105a261e1b9913552acf5d340a81ea9
 </div>
 
 
