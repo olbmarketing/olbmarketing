@@ -13,7 +13,7 @@ function Layer( name, markers, map, removable ) {
 function LayerGroup( name, layers ) {
   this.name = name;
   this.layers = layers;
-  this.addLayer= function( layer ) {
+  this.addLayer = function( layer ) {
     this.layers.push( layer );
   }
   this.setMap = function( map ) {
