@@ -32,11 +32,11 @@ function initialize() {
       '<h4 id="firstHeading" class="firstHeading">Our Lady of Bethlehem</h4>'+
       '<div id="bodyContent">'+
       '</div>'+
-      '</div>' )
+      '</div>' );
     infowindow.open(pageMap, marker);
   });
 
-  geocoder = new google.maps.Geocoder();;
+  geocoder = new google.maps.Geocoder();
 
   infowindow = new google.maps.InfoWindow({
     content: null
@@ -73,7 +73,7 @@ function initializeParishLayer() {
               '<h5>' + parish.address + '<br/>' + parish.city + ', ' + parish.state + ' ' + parish.zip + '</h5>' +
               '<div id="bodyContent">'+
               '</div>'+
-              '</div>')
+              '</div>');
             infowindow.open(pageMap, marker);
           });
           parishMarkers.push( marker );
@@ -140,10 +140,10 @@ function initializeStudentLayers() {
 
 function assembleAddress( street, city, state, zip ) {
   var address = street;
-  if ( city != null && state != null ) {
+  if ( city !== null && state !== null ) {
     address += ' ' + city + ", " + state;
   }
-  if ( zip != null ) {
+  if ( zip !== null ) {
     address += ' ' + zip;
   }
   return address;
