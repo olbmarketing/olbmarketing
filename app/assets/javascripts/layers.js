@@ -1,3 +1,4 @@
+/*
 function Layer( name, markers, map, removable ) {
   this.name = name;
   this.markers = markers;
@@ -22,3 +23,4 @@ function LayerGroup( name, layers ) {
     }
   }
 }
+*/
