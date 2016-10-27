@@ -14,29 +14,28 @@ function initialize() {
       streetViewControl: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  pageMap = new google.maps.Map(document.getElementById("map-canvas"),
-          myOptions);
+  pageMap = new google.maps.Map( document.getElementById("map-canvas"), myOptions );
 
   // "Drops" a marker on OLB
-  var marker = new google.maps.Marker({
+  var marker = new google.maps.Marker( {
     map: pageMap,
     draggable: false,
     animation: google.maps.Animation.DROP,
     position: OLBPos,
-    icon: beachFlag
-  });
-  marker.addListener('click', function() {
+    icon: beachFlag });
+
+  marker.addListener( 'click', function() {
     infowindow.setContent( '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h4 id="firstHeading" class="firstHeading">Our Lady of Bethlehem</h4>'+
       '<div id="bodyContent">'+
       '</div>'+
-      '</div>' )
-    infowindow.open(pageMap, marker);
+      '</div>' );
+    infowindow.open( pageMap, marker );
   });
 
-  geocoder = new google.maps.Geocoder();;
+  geocoder = new google.maps.Geocoder();
 
   infowindow = new google.maps.InfoWindow({
     content: null
@@ -73,7 +72,7 @@ function initializeParishLayer() {
               '<h5>' + parish.address + '<br/>' + parish.city + ', ' + parish.state + ' ' + parish.zip + '</h5>' +
               '<div id="bodyContent">'+
               '</div>'+
-              '</div>')
+              '</div>');
             infowindow.open(pageMap, marker);
           });
           parishMarkers.push( marker );
@@ -85,10 +84,10 @@ function initializeParishLayer() {
 }
 
 function updateMap() {
-  if (!displayParishLayer) {
-    setMarkersToMap(parishMarkers, pageMap);
+  if ( !displayParishLayer ) {
+    setMarkersToMap( parishMarkers, pageMap );
   } else {
-    setMarkersToMap(parishMarkers, null);
+    setMarkersToMap( parishMarkers, null );
   }
   displayParishLayer = !displayParishLayer;
 }
@@ -115,15 +114,14 @@ function initializeStudentLayers() {
                   animation: google.maps.Animation.DROP
               });
               marker.addListener('click', function() {
-                infowindow.setContent('<div id="content">'+
-                  '<div id="siteNotice">'+
-                  '</div>'+
-                  '<h4 id="firstHeading" class="firstHeading">' + student.first_name + " " + student.last_name + '</h4>'+
-                  '<h5>' + student.address + '<br/>' + student.city + ', ' + student.state + ' ' + student.zip + '</h5>' +
-                  '<div id="bodyContent">'+
-                  '<p><b>Attended:</b> ' + student.school_year + '</p>' +
-                  '</div>'+
-                  '</div>');
+                infowindow.setContent( '<div id="content">' +
+                  '<div id="siteNotice">' + '</div>' +
+                  '<h4 id="firstHeading" class="firstHeading">' +
+                  student.first_name + " " + student.last_name + '</h4>'+
+                  '<h5>' + student.address + '<br/>' + student.city + ', ' +
+                  student.state + ' ' + student.zip + '</h5>' +
+                  '<div id="bodyContent">' + '<p><b>Attended:</b> ' +
+                  student.school_year + '</p>' + '</div>' + '</div>');
                 infowindow.open( pageMap, marker );
               });
               markers.push( marker );
@@ -132,7 +130,7 @@ function initializeStudentLayers() {
             }
           });
       });
-      studentLayers.push( {[_class]: { display: true, markers: markers } } );
+      studentLayers[_class] = { display: true, markers: markers };
     }
   }
   //console.log(studentLayers);
@@ -140,10 +138,10 @@ function initializeStudentLayers() {
 
 function assembleAddress( street, city, state, zip ) {
   var address = street;
-  if ( city != null && state != null ) {
+  if ( city !== null && state !== null ) {
     address += ' ' + city + ", " + state;
   }
-  if ( zip != null ) {
+  if ( zip !== null ) {
     address += ' ' + zip;
   }
   return address;
