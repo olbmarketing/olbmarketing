@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :exit_surveys
+  get 'star_tests/download_report_docx'
   get 'star_tests/report' => 'star_tests#report'
   get '/star_tests/students' => 'star_tests#students'
   resources :star_tests

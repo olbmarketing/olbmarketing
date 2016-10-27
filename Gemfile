@@ -62,3 +62,8 @@ gem 'gemrat', '0.4.6'
 
 # for import from and export to xlsx file
 gem 'roo', '~> 2.4.0'
+
+# to zip and unzip docx file 
+gem 'rubyzip'
+# to parse docx xml file 
+gem 'nokogiri'

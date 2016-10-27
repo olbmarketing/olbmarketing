@@ -94,7 +94,7 @@ function updateChartView(data) {
             google.visualization.events.addListener(chart, 'ready', function() {
                 var report_div = document.getElementById('star_tests_report');
                 var btn = document.createElement("BUTTON");        // Create a <button> element
-                var t = document.createTextNode("Download");  
+                var t = document.createTextNode("Download Graph");  
                 btn.appendChild(t);   
                 btn.addEventListener('click', function() {
                     downloadPDF(chart.getImageURI());
