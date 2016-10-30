@@ -17,7 +17,7 @@ class ParishesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create parish" do
     assert_difference('Parish.count') do
-      post parishes_url, params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, denery: @parish.denery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
+      post parishes_url, params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
     end
 
     assert_redirected_to parish_url(Parish.last)
@@ -34,7 +34,7 @@ class ParishesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update parish" do
-    patch parish_url(@parish), params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, denery: @parish.denery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
+    patch parish_url(@parish), params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
     assert_redirected_to parish_url(@parish)
   end
 
