@@ -6,18 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#seed parishes
-Parish.delete_all
+Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
 
-Parish.create(name: "St. Brendan",
-  phone: "1234567890",
-  address: "4475 Dublin Road",
-  city: "Columbus",
-  state: "OH",
-  zip: "43026")
+StarTest.delete_all
+Student.delete_all
 
 # seed students
-Student.delete_all
+
 Student.create!(school_year: '2016-17',new_or_return: 'New',student_class: 'PS',last_name: 'Alo',first_name: 'Ella',father_name: 'Michael',mother_name: 'Elizabeth',address: '1488 Candlewood Drive',city: 'Columbus',state: 'OH',zip: '43235',email1: 'not listed',email2: 'elizabeth@vitalwork.com',catholic: 'Y',parish: 'St. Michael',race: 'White/Caucasian',resides_with: 'Both',reference_from: 'Social Media - Internet')
 Student.create!(school_year: '2013-14',new_or_return: '',student_class: 'PS',last_name: 'Alo',first_name: 'Janie',father_name: 'Michael',mother_name: 'Elizabeth',address: '',city: '',state: '',zip: '',email1: 'not listed',email2: 'elizabeth@vitalwork.com',catholic: '',parish: '',race: '',resides_with: '',reference_from: '')
 Student.create!(school_year: '2015-16',new_or_return: 'Return',student_class: 'AMPreK',last_name: 'Bakhshi',first_name: 'Juliet',father_name: 'Aaron',mother_name: 'Susan',address: '58 West Riverglen Drive',city: 'Worthington',state: 'OH',zip: '43085',email1: 'aaron@burkeproducts.com',email2: 'suzg8@hotmail.com',catholic: 'Y',parish: 'St. Michael',race: 'White/Caucasian',resides_with: 'Both',reference_from: 'Current / Alumni Family')
@@ -64,7 +59,6 @@ Student.create!(school_year: '2016-17',
   reference_from: 'Current / Alumni Family')
 
 # seed star test data
-StarTest.delete_all
 
 StarTest.create!(
   student: Student.all.first,
