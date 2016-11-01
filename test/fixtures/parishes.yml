@@ -7,7 +7,7 @@ one:
   fax: MyString
   email: MyString
   website: MyString
-  denery: MyString
+  deanery: MyString
   address: MyString
   city: MyString
   state: MyString
@@ -20,7 +20,7 @@ two:
   fax: MyString
   email: MyString
   website: MyString
-  denery: MyString
+  deanery: MyString
   address: MyString
   city: MyString
   state: MyString
