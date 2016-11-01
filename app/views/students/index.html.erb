@@ -1,8 +1,7 @@
 <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
 
-<div class="container">
-  <h1>Students</h1>
   <div>
+    <h1>Students Database</h1>
     <%= link_to 'New Student', new_student_path, :class => "btn btn-md btn-default start"  %>
   </div>
   <table id="studentsTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -28,7 +27,7 @@
         <th>Refered By</th>
         <th>Transfer from Pre K to K</th>
         <th>Student Transfer</th>
-        
+
         <%-#  <th colspan="3"></th>-%>
       </tr>
     </thead>
@@ -61,7 +60,6 @@
       <% end %>
     </tbody>
   </table>
-</div>
 
 <h4>Import Data</h4>
  <div>
