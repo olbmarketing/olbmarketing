@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :student_id %>
-    <%= f.text_field :student_id %>
+    <%= f.text_field :student_id, readonly: true %>
   </div>
 
   <div class="field">
     <%= f.label :test_date %>
-    <%= f.date_select :test_date %>
+    <%= f.text_field :test_date, placeholder: "mm/dd/yyyy" %>
   </div>
 
   <div class="field">
