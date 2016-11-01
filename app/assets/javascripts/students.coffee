@@ -1,3 +1,3 @@
 $(document).on 'turbolinks:load', ->
-  $('#studentsTable').dataTable()
+  $('#studentsTable').DataTable 'scrollX': true
   return

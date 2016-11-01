@@ -1,6 +1,10 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.dataTables_wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
 
 .container {
     padding-top: 75px;
