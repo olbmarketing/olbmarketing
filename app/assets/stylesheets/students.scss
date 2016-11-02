@@ -2,11 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.import{
+  padding-bottom: 20px;
+}
+
+div.dataTables_wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+
 .container {
-    padding-top: 75px;
-  min-width: 1200px;
-    width: 100%;
+    padding-top: 35px;
+    width: 50%;
     overflow: scroll;
+    padding-bottom: 50px;
 }
 
 
