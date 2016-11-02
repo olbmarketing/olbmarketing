@@ -113,6 +113,19 @@ class StarTestsController < ApplicationController
       myz = Zip::File.open("#{Rails.root}/app/assets/SATR_testing/STAR_template.docx");
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
+      write_chart_doc(chart_doc)
+      main_doc = Nokogiri::XML(myz.read('word/document.xml'))
+      write_main_doc(main_doc)
+      write_report_file(myz, chart_doc, main_doc)
+
+    end 
+
+    def lookup_test_category(test_category_short)
+      test_category_map = {'AP': 'alphabetic_principle', 'CW': 'concept_of_word', VD: 'visual_discrimination', PA: 'phonemic_awareness', PH: 'phonics', SA: 'structural_analysis', VO: 'vocabulary', SC: 'sentence_level_comprehension', PC: 'paragraph_level_comprehension', EN: 'early_numeracy'};
+      test_category_map[test_category_short.to_sym]
+    end 
+
+    def write_chart_doc (chart_doc)
       for i in 0...@star_tests.count 
         test = @star_tests[i]
         # only update test score for available test date count 
@@ -146,32 +159,33 @@ class StarTestsController < ApplicationController
           chart_doc.xpath('//c:ser').last.remove
         end 
       end 
-      write_report_file(myz, chart_doc)
+    end
 
-    end 
+    def write_main_doc (main_doc)
+      # update all the student name 
+      node_set = main_doc.xpath("//w:t[contains(text(), 'Child name')]")
+      node_set.each do |node|
+        node.content = node.content.sub /Child name/, "#{@star_tests.first.student.first_name}"
+      end 
+    end
 
-    def lookup_test_category(test_category_short)
-      test_category_map = {'AP': 'alphabetic_principle', 'CW': 'concept_of_word', VD: 'visual_discrimination', PA: 'phonemic_awareness', PH: 'phonics', SA: 'structural_analysis', VO: 'vocabulary', SC: 'sentence_level_comprehension', PC: 'paragraph_level_comprehension', EN: 'early_numeracy'};
-      test_category_map[test_category_short.to_sym]
-    end 
-
-    def write_report_file(zip_file, doc)
+    def write_report_file(zip_file, chart_doc, main_doc)
       # create buffer 
       document_file_path = 'word/document.xml'
       chart_file_path = "word/charts/chart1.xml"
       buffer = Zip::OutputStream.write_buffer do |out|
         zip_file.entries.each do |e|
-          unless [chart_file_path].include?(e.name)
+          unless [chart_file_path, document_file_path].include?(e.name)
             out.put_next_entry(e.name)
             out.write e.get_input_stream.read
           end
         end
 
-        #out.put_next_entry(DOCUMENT_FILE_PATH)
-        #out.write replace["word/document.xml"]
+        out.put_next_entry(document_file_path)
+        out.write main_doc.to_xml(:indent => 0).gsub("\n","")
 
         out.put_next_entry(chart_file_path)
-        out.write doc.to_xml(:indent => 0).gsub("\n","")
+        out.write chart_doc.to_xml(:indent => 0).gsub("\n","")
 
         #out.put_next_entry(RELS_FILE_PATH)
         #out.write rels.to_xml(:indent => 0).gsub("\n","")
