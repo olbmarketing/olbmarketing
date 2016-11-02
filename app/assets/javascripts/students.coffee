@@ -1,3 +1,3 @@
 $(document).on 'turbolinks:load', ->
-  $('#studentsTable').DataTable 'scrollX': true
+  $('#studentsTable').dataTable 'sScrollX': '110%'
   return
