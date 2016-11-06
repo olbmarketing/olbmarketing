@@ -4,72 +4,72 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Parish 
-    attr_accessor  :name
-    attr_accessor  :contact
-    attr_accessor  :phone
-    attr_accessor  :fax
-    attr_accessor  :email
-    attr_accessor  :website
-    attr_accessor  :deanery
-    attr_accessor  :address
-    attr_accessor  :city
-    attr_accessor  :state
-    attr_accessor  :zip
-
-    def initialize(name)
-        @name = name
-    end 
-
-    def to_s
-        result_list = []
-        instance_variables.each do |v| 
-            # remove @ symbol
-            attribute_name = v.to_s[1..-1]
-            result_list << "#{attribute_name}: '#{send(attribute_name)}'"
-        end 
-        result_list.join(', ')
-    end
-end 
-
-def get_phone (table_node)
-    table_node.at_xpath('./tr/td[3]/span').content.split('Fax: ')[0]
-end 
-def get_fax (table_node)
-    table_node.at_xpath('./tr/td[3]/span').content.split('Fax: ')[1]
-end 
-def get_address (table_node)
-    table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[0]
-end 
-def get_city (table_node)
-    table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[1]
-end 
-def get_state (table_node)
-    table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[2].split(' ')[0]
-end 
-def get_zip (table_node)
-    table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[2].split(' ')[1][0,5]
-end 
-def get_website (table_node) 
-    safe_scrape_node table_node.at_xpath('./tr/td[2]/span[2]/a')
-end 
-def get_email (table_node)
-    safe_scrape_node table_node.at_xpath('./tr/td[2]/span[2]/a[2]')
-end
-def safe_scrape_node (node)
-    node ? node.content : ""
-end 
-
-def write_parishes (parish_list)
-    File.open('parish_out.txt', 'w') do |f| 
-        parish_list.each do |p|
-            f.write("Parish.create(#{p.to_s})\n")
-        end 
-        
-    end 
-end 
-
 if __FILE__==$0
+    class Parish 
+        attr_accessor  :name
+        attr_accessor  :contact
+        attr_accessor  :phone
+        attr_accessor  :fax
+        attr_accessor  :email
+        attr_accessor  :website
+        attr_accessor  :deanery
+        attr_accessor  :address
+        attr_accessor  :city
+        attr_accessor  :state
+        attr_accessor  :zip
+
+        def initialize(name)
+            @name = name
+        end 
+
+        def to_s
+            result_list = []
+            instance_variables.each do |v| 
+                # remove @ symbol
+                attribute_name = v.to_s[1..-1]
+                result_list << "#{attribute_name}: '#{send(attribute_name)}'"
+            end 
+            result_list.join(', ')
+        end
+    end 
+
+    def get_phone (table_node)
+        table_node.at_xpath('./tr/td[3]/span').content.split('Fax: ')[0]
+    end 
+    def get_fax (table_node)
+        table_node.at_xpath('./tr/td[3]/span').content.split('Fax: ')[1]
+    end 
+    def get_address (table_node)
+        table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[0]
+    end 
+    def get_city (table_node)
+        table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[1]
+    end 
+    def get_state (table_node)
+        table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[2].split(' ')[0]
+    end 
+    def get_zip (table_node)
+        table_node.at_xpath('./tr/td[2]/span[1]').content.split(', ')[2].split(' ')[1][0,5]
+    end 
+    def get_website (table_node) 
+        safe_scrape_node table_node.at_xpath('./tr/td[2]/span[2]/a')
+    end 
+    def get_email (table_node)
+        safe_scrape_node table_node.at_xpath('./tr/td[2]/span[2]/a[2]')
+    end
+    def safe_scrape_node (node)
+        node ? node.content : ""
+    end 
+
+    def write_parishes (parish_list)
+        File.open('parish_out.txt', 'w') do |f| 
+            parish_list.each do |p|
+                f.write("Parish.create(#{p.to_s})\n")
+            end 
+            
+        end 
+    end 
+
     # read in parish_list
     f = File.open('parish_list.txt', 'r')
     parish_list = []

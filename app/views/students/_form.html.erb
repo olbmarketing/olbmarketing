@@ -10,7 +10,7 @@
   </ul>
 </div>
 <% end %>
-<div class="container" style="width:40%">
+<div class="container">
   <div class="form-new-student">
     <div class="form-group">
       <h2 class="create-student-heading">New Student</h2>
@@ -66,8 +66,7 @@
     </div>
 
     <div class="field">
-      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Referred By", :autofocus=>"" %>
-
+      <%= f.select :reference_from, ['We are a Current / Alumni family', 'Church Bulletin', 'Social Media / Website', 'Print Media', 'Brochure/Flyer', 'Drive-by', 'Referred by Current / Alumni family', 'Other'], {:prompt => 'Referred By'}, {class: "form-control"} %>
     </div>
 
     <div class="field">  <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Transfer from Prek to K", :autofocus=>"" %></div>
@@ -79,7 +78,7 @@
 
     <div class="actions">
       <div class="buttons">
-      <%= f.submit "Save", :class=>"btn btn-primary" %>
+      <%= f.submit "Save and Add New Student", :class=>"btn btn-primary" %>
       <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
       <div>
     </div>

@@ -24,3 +24,34 @@
 @import "sessions";
 
 @import "datatables";
+
+
+.navbar-image {
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 100px;
+}
+.navbar-logout {
+    margin-top: 20px;
+    float: right;
+    padding: 15px 15px;
+    margin-right: 20px;
+  }
+.navbar-custom {
+    background-color:#265a88 ;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
