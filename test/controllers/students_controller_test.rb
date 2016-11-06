@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'csv'
 
 class StudentsControllerTest < ActionDispatch::IntegrationTest
   fixtures :users
@@ -60,6 +61,34 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to students_url
   end
+
+  test "import csv file" do 
+    # use different header format to test if they will be accepted
+    csv_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "How You Heard About Us"]
+      csv << ["f1","l1", "2016-17", "dd"]
+      csv << ["f2","l2", "2016-17", "ee"]
+    end
+    file = Tempfile.new('new_users.csv')
+    file.write(csv_rows)
+    file.rewind
+
+    assert_difference "Student.count", 2 do
+      post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+    end
+
+
+    # create a duplicate stduent should be invalid 
+    dup_student = Student.new({first_name: "f1", last_name: "l1", school_year: "2016-17"})
+    assert dup_student.invalid?
+    # post the csv the second time, should show validation error 
+    post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+    assert_template :index
+    assert_not_nil css_select('#error_explanation') 
+    
+
+  end 
+
 
 =begin
 

@@ -63,8 +63,30 @@ class StudentsController < ApplicationController
   end
 
   def import
-    Student.import(params[:file])
-    redirect_to students_url, notice: "Data imported!"
+    
+    students_from_file = Student.get_students_from_file params[:file]
+    
+    all_valid = true 
+    @upload_errors = []
+    students_from_file.each_with_index do |s, index|
+      all_valid = false if s.invalid?
+      s.errors.full_messages.each do |e|
+        @upload_errors << "At row #{index + 2}: #{e}"
+      end 
+    end 
+    if all_valid 
+      students_from_file.each{|s| s.save}
+    end 
+    respond_to do |format|
+      if all_valid
+        format.html { redirect_to students_url, notice: 'Data imported!' }
+      else
+        @students = Student.all
+        format.html { render :index }
+        format.json { render json: @upload_errors, status: :unprocessable_entity }
+      end
+    end 
+    
   end 
 
   def self.to_csv(options = {})

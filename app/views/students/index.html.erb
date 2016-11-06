@@ -5,6 +5,18 @@
   <div>
     <%= link_to 'New Student', new_student_path, :class => "btn btn-md btn-default start"  %>
   </div>
+
+  <% if(@upload_errors && @upload_errors.count > 0) %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@upload_errors.count, "error") %> prohibited this students upload from being saved:</h2>
+
+    <ul>
+      <% @upload_errors.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
   <table id="studentsTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
