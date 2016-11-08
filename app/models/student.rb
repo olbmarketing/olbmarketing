@@ -29,6 +29,7 @@ class Student < ApplicationRecord
     else 
       csv_str = file.read
     end 
+    csv_str = Student.split_parent_column csv_str
     valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2"]
     header_convert_lambda = lambda do |name| 
       new_name = name 
@@ -63,4 +64,31 @@ class Student < ApplicationRecord
 	    end
 	  end
 	end 
+
+  # split parent column if father and mother in the same field
+  def self.split_parent_column(csv_str) 
+    if csv_str.include? "Father / Mother"
+      my_csv = CSV.parse(csv_str, headers: true)
+      parent_column = my_csv["Father / Mother"]
+      father_names = []
+      mother_names = []
+      parent_column.each do |p|
+        father = nil
+        mother = nil
+        if p && p.split("/").count == 2
+          father = p.split("/")[0].strip
+          mother = p.split("/")[1].strip
+        elsif p && p.length > 0 
+          father = p
+        end 
+        father_names << father
+        mother_names << mother
+      end   
+      my_csv["Father / Mother"] = father_names
+      my_csv["mother_name"] = mother_names
+      my_csv.to_s.sub "Father / Mother", "father_name" 
+    else 
+      csv_str
+    end 
+  end 
 end

@@ -72,12 +72,14 @@ class StudentsController < ApplicationController
     
     all_valid = true 
     @upload_errors = []
+    # check for errors before insert data 
     students_from_file.each_with_index do |s, index|
       all_valid = false if s.invalid?
       s.errors.full_messages.each do |e|
         @upload_errors << "At row #{index + 2}: #{e}"
       end 
     end 
+    # insert data into db if all data valid 
     if all_valid 
       students_from_file.each{|s| s.save}
     end 
