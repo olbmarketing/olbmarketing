@@ -11,8 +11,16 @@ class Student < ApplicationRecord
     validates_uniqueness_of :first_name, scope: [:last_name, :school_year, :student_class, :father_name, :mother_name, :email1, :email2], 
       message: "A student cannot be entered into the system in a school year more than once!"
 
-   def self.get_students_from_file(file)
+   def self.get_students_from_csv(my_csv)
     students = []
+    # a block that run through a loop for each row in the csv file 
+    my_csv.each do |row| 
+      students << Student.new(row.to_hash)
+    end 
+    students
+   end 
+
+   def self.get_csv_from_file(file)
     csv_str = ""
     if !(file.content_type == "text/csv") 
       book = Roo::Spreadsheet.open file.path
@@ -44,14 +52,8 @@ class Student < ApplicationRecord
       new_name
     end 
     my_csv = CSV.parse(csv_str, headers: true, header_converters: header_convert_lambda)
-    # a block that run through a loop for each row in the csv file 
-    my_csv.each do |row| 
-      students << Student.new(row.to_hash)
-    end 
-    students
+    my_csv
    end 
-
-   
 
    def self.to_csv(options = {})
 	  CSV.generate(options) do |csv|

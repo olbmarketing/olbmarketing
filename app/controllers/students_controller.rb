@@ -2,6 +2,8 @@ class StudentsController < ApplicationController
   before_filter :authorize
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
+  @@valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2"]
+
   # GET /students
   # GET /students.json
   def index
@@ -63,8 +65,10 @@ class StudentsController < ApplicationController
   end
 
   def import
-    
-    students_from_file = Student.get_students_from_file params[:file]
+    my_csv = Student.get_csv_from_file params[:file]
+    # process csv to remove unidentified columns 
+    removed_columns = remove_extra_columns_for_csv my_csv
+    students_from_file = Student.get_students_from_csv my_csv
     
     all_valid = true 
     @upload_errors = []
@@ -79,7 +83,7 @@ class StudentsController < ApplicationController
     end 
     respond_to do |format|
       if all_valid
-        format.html { redirect_to students_url, notice: 'Data imported!' }
+        format.html { redirect_to students_url, notice: "Data imported! #{"Unidentified columns : " + removed_columns.to_s if removed_columns.count > 0}" }
       else
         @students = Student.all
         format.html { render :index }
@@ -107,5 +111,16 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2)
+    end
+
+    def remove_extra_columns_for_csv(my_csv)
+      removed_columns = []
+      my_csv.headers.each do |h|
+        if !(@@valid_column_names.include? h)
+          my_csv.delete h
+          removed_columns << h
+        end 
+      end 
+      removed_columns
     end
 end
