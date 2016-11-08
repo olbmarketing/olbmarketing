@@ -4,7 +4,7 @@
   <%= link_to 'View Graph Report', star_tests_report_path(student_id: @student.id) %>
   <br>
   <% if @star_tests.count > 0 %>
-  <%= link_to 'Download Report', star_tests_download_report_docx_url(student_id: @student.id) %>
+  <%= link_to 'Download Report', star_tests_download_report_docx_url(student_id: @student.id), data: { no-turbolink: true }  %>
   <% else %> 
   <%= "No Report Download Available" %>
   <% end %>
