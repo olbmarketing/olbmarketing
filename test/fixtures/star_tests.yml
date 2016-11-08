@@ -4,7 +4,7 @@ one:
   id: 1
   student_id: 1
   test_date: 2016-10-01
-  scaled_score: 1
+  scaled_score: 500
   developmental_stage: MyString
   alphabetic_principle: 1
   concept_of_word: 1
@@ -21,7 +21,7 @@ two:
   id: 2
   student_id: 1
   test_date: 2016-10-02
-  scaled_score: 1
+  scaled_score: 501
   developmental_stage: MyString
   alphabetic_principle: 1
   concept_of_word: 1
