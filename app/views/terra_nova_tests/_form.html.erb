@@ -10,108 +10,80 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-new-terra-nova-test">
+    <div class="form-group">
+        <h2 class="create-student-heading">New Terra Nova Test</h2>
+    </div>
 
-  <div class="field">
-    <%= f.label :student_id %>
-    <%= f.text_field :student_id %>
-  </div>
 
-  <div class="field">
-    <%= f.label :test_date %>
-    <%= f.date_select :test_date %>
-  </div>
+    <div class="field">
+        <%= f.text_field :student_id,:class => "form-control", :placeholder=>"Student ID", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.date_select :test_date,:class => "form-control", :placeholder=>"Test Date", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :reading_scale_score,:class => "form-control", :placeholder=>"Reading Scale Score", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :reading_national_percentile,:class => "form-control", :placeholder=>"Reading National Percentile", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :oral_comprehension_opi,:class => "form-control", :placeholder=>"Oral Comprehension OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :oral_comprehension_level,:class => "form-control", :placeholder=>"Oral Comprehension Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :basic_understanding_opi,:class => "form-control", :placeholder=>"Basic Understanding OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :basic_understanding_level,:class => "form-control", :placeholder=>"Basic Understanding Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :introduction_to_print_opi,:class => "form-control", :placeholder=>"Introduction To Print OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :introduction_to_print_level,:class => "form-control", :placeholder=>"Introduction To Print Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :math_scale_score,:class => "form-control", :placeholder=>"Math Scale Score", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :math_national_percentile,:class => "form-control", :placeholder=>"National Math Percentile", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :number_and_number_relations_opi,:class => "form-control", :placeholder=>"Number and Number Relations OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :number_and_number_relations_level,:class => "form-control", :placeholder=>"Number and Number Relations Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :measurement_opi,:class => "form-control", :placeholder=>"Measurement OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :measurement_level,:class => "form-control", :placeholder=>"Measurement Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :geometry_and_spatial_sense_opi,:class => "form-control", :placeholder=>"Geometry and Spacial Sense OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :geometry_and_spatial_sense_level,:class => "form-control", :placeholder=>"Geometry and Spacial Sense Level", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.number_field :data_stats_and_probability_opi,:class => "form-control", :placeholder=>"Data Stats and Probability OPI", :autofocus=>"" %>
+    </div>
+    <div class="field">
+        <%= f.text_field :data_stats_and_probability_level,:class => "form-control", :placeholder=>"Data Stats and Probability Level", :autofocus=>"" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :reading_scale_score %>
-    <%= f.number_field :reading_scale_score %>
-  </div>
+    <div class="actions">
+        <div class="buttons">
+            <%= f.submit "Save and Add New Terra Nova Test", :class=>"btn btn-primary" %>
+            <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
+            <div></div>
+        </div>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :reading_national_percentile %>
-    <%= f.number_field :reading_national_percentile %>
-  </div>
-
-  <div class="field">
-    <%= f.label :oral_comprehension_opi %>
-    <%= f.number_field :oral_comprehension_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :oral_comprehension_level %>
-    <%= f.text_field :oral_comprehension_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :basic_understanding_opi %>
-    <%= f.number_field :basic_understanding_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :basic_understanding_level %>
-    <%= f.text_field :basic_understanding_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :introduction_to_print_opi %>
-    <%= f.number_field :introduction_to_print_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :introduction_to_print_level %>
-    <%= f.text_field :introduction_to_print_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :math_scale_score %>
-    <%= f.number_field :math_scale_score %>
-  </div>
-
-  <div class="field">
-    <%= f.label :math_national_percentile %>
-    <%= f.number_field :math_national_percentile %>
-  </div>
-
-  <div class="field">
-    <%= f.label :number_and_number_relations_opi %>
-    <%= f.number_field :number_and_number_relations_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :number_and_number_relations_level %>
-    <%= f.text_field :number_and_number_relations_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :measurement_opi %>
-    <%= f.number_field :measurement_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :measurement_level %>
-    <%= f.text_field :measurement_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :geometry_and_spatial_sense_opi %>
-    <%= f.number_field :geometry_and_spatial_sense_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :geometry_and_spatial_sense_level %>
-    <%= f.text_field :geometry_and_spatial_sense_level %>
-  </div>
-
-  <div class="field">
-    <%= f.label :data_stats_and_probability_opi %>
-    <%= f.number_field :data_stats_and_probability_opi %>
-  </div>
-
-  <div class="field">
-    <%= f.label :data_stats_and_probability_level %>
-    <%= f.text_field :data_stats_and_probability_level %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
