@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
+<link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
 
 <h1>Terra Nova Tests</h1>
 
-<table>
+<table id="terraNovaTest" class="table table-striped table-bordered" style="table-layout:fixed">
   <thead>
     <tr>
       <th>Student</th>
@@ -25,13 +26,13 @@
       <th>Geometry and spatial sense level</th>
       <th>Data stats and probability opi</th>
       <th>Data stats and probability level</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @terra_nova_tests.each do |terra_nova_test| %>
-      <tr>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td><%= terra_nova_test.student %></td>
         <td><%= terra_nova_test.test_date %></td>
         <td><%= terra_nova_test.reading_scale_score %></td>
@@ -52,14 +53,32 @@
         <td><%= terra_nova_test.geometry_and_spatial_sense_level %></td>
         <td><%= terra_nova_test.data_stats_and_probability_opi %></td>
         <td><%= terra_nova_test.data_stats_and_probability_level %></td>
-        <td><%= link_to 'Show', terra_nova_test %></td>
-        <td><%= link_to 'Edit', edit_terra_nova_test_path(terra_nova_test) %></td>
-        <td><%= link_to 'Delete', terra_nova_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="dropdown">
+            <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
+              <span class="button-content">
+                <i class="glyphicon glyphicon-cog font-size-11"></i>
+                <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu float-right">
+              <li>
+                <%= link_to 'Show', terra_nova_test %>
+              </li>
+              <li>
+                <%= link_to 'Edit', edit_terra_nova_test_path(terra_nova_test) %>              </li>
+              <li>
+                <%= link_to 'Delete', terra_nova_test, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </li>
+            </ul>
+          </div>
+        </td>
+
+      </tr>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Terra Nova Test', new_terra_nova_test_path %>
+<%= link_to 'New Terra Nova Test', new_terra_nova_test_path, :class => "btn btn-md btn-default btn-info"  %>

@@ -27,3 +27,33 @@
         text-align: right;
     }
 }
+ul.dropdown-menu {
+  /* position: absolute; */
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+ul.dropdown-menu.float-right {
+  right: 0;
+  left: auto;
+}
+i.glyphicon.glyphicon-cog.font-size-11 {
+  font-size: 11px!important;
+}
+i.glyphicon.glyphicon-chevron-down.font-size-11 {
+  font-size: 11px!important;
+}
