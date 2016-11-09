@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
     $('#star_tests_table').dataTable()
     $('#star_tests_students_table').dataTable()
