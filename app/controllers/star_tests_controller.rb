@@ -162,12 +162,37 @@ class StarTestsController < ApplicationController
     end
 
     def write_main_doc (main_doc)
+      latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
+      old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score 
       # update all the student name 
       node_set = main_doc.xpath("//w:t[contains(text(), 'Child name')]")
       node_set.each do |node|
         node.content = node.content.sub /Child name/, "#{@star_tests.first.student.first_name}"
       end 
+      # update all latest_scaled_score
+      node_set = main_doc.xpath("//w:t[contains(text(), 'latest_ss')]")
+      node_set.each do |node|
+        node.content = node.content.sub "latest_ss", "#{latest_score}"
+      end 
+      # update number of tests
+      words_hash = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six"}
+      text = words_hash[@star_tests.count]
+      change_docx_single_text(main_doc, 'n_tests', text)
+      # update scaled score change text 
+      new_text = text = latest_score > old_score ? "increase" : "decrease"
+      change_docx_single_text(main_doc, 'ss_cg', new_text )
+      # update scaled score difference 
+      change_docx_single_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
+      # update old score 
+      change_docx_single_text(main_doc, 'old_ss', old_score)
     end
+
+    def change_docx_single_text(main_doc, before_text, after_text)
+      node_set = main_doc.xpath("//w:t[contains(text(), '#{before_text}')]")
+      node = node_set.first
+      text = after_text.to_s
+      node.content = node.content.sub before_text, text
+    end 
 
     def write_report_file(zip_file, chart_doc, main_doc)
       # create buffer 
