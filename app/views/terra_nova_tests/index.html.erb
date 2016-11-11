@@ -1,8 +1,31 @@
 <p id="notice"><%= notice %></p>
 <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
 
-<h1>Terra Nova Tests</h1>
+<h1>Terra Nova Tests <%= 'for ' + @student.first_name + ' ' + @student.last_name if @student %></h1>
 
+<div>
+    <table>
+      <thead>
+        <tr>
+          <th>School year</th>
+          <th>Class</th>
+          <th>Last name</th>
+          <th>First name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td><%= @student.school_year %></td>
+          <td><%= @student.student_class %></td>
+          <td><%= @student.last_name %></td>
+          <td><%= @student.first_name %></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!---
 <table id="terraNovaTest" class="table table-striped table-bordered" style="table-layout:fixed">
   <thead>
     <tr>
@@ -79,6 +102,91 @@
     <% end %>
   </tbody>
 </table>
+!-->
+<div>
+  <h4>Reading Performance, Scale Score: 581 (National Percentile Rank: 94)</h4>
+  <table id="terra_nova_reading_table" class="table table-striped table-bordered" style="table-layout:fixed"> 
+    <thead>
+      <tr>
+        <th>Performance on Objectives</th>
+        <th>Student OPI</th>
+        <th>National OPI</th>
+        <th>Moderate Mastery Range</th>
+        <th>Level of Mastery</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Oral Comprehension</td>
+        <td><!--%= #terra_nova_test.oral_comprehension_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Basic Understanding</td>
+        <td><!--%= #terra_nova_test.basic_understanding_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Introduction to Print</td>
+        <td><!--%= #terra_nova_test.introduction_to_print_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  </div>
+  <div>
+  <h4>Math Performance, Scale Score: 508 (National Percentile Rank: 76)</h4>
+  <table id="terra_nova_math_table" class="table table-striped table-bordered" style="table-layout:fixed"> 
+    <thead>
+      <tr>
+        <th>Performance on Objectives</th>
+        <th>Student OPI</th>
+        <th>National OPI</th>
+        <th>Moderate Mastery Range</th>
+        <th>Level of Mastery</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Number and Number Relations</td>
+        <td><!--% #terra_nova_test.number_and_number_relations_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Measurement</td>
+        <td><!--% #terra_nova_test.measurement_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Geometry and Spatial Sense</td>
+        <td><!--% #terra_nova_test.geometry_and_spatial_sense_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Data, Stats, and Probability</td>
+        <td><!--% #terra_nova_test.data_stats_and_probability_opi %--></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  </div>
+
 <br>
 
-<%= link_to 'New Terra Nova Test', new_terra_nova_test_path, :class => "btn btn-md btn-default btn-info"  %>
+<%= link_to 'New Terra Nova Test', new_terra_nova_test_path(student_id: @student.id), :class => "btn btn-md btn-default btn-info"  %>

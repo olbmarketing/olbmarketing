@@ -4,7 +4,12 @@ class TerraNovaTestsController < ApplicationController
   # GET /terra_nova_tests
   # GET /terra_nova_tests.json
   def index
-    @terra_nova_tests = TerraNovaTest.all
+    @student = Student.find(params[:student_id])
+    if @student 
+      @terra_nova_tests = @student.terra_nova_tests
+    else 
+      @terra_nova_tests = TerraNovaTest.all
+    end 
   end
 
   # GET /terra_nova_tests/1
@@ -14,7 +19,9 @@ class TerraNovaTestsController < ApplicationController
 
   # GET /terra_nova_tests/new
   def new
+    student = Student.find(params[:student_id])
     @terra_nova_test = TerraNovaTest.new
+    @terra_nova_test.student = student
   end
 
   # GET /terra_nova_tests/1/edit

@@ -21,7 +21,7 @@
         <td><%= student.first_name %></td>
 
         <td><%= link_to "STAR (#{student.star_tests.count})", star_tests_path(student_id: student.id) %></td>
-        <td><%= link_to 'Terra Nova', terra_nova_tests_path %></td>
+        <td><%= link_to "Terra Nova (#{student.terra_nova_tests.count})", terra_nova_tests_path(student_id: student.id) %></td>
       </tr>
     <% end %>
   </tbody>

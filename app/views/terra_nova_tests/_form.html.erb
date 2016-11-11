@@ -12,15 +12,15 @@
   <% end %>
   <div class="form-new-terra-nova-test">
     <div class="form-group">
-        <h2 class="create-student-heading">New Terra Nova Test</h2>
+        <h2 class="create-student-heading">New Terra Nova Test for <%= "#{@terra_nova_test.student.first_name} #{@terra_nova_test.student.last_name}" %></h2>
     </div>
 
 
     <div class="field">
-        <%= f.text_field :student_id,:class => "form-control", :placeholder=>"Student ID", :autofocus=>"" %>
+        <%= f.text_field :student_id,:class => "form-control", :placeholder=>"Student ID", :autofocus=>"", readonly: true %>
     </div>
     <div class="field">
-        <%= f.date_select :test_date,:class => "form-control", :placeholder=>"Test Date", :autofocus=>"" %>
+        <%= f.text_field :test_date,:class => "form-control", :placeholder=>"Test Date", :autofocus=>"", placeholder: "mm/dd/yyyy" %>
     </div>
     <div class="field">
         <%= f.text_field :reading_scale_score,:class => "form-control", :placeholder=>"Reading Scale Score", :autofocus=>"" %>
