@@ -31,7 +31,8 @@ class TerraNovaTestsController < ApplicationController
   # POST /terra_nova_tests
   # POST /terra_nova_tests.json
   def create
-    @terra_nova_test = TerraNovaTest.new(terra_nova_test_params)
+    params_with_level = TerraNovaTest.hash_with_level terra_nova_test_params 
+    @terra_nova_test = TerraNovaTest.new(params_with_level)
 
     respond_to do |format|
       if @terra_nova_test.save

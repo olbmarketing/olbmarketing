@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  student: one
+  id: 1
+  student_id: 1
   test_date: 2016-10-01
   reading_scale_score: 1
   reading_national_percentile: 1
@@ -23,7 +24,7 @@ one:
   data_stats_and_probability_level: MyString
 
 two:
-  student: two
+  student_id: 1
   test_date: 2016-10-01
   reading_scale_score: 1
   reading_national_percentile: 1

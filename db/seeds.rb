@@ -11,8 +11,6 @@ Parish.delete_all
 StarTest.delete_all
 Student.delete_all
 
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
-
 # seed students
 
 Student.create!(school_year: '2016-17',new_or_return: 'New',student_class: 'PS',last_name: 'Alo',first_name: 'Ella',father_name: 'Michael',mother_name: 'Elizabeth',address: '1488 Candlewood Drive',city: 'Columbus',state: 'OH',zip: '43235',email1: 'not listed',email2: 'elizabeth@vitalwork.com',catholic: 'Y',parish: 'St. Michael',race: 'White/Caucasian',resides_with: 'Both',reference_from: 'Social Media - Internet')
@@ -129,3 +127,5 @@ StarTest.create!(
   paragraph_level_comprehension: 78,
   early_numeracy: 94
 )
+
+Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
