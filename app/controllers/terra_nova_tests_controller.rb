@@ -77,6 +77,6 @@ class TerraNovaTestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def terra_nova_test_params
-      params.require(:terra_nova_test).permit(:student_id, :test_date, :reading_scale_score, :reading_national_percentile, :oral_comprehension_opi, :oral_comprehension_level, :basic_understanding_opi, :basic_understanding_level, :introduction_to_print_opi, :introduction_to_print_level, :math_scale_score, :math_national_percentile, :number_and_number_relations_opi, :number_and_number_relations_level, :measurement_opi, :measurement_level, :geometry_and_spatial_sense_opi, :geometry_and_spatial_sense_level, :data_stats_and_probability_opi, :data_stats_and_probability_level)
+      params.require(:terra_nova_test).permit(:student_id, :test_date, :reading_scale_score, :reading_national_percentile, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :math_scale_score, :math_national_percentile, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :data_stats_and_probability_opi)
     end
 end

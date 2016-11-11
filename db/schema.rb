@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030032041) do
+ActiveRecord::Schema.define(version: 20161111185837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,23 +147,16 @@ ActiveRecord::Schema.define(version: 20161030032041) do
     t.integer  "reading_scale_score"
     t.integer  "reading_national_percentile"
     t.integer  "oral_comprehension_opi"
-    t.string   "oral_comprehension_level"
     t.integer  "basic_understanding_opi"
-    t.string   "basic_understanding_level"
     t.integer  "introduction_to_print_opi"
-    t.string   "introduction_to_print_level"
     t.integer  "math_scale_score"
     t.integer  "math_national_percentile"
     t.integer  "number_and_number_relations_opi"
-    t.string   "number_and_number_relations_level"
     t.integer  "measurement_opi"
-    t.string   "measurement_level"
     t.integer  "geometry_and_spatial_sense_opi"
-    t.string   "geometry_and_spatial_sense_level"
     t.integer  "data_stats_and_probability_opi"
-    t.string   "data_stats_and_probability_level"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["student_id"], name: "index_terra_nova_tests_on_student_id", using: :btree
   end
 
