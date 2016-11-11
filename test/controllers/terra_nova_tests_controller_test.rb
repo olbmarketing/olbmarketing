@@ -76,4 +76,16 @@ class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Moderate Mastery", returned_terra_nova['measurement_level'], "after update the measurement_opi level should be Moderate Mastery"
 =end
   end 
+
+  test "should update terra_nova_test basic_understanding_opi" do
+    # update the @terra_nova_test basic_understanding_opi with original + 1
+    patch terra_nova_test_url(@terra_nova_test), params: { terra_nova_test: { basic_understanding_opi: @terra_nova_test.basic_understanding_opi + 1, data_stats_and_probability_opi: @terra_nova_test.data_stats_and_probability_opi, geometry_and_spatial_sense_opi: @terra_nova_test.geometry_and_spatial_sense_opi, introduction_to_print_opi: @terra_nova_test.introduction_to_print_opi, math_national_percentile: @terra_nova_test.math_national_percentile, math_scale_score: @terra_nova_test.math_scale_score,  measurement_opi: @terra_nova_test.measurement_opi, number_and_number_relations_opi: @terra_nova_test.number_and_number_relations_opi, oral_comprehension_opi: @terra_nova_test.oral_comprehension_opi, reading_national_percentile: @terra_nova_test.reading_national_percentile, reading_scale_score: @terra_nova_test.reading_scale_score, student_id: @terra_nova_test.student_id, test_date: @terra_nova_test.test_date } }
+    assert_redirected_to terra_nova_test_url(@terra_nova_test)
+    # assert the updated terra_nova_test basic_understanding_opi should be original + 1
+    get terra_nova_test_url(@terra_nova_test) + '.json'
+    returned_terra_nova = JSON.parse(response.body)
+    assert_equal @terra_nova_test.basic_understanding_opi + 1, returned_terra_nova['basic_understanding_opi'], "after update the oral_comprehension_opi level should be updated "
+  end 
+
+
 end

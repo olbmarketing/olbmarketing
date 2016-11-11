@@ -42,4 +42,18 @@ class TerraNovaTest < ApplicationRecord
     end 
     my_hash
   end 
+
+  def self.get_level(opi)
+    result = ""
+    if opi 
+      if (0..49).include? opi
+        result = "Low Mastery"
+      elsif (50..74).include? opi
+        result = "Moderate Mastery"
+      elsif opi > 74
+        result = "High Mastery"
+      end 
+    end 
+    result 
+  end 
 end
