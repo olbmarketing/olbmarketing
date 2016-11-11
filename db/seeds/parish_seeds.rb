@@ -1,5 +1,4 @@
 #seed parishes
-Parish.delete_all
 =begin
 Parish.create(name: "St. Brendan",
   phone: "1234567890",

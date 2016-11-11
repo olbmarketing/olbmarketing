@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
-
+TerraNovaTest.delete_all
+Parish.delete_all
 StarTest.delete_all
 Student.delete_all
+
+Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
 
 # seed students
 
