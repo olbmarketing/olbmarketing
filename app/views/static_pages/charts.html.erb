@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick"%>
+  <%= stylesheet_link_tag 'http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css'%>
+  <%= javascript_include_tag 'http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js'%>
+<body data-no-turbolink="false">
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Family Parish</h3>
+      <%= pie_chart @students.group(:parish).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Family Demographic</h3>
+      <%= pie_chart @students.group(:race).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Zip Code Families Reside In</h3>
+      <%= column_chart @students.group(:zip).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Catholic Religion</h3>
+      <%= column_chart @students.group(:catholic).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Whom Child/ren Resides With</h3>
+      <%= column_chart @students.group(:resides_with).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Family Retention</h3>
+      <%= pie_chart @students.group(:new_or_return).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>How Did You Hear About OLB?</h3>
+      <%= column_chart @students.group(:reference_from).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>PreK to Kindergarten Attendance</h3>
+      <%= column_chart @students.group(:parish).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Reason to Where Pre-K Students Attended K(NOT FINISHED)</h3>
+      <%= pie_chart @students.group(:first_name).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Kindergarten to 1st Grade Attendance(NOT FINISHED)</h3>
+      <%= column_chart @students.group(:first_name).count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Cities Families Reside In</h3>
+      <%= column_chart @students.group(:city).count %>
+    </div>
+  </div>
+</body>

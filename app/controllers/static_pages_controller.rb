@@ -3,4 +3,9 @@ class StaticPagesController < ApplicationController
 	
   def dashboard
   end
+
+  def charts
+  	@students = Student.all
+  end
+  
 end
