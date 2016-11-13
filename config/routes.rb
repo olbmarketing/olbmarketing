@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   resources :schools
   resources :parishes
   resources :employees
+  
   get 'static_pages/dashboard'
+  get 'static_pages/charts'
 
   resources :students do
     collection {post :import}
