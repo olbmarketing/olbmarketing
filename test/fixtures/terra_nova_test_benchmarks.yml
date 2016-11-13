@@ -8,6 +8,7 @@ one:
   number_and_number_relations_opi: 1
   measurement_opi: 1
   geometry_and_spatial_sense_opi: 1
+  data_stats_and_probability_opi: 1
 
 two:
   test_date: 2016-10-01
@@ -17,3 +18,4 @@ two:
   number_and_number_relations_opi: 1
   measurement_opi: 1
   geometry_and_spatial_sense_opi: 1
+  data_stats_and_probability_opi: 1
