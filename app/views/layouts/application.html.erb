@@ -17,7 +17,7 @@
     <% if current_user %>
     <nav class="navbar navbar-custom">
       <!-- <%=   link_to image_tag("logo.jpg", border: 0), "/home", {class: 'navbar-image'} %> -->
-      <a href="/static_pages/dashboard">
+      <a href="/static_pages/dashboard" class="log-btn">
       <%= image_tag("logo.jpg", :alt => "rss feed", :class=>"navbar-image") %>
       </a>
       <%= link_to 'Logout', '/logout', :class=>"btn btn-default navbar-logout" %>

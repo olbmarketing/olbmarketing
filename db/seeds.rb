@@ -5,7 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+=begin
+TerraNovaTestBenchmark.create!(
+  test_date: Date.new(2016,1,14)
+  oral_comprehension_opi: 79
+  basic_understanding_opi: 70
+  introduction_to_print_opi: 80
+  number_and_number_relations_opi: 69
+  measurement_opi: 69
+  geometry_and_spatial_sense_opi: 86
+)
+=end 
 TerraNovaTest.delete_all
 Parish.delete_all
 StarTest.delete_all
@@ -128,4 +138,5 @@ StarTest.create!(
   early_numeracy: 94
 )
 
+# link external seed file 
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }
