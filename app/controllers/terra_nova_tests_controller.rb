@@ -63,9 +63,27 @@ class TerraNovaTestsController < ApplicationController
   def destroy
     @terra_nova_test.destroy
     respond_to do |format|
-      format.html { redirect_to terra_nova_tests_url, notice: 'Terra nova test was successfully deleted.' }
+      format.html { redirect_to terra_nova_tests_url(student_id: @terra_nova_test.student.id), notice: 'Terra nova test was successfully deleted.' }
       format.json { head :no_content }
     end
+  end
+
+  # get 'star_tests/download_report_docx'
+  def download_report_docx
+    @student = Student.find(params[:student_id])
+    if @student 
+      @star_tests = @student.star_tests
+    end 
+    create_report
+    send_file(
+      "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx", 
+      filename: "#{@student.first_name}_#{@student.last_name}_Terra_Nova.docx", 
+      type: "application/docx"
+    )
+  end
+
+  def create_report
+
   end
 
   private

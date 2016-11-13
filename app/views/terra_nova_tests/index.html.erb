@@ -90,7 +90,16 @@
 </table>
 !-->
 <div>
-  <h4>Reading Performance, Scale Score: 581 (National Percentile Rank: 94)</h4>
+  <% if @terra_nova_tests.count == 0 %>
+  <h3>No tests available</h3>
+  <% end %>
+  <% @terra_nova_tests.each do |terra_nova_test| %>
+  
+  <h3><%= terra_nova_test.test_date.strftime('%m/%d/%Y') %></h3>
+  <div class="terra_nova_test_date_section"> 
+  <%= link_to 'Download Report', terra_nova_tests_download_report_docx_url(student_id: @student.id), class: "btn btn-md btn-default btn-info", data: { :"no-turbolinks" => true }  %>
+  <div>
+  <h4>Reading Performance, Scale Score: <%= terra_nova_test.reading_scale_score %> (National Percentile Rank: <%= terra_nova_test.reading_national_percentile %>)</h4>
   <table id="terra_nova_reading_table" class="table table-striped table-bordered" style="table-layout:fixed"> 
     <thead>
       <tr>
@@ -104,21 +113,21 @@
     <tbody>
       <tr>
         <td>Oral Comprehension</td>
-        <td><!--%= #terra_nova_test.oral_comprehension_opi %--></td>
+        <td><%= terra_nova_test.oral_comprehension_opi %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td>Basic Understanding</td>
-        <td><!--%= #terra_nova_test.basic_understanding_opi %--></td>
+        <td><%= terra_nova_test.basic_understanding_opi %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td>Introduction to Print</td>
-        <td><!--%= #terra_nova_test.introduction_to_print_opi %--></td>
+        <td><%= terra_nova_test.introduction_to_print_opi %></td>
         <td></td>
         <td></td>
         <td></td>
@@ -126,9 +135,10 @@
       
     </tbody>
   </table>
+  
   </div>
   <div>
-  <h4>Math Performance, Scale Score: 508 (National Percentile Rank: 76)</h4>
+  <h4>Math Performance, Scale Score: <%= terra_nova_test.math_scale_score %> (National Percentile Rank: <%= terra_nova_test.math_national_percentile %>)</h4>
   <table id="terra_nova_math_table" class="table table-striped table-bordered" style="table-layout:fixed"> 
     <thead>
       <tr>
@@ -142,28 +152,28 @@
     <tbody>
       <tr>
         <td>Number and Number Relations</td>
-        <td><!--% #terra_nova_test.number_and_number_relations_opi %--></td>
+        <td><%= terra_nova_test.number_and_number_relations_opi %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td>Measurement</td>
-        <td><!--% #terra_nova_test.measurement_opi %--></td>
+        <td><%= terra_nova_test.measurement_opi %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td>Geometry and Spatial Sense</td>
-        <td><!--% #terra_nova_test.geometry_and_spatial_sense_opi %--></td>
+        <td><%= terra_nova_test.geometry_and_spatial_sense_opi %></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td>Data, Stats, and Probability</td>
-        <td><!--% #terra_nova_test.data_stats_and_probability_opi %--></td>
+        <td><%= terra_nova_test.data_stats_and_probability_opi %></td>
         <td></td>
         <td></td>
         <td></td>
@@ -171,6 +181,12 @@
       
     </tbody>
   </table>
+  </div>
+  <%= link_to 'Show', terra_nova_test, class: "basic-btn" %>
+  <%= link_to 'Edit', edit_terra_nova_test_path(terra_nova_test), class: "basic-btn" %> 
+  <%= link_to 'Delete', terra_nova_test, method: :delete, data: { confirm: 'Are you sure?' }, class: "basic-btn" %>
+  </div>
+  <% end %>
   </div>
 
 <br>
