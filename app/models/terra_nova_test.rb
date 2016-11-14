@@ -56,4 +56,14 @@ class TerraNovaTest < ApplicationRecord
     end 
     result 
   end 
+
+  def get_national_opi(test_category)
+    result = 'NA'
+    terra_nova_test_benchmarks = TerraNovaTestBenchmark.all
+    tn_benchmark = terra_nova_test_benchmarks.find_by('test_date = ?', send(:test_date))
+    if tn_benchmark
+      result = tn_benchmark[test_category]
+    end 
+    result
+  end 
 end

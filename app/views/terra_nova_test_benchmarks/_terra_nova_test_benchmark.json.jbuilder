@@ -1,2 +1,2 @@
-json.extract! terra_nova_test_benchmark, :id, :test_date, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :created_at, :updated_at
+json.extract! terra_nova_test_benchmark, :id, :test_date, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :data_stats_and_probability_opi, :created_at, :updated_at
 json.url terra_nova_test_benchmark_url(terra_nova_test_benchmark, format: :json)
