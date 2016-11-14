@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   get 'static_pages/dashboard'
   get 'static_pages/charts'
+  post 'static_pages/generate_chart'
 
   resources :students do
     collection {post :import}

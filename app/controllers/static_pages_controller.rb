@@ -5,7 +5,9 @@ class StaticPagesController < ApplicationController
   end
 
   def charts
-  	@students = Student.all
   end
   
+  def generate_chart
+  	@students = Student.where("school_year = ?", params[:q])
+  end
 end
