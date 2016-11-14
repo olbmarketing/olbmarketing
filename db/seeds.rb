@@ -5,18 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-=begin
-TerraNovaTestBenchmark.create!(
-  test_date: Date.new(2016,1,14),
-  oral_comprehension_opi: 79,
-  basic_understanding_opi: 70,
-  introduction_to_print_opi: 80,
-  number_and_number_relations_opi: 69,
-  measurement_opi: 69,
-  geometry_and_spatial_sense_opi: 86,
-  data_stats_and_probability_opi: 53
-)
-=end 
+
+
+TerraNovaTestBenchmark.delete_all
 TerraNovaTest.delete_all
 Parish.delete_all
 StarTest.delete_all
