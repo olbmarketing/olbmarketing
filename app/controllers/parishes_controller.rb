@@ -4,7 +4,7 @@ class ParishesController < ApplicationController
   # GET /parishes
   # GET /parishes.json
   def index
-    @parishes = Parish.all
+    @parishes = Parish.order('name').all
   end
 
   # GET /parishes/1
