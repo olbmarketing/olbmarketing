@@ -38,7 +38,7 @@ class StarTestsController < ApplicationController
 
     respond_to do |format|
       if @star_test.save
-        format.html { redirect_to @star_test, notice: 'Star test was successfully created.' }
+        format.html { redirect_to star_tests_url(student_id: @star_test.student.id), notice: 'Star test was successfully created.' }
         format.json { render :show, status: :created, location: @star_test }
       else
         format.html { render :new }
