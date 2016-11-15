@@ -4,5 +4,5 @@
 
 
 $(document).on 'turbolinks:load', ->
-    $('#star_tests_table').dataTable()
-    $('#star_tests_students_table').dataTable()
+    $('#star_tests_table').dataTable 'scrollX': true
+    return

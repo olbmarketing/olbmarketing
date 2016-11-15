@@ -2,7 +2,7 @@
   <%= 'for ' + @student.first_name + ' ' + @student.last_name if @student %></h1>
   <div>
     <%= link_to 'View Graph Report', star_tests_report_path(student_id: @student.id), :class => "btn btn-md btn-default btn-info"  %>
-    
+
     <% if @star_tests.count > 0 %>
     <%= link_to 'Download Report', star_tests_download_report_docx_url(student_id: @student.id), class: "btn btn-md btn-default btn-info", data: { :"no-turbolinks" => true }  %>
     <% else %>
@@ -26,7 +26,6 @@
           <td><%= @student.student_class %></td>
           <td><%= @student.last_name %></td>
           <td><%= @student.first_name %></td>
-
         </tr>
       </tbody>
     </table>
@@ -53,7 +52,6 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
       <% @star_tests.each do |star_test| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
