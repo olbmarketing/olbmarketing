@@ -69,3 +69,5 @@ gem 'rubyzip'
 gem 'nokogiri'
 # for testing 
 gem 'rails-controller-testing'
+# for date formating 
+gem 'american_date', '~> 1.1', '>= 1.1.1'
