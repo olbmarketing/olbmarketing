@@ -96,7 +96,7 @@
   <% end %>
   <% @terra_nova_tests.each do |terra_nova_test| %>
   
-  <h3><%= terra_nova_test.test_date.strftime('%m/%d/%Y') %></h3>
+  <h3><%= terra_nova_test.test_date %></h3>
   <div class="terra_nova_test_date_section"> 
   <%= link_to 'Download Report', terra_nova_tests_download_report_docx_url(student_id: @student.id), class: "btn btn-md btn-default btn-info", data: { :"no-turbolinks" => true }  %>
   <div>

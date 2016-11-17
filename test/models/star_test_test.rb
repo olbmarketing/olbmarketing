@@ -27,10 +27,6 @@ class StarTestTest < ActiveSupport::TestCase
     }
   end
 
-  test "should be true" do 
-    assert true 
-  end 
-
   test "scaled score must be valid" do 
     star_test = StarTest.new(@new_star_test)
     wrong_scores = [-1, 100, 901, 1000]
