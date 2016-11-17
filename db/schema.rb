@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113215012) do
+ActiveRecord::Schema.define(version: 20161117005404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,9 +137,16 @@ ActiveRecord::Schema.define(version: 20161113215012) do
     t.integer  "number_and_number_relations_opi"
     t.integer  "measurement_opi"
     t.integer  "geometry_and_spatial_sense_opi"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.integer  "data_stats_and_probability_opi"
+    t.string   "oral_comprehension_moderate_mastery_range"
+    t.string   "basic_understanding_moderate_mastery_range"
+    t.string   "introduction_to_print_moderate_mastery_range"
+    t.string   "number_and_number_relations_moderate_mastery_range"
+    t.string   "measurement_moderate_mastery_range"
+    t.string   "geometry_and_spatial_sense_moderate_mastery_range"
+    t.string   "data_stats_and_probability_moderate_mastery_range"
   end
 
   create_table "terra_nova_tests", force: :cascade do |t|

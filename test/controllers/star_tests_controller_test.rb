@@ -103,15 +103,23 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   end 
 
   test "should create star with test date mm/dd/yyyy" do 
-    ds1 = "2016-01-01"
-    ds2 = "11/25/2016"
     correct_date_strs = ["2016-01-01", "11/25/2016"]
+    incorrect_date_strs = ["111/25/2016", "99/25/2016"]
     correct_date_strs.each do |ds|
       assert_difference('StarTest.count') do
-        post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: ds2, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
+        post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: ds, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
       end
       assert_redirected_to star_tests_url(student_id: @first_student.id)
-      end 
+      
+    end 
+    incorrect_date_strs.each do |ds|
+      assert_no_difference('StarTest.count') do
+        post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: ds, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
+      end
+      # should stay at :new page due to incorrect_date_strs
+      assert_template :new
+      assert css_select('#error_explanation').count > 0
+    end 
     
   end 
  
