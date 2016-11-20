@@ -114,7 +114,7 @@ class StarTestsController < ApplicationController
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
       write_chart_doc(chart_doc)
-      main_doc = Nokogiri::XML(myz.read('word/document.xml'))
+      main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc)
       write_report_file(myz, chart_doc, main_doc)
 
@@ -126,6 +126,8 @@ class StarTestsController < ApplicationController
     end 
 
     def write_chart_doc (chart_doc)
+      # update Child name in chart 
+      change_docx_single_text(chart_doc, "Child name", "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}", "a:t")
       for i in 0...@star_tests.count 
         test = @star_tests[i]
         # only update test score for available test date count 
@@ -185,13 +187,51 @@ class StarTestsController < ApplicationController
       change_docx_single_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
       # update old score 
       change_docx_single_text(main_doc, 'old_ss', old_score)
+      # change stage 
+      change_docx_single_text(main_doc, 'v_stage', get_stage(latest_score))
     end
 
-    def change_docx_single_text(main_doc, before_text, after_text)
-      node_set = main_doc.xpath("//w:t[contains(text(), '#{before_text}')]")
+    def change_docx_single_text(main_doc, before_text, after_text, node_type = nil)
+      default_node_type = node_type ? node_type : "w:t"
+      node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
+      # combine splited w:t node to single node
+      if node_set.count == 0 && node_type == "w:t"
+        # use spell error start and end to get the whole variable string
+        # since most variable strings have spell error 
+        main_doc.xpath('//w:proofErr[@w:type="spellStart"]').each do |spell_start_node|
+          next_node = spell_start_node.next_element
+          combined_text = ""
+          while next_node[w:type] != 'spellEnd'
+            combined_text += next_node.at_xpath('./w:t').content
+            next_node = next_node.next_element
+          end 
+          # remove all extra nodes and leave only one remaining and set it to combined_text
+          if combined_text == before_text 
+            next_node = spell_start_node.next_element
+            while next_node.next_element[w:type] != 'spellEnd'
+              next_node.next_element.remove
+            end 
+            next_node.at_xpath('./w:t').content = combined_text
+            # now search for the node again
+            node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
+          end 
+        end 
+      end 
       node = node_set.first
       text = after_text.to_s
       node.content = node.content.sub before_text, text
+    end 
+
+    def get_stage(score)
+      result = ''
+      if score >= 300 && score <= 674
+        result = 'Emergent Reader Stage'
+      elsif score >= 675 && score <= 774
+        result = 'Transitional Reader Stage'
+      else 
+        result = 'Probable Reader Stage'
+      end  
+      result
     end 
 
     def write_report_file(zip_file, chart_doc, main_doc)
