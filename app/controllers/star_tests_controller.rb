@@ -127,7 +127,7 @@ class StarTestsController < ApplicationController
 
     def write_chart_doc (chart_doc)
       # update Child name in chart 
-      change_docx_single_text(chart_doc, "Child name", "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}", "a:t")
+      change_docx_text(chart_doc, "Child name", "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}", "a:t")
       for i in 0...@star_tests.count 
         test = @star_tests[i]
         # only update test score for available test date count 
@@ -166,70 +166,93 @@ class StarTestsController < ApplicationController
     def write_main_doc (main_doc)
       latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
       old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score 
-      # update all the student name 
-      node_set = main_doc.xpath("//w:t[contains(text(), 'Child name')]")
-      node_set.each do |node|
-        node.content = node.content.sub /Child name/, "#{@star_tests.first.student.first_name}"
-      end 
+
+      combine_splitted_wt(main_doc)
+      remove_extra_stage_text(main_doc, latest_score)
+      change_docx_text(main_doc, 'Child_name_full', "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}")
+      change_docx_text(main_doc, 'Child_name', "#{@star_tests.first.student.first_name}")
       # update all latest_scaled_score
-      node_set = main_doc.xpath("//w:t[contains(text(), 'latest_ss')]")
-      node_set.each do |node|
-        node.content = node.content.sub "latest_ss", "#{latest_score}"
-      end 
+      change_docx_text(main_doc, 'latest_ss', "#{latest_score}")
       # update number of tests
       words_hash = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six"}
       text = words_hash[@star_tests.count]
-      change_docx_single_text(main_doc, 'n_tests', text)
+      change_docx_text(main_doc, 'n_tests', text)
       # update scaled score change text 
       new_text = text = latest_score > old_score ? "increase" : "decrease"
-      change_docx_single_text(main_doc, 'ss_cg', new_text )
+      change_docx_text(main_doc, 'ss_cg', new_text )
       # update scaled score difference 
-      change_docx_single_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
+      change_docx_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
       # update old score 
-      change_docx_single_text(main_doc, 'old_ss', old_score)
+      change_docx_text(main_doc, 'old_ss', old_score)
       # change stage 
-      change_docx_single_text(main_doc, 'v_stage', get_stage(latest_score))
+      change_docx_text(main_doc, 'v_stage', get_stage(latest_score))
+      change_docx_text(main_doc, 'v_reader', get_reader(latest_score))
     end
 
-    def change_docx_single_text(main_doc, before_text, after_text, node_type = nil)
-      default_node_type = node_type ? node_type : "w:t"
-      node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
-      # combine splited w:t node to single node
-      if node_set.count == 0 && node_type == "w:t"
-        # use spell error start and end to get the whole variable string
-        # since most variable strings have spell error 
-        main_doc.xpath('//w:proofErr[@w:type="spellStart"]').each do |spell_start_node|
-          next_node = spell_start_node.next_element
-          combined_text = ""
-          while next_node[w:type] != 'spellEnd'
-            combined_text += next_node.at_xpath('./w:t').content
-            next_node = next_node.next_element
-          end 
-          # remove all extra nodes and leave only one remaining and set it to combined_text
-          if combined_text == before_text 
-            next_node = spell_start_node.next_element
-            while next_node.next_element[w:type] != 'spellEnd'
-              next_node.next_element.remove
-            end 
-            next_node.at_xpath('./w:t').content = combined_text
-            # now search for the node again
-            node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
+    # combine splitted w:t node to single node (word will automatically split w:t node)
+    def combine_splitted_wt(main_doc)
+      # use highlight tag to get the whole variable string
+      # since most variable strings have highlight tag
+      main_doc.xpath('//w:highlight').each do |highlight_node|
+        highlight_text = highlight_node.parent.next_element.content
+        if highlight_node.parent.parent.next_element 
+          next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
+        end 
+        while next_highlight_node
+          highlight_text += next_highlight_node.parent.next_element.content
+          next_highlight_node.parent.next_element.content = ""
+          if next_highlight_node.parent.parent.next_element 
+            next_highlight_node = next_highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
+          else 
+            next_highlight_node = nil 
           end 
         end 
+        highlight_node.parent.next_element.content = highlight_text
       end 
-      node = node_set.first
-      text = after_text.to_s
-      node.content = node.content.sub before_text, text
+    end 
+
+    def change_docx_text(main_doc, before_text, after_text, node_type = nil)
+      default_node_type = node_type ? node_type : "w:t"
+      node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
+      node_set.each do |n|
+        text = after_text.to_s
+        n.content = n.content.sub before_text, text
+      end 
+    end 
+
+    def remove_extra_stage_text(main_doc, score)
+      stage_text = get_stage(score)
+      node_set = main_doc.xpath("//w:t[contains(text(), 'Reader_Stage_p')]")
+      node_set.each do |t|
+        # if the paragraph tag is not the correct stage, then remove it 
+        if !t.content.include?(stage_text.gsub(' ', '_'))
+          # remove the whole paragraph 
+          t.parent.parent.remove
+        else 
+          t.content = "" # remove paragraph tag 
+        end 
+      end 
+      # remove extra empty paragraph
+      node_set = main_doc.xpath("//w:p")
+      node_set.each do |p|
+        if p.children.count == 1 && p.next_element.children.count == 1
+          p.remove
+        end 
+      end 
     end 
 
     def get_stage(score)
+      get_reader(score) + " Stage"
+    end 
+
+    def get_reader(score)
       result = ''
       if score >= 300 && score <= 674
-        result = 'Emergent Reader Stage'
+        result = 'Emergent Reader'
       elsif score >= 675 && score <= 774
-        result = 'Transitional Reader Stage'
+        result = 'Transitional Reader'
       else 
-        result = 'Probable Reader Stage'
+        result = 'Probable Reader'
       end  
       result
     end 

@@ -63,7 +63,7 @@
         <%= f.number_field :early_numeracy, :class => "form-control", :placeholder=>"Early Numeracy" %>
       </div>
       <div class="actions">
-        <%= f.submit "Save and Add New Star Test", :class=>"btn btn-primary" %>
+        <%= f.submit "Save", :class=>"btn btn-primary" %>
         <%= link_to 'Back', star_tests_path(student_id: @star_test.student.id), :class=>"btn btn-md btn-default" %>
       </div>
   </div>
