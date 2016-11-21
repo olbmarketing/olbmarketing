@@ -3,4 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-    $('#pairsh_table').dataTable() 
+    if $('#pairsh_table').length > 0 && !$('#pairsh_table').hasClass('data')
+        $('#pairsh_table').dataTable() 
+        # make dataTable operation idempotent
+        $('#pairsh_table').addClass('data')

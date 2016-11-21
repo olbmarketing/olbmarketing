@@ -1,3 +1,6 @@
 $(document).on 'turbolinks:load', ->
-  $('#studentsTable').dataTable 'scrollX': true
+  if $('#studentsTable').length > 0 && !$('#studentsTable').hasClass('data')
+    $('#studentsTable').dataTable 'scrollX': true
+    # make dataTable operation idempotent
+    $('#studentsTable').addClass('data')
   return
