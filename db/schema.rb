@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117005404) do
+ActiveRecord::Schema.define(version: 20161121185639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20161117005404) do
     t.string   "zip"
     t.string   "email1"
     t.string   "email2"
+    t.text     "note"
   end
 
   create_table "terra_nova_test_benchmarks", force: :cascade do |t|

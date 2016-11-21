@@ -30,7 +30,7 @@ class Student < ApplicationRecord
       csv_str = file.read
     end 
     csv_str = Student.split_parent_column csv_str
-    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2"]
+    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note"]
     header_convert_lambda = lambda do |name| 
       new_name = name 
       if !(valid_column_names.include? name)
