@@ -84,7 +84,7 @@ class StarTestsController < ApplicationController
     if @student 
       @star_tests = @student.star_tests
     end 
-    create_report
+    create_report(params[:gender])
     send_file(
       "#{Rails.root}/app/assets/SATR_testing/new.docx", 
       filename: "#{@student.first_name}_#{@student.last_name}_STAR.docx", 
@@ -109,13 +109,13 @@ class StarTestsController < ApplicationController
       params.require(:star_test).permit(:student_id, :test_date, :scaled_score, :developmental_stage, :alphabetic_principle, :concept_of_word, :visual_discrimination, :phonemic_awareness, :phonics, :structural_analysis, :vocabulary, :sentence_level_comprehension, :paragraph_level_comprehension, :early_numeracy)
     end
 
-    def create_report 
+    def create_report(gender)
       myz = Zip::File.open("#{Rails.root}/app/assets/SATR_testing/STAR_template.docx");
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
       write_chart_doc(chart_doc)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
-      write_main_doc(main_doc)
+      write_main_doc(main_doc, gender)
       write_report_file(myz, chart_doc, main_doc)
 
     end 
@@ -163,7 +163,7 @@ class StarTestsController < ApplicationController
       end 
     end
 
-    def write_main_doc (main_doc)
+    def write_main_doc (main_doc, gender)
       latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
       old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score 
 
@@ -187,6 +187,17 @@ class StarTestsController < ApplicationController
       # change stage 
       change_docx_text(main_doc, 'v_stage', get_stage(latest_score))
       change_docx_text(main_doc, 'v_reader', get_reader(latest_score))
+      if gender == "girl"
+        change_docx_text(main_doc, 'he_she', 'she')
+        change_docx_text(main_doc, 'He_She', 'She')
+        change_docx_text(main_doc, 'his_her', 'her')
+        change_docx_text(main_doc, 'His_Her', 'Her')
+      else
+        change_docx_text(main_doc, 'he_she', 'he')
+        change_docx_text(main_doc, 'He_She', 'He')
+        change_docx_text(main_doc, 'his_her', 'his')
+        change_docx_text(main_doc, 'His_Her', 'His')
+      end 
     end
 
     # combine splitted w:t node to single node (word will automatically split w:t node)
