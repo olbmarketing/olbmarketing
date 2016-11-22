@@ -95,6 +95,11 @@
     </div>
 
     <div class="field">
+        <%= f.select :alumni, ['false', 'true'], {:prompt => 'Alumni?'},  {class: "form-control"} %>
+
+    </div>
+
+    <div class="field">
         <%= f.text_field :note, :class => "form-control", :placeholder=>"Note", :autofocus=>"" %>
     </div>
 

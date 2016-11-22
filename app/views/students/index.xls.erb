@@ -27,6 +27,7 @@
         <Cell><Data ss:Type="String">Zip</Data></Cell>
         <Cell><Data ss:Type="String">Father Email</Data></Cell>
         <Cell><Data ss:Type="String">Mother Email</Data></Cell>
+        <Cell><Data ss:Type="String">Alumni</Data></Cell>
         <Cell><Data ss:Type="String">Note</Data></Cell>
       </Row>
     <% @students.each do |student| %>
@@ -51,6 +52,7 @@
       <Cell><Data ss:Type="String"><%= student.zip %></Data></Cell>
       <Cell><Data ss:Type="String"><%= student.email1 %></Data></Cell>
       <Cell><Data ss:Type="String"><%= student.email2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.alumni %></Data></Cell>
       <Cell><Data ss:Type="String"><%= student.note %></Data></Cell>
       </Row>
     <% end %>
