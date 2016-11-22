@@ -75,7 +75,7 @@ class StarTestsController < ApplicationController
   # GET /star_tests/students
   def students
     @star_tests = StarTest.all
-    @students = Student.all
+    @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'])
   end
 
   # get 'star_tests/download_report_docx'
