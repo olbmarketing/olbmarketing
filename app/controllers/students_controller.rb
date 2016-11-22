@@ -68,6 +68,7 @@ class StudentsController < ApplicationController
     my_csv = Student.get_csv_from_file params[:file]
     # process csv to remove unidentified columns 
     removed_columns = remove_extra_columns_for_csv my_csv
+    remove_column_rows my_csv
     students_from_file = Student.get_students_from_csv my_csv
     
     all_valid = true 
@@ -125,4 +126,16 @@ class StudentsController < ApplicationController
       end 
       removed_columns
     end
+
+    # remove rows if the row has 'columnX' as content 
+    def remove_column_rows(my_csv)
+      my_csv.delete_if do |row|
+        result = false 
+        # check only first 3 columns   
+        if row.headers.count >= 3
+          result = true if row.field(0) =~ /\Acolumn.*\z/i && row.field(1) =~ /\Acolumn.*\z/i && row.field(2) =~ /\Acolumn.*\z/i
+        end 
+        result
+      end 
+    end 
 end

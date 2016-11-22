@@ -15,7 +15,16 @@ class Student < ApplicationRecord
     students = []
     # a block that run through a loop for each row in the csv file 
     my_csv.each do |row| 
-      students << Student.new(row.to_hash)
+      # clean up email formating (remove mailto: prefix)
+      tmp_hash = row.to_hash
+      puts row.to_hash.to_s
+      if tmp_hash["email1"] =~ /\Amailto:.*\z/i 
+        tmp_hash["email1"] = tmp_hash["email1"].sub 'mailto:', ''
+      end 
+      if tmp_hash["email2"] =~ /\Amailto:.*\z/i 
+        tmp_hash["email2"] = tmp_hash["email2"].sub 'mailto:', ''
+      end 
+      students << Student.new(tmp_hash)
     end 
     students
    end 
@@ -36,17 +45,19 @@ class Student < ApplicationRecord
       if !(valid_column_names.include? name)
         # change column names to meet backend needs
         new_name = name.strip.downcase.gsub " ", "_"
+        new_name = "last_name" if new_name == "student_last_name"
         new_name = "school_year" if new_name == "sy"
         new_name = "student_class" if new_name == "class"
         new_name  = "reference_from" if new_name == "referred_by"
         new_name  = "preK_to_K" if new_name == "transfer_from_prek_to_k"
         new_name  = "preK_to_K" if new_name == "Pre-K to K".strip.downcase.gsub(" ", "_")
+        new_name  = "email1" if new_name == "email"
         new_name  = "email1" if new_name == "father's_name"
         new_name  = "email2" if new_name == "mother's_name"
         new_name  = "email1" if new_name == "father_name"
         new_name  = "email2" if new_name == "mother_name"
-        new_name  = "email1" if new_name == "father"
-        new_name  = "email2" if new_name == "mother"
+        new_name  = "father_name" if new_name == "father"
+        new_name  = "mother_name" if new_name == "mother"
         new_name  = "reference_from" if new_name == "How You Heard About Us".strip.downcase.gsub(" ", "_")
         new_name  = "reference_from" if new_name == "Heard about OLB".strip.downcase.gsub(" ", "_")
       end 
