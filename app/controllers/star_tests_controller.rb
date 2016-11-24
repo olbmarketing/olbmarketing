@@ -161,7 +161,16 @@ class StarTestsController < ApplicationController
           chart_doc.xpath('//c:ser').last.remove
         end 
       end 
+      # fix order tag 
+      fix_order_tag chart_doc
     end
+
+    def fix_order_tag(chart_doc)
+      # order tag not in correct order cause word to crash. Hence need to fix order tag
+      chart_doc.xpath('//c:order').count.times do |i|
+        chart_doc.xpath('//c:order')[i]["val"] = i.to_s
+      end 
+    end 
 
     def write_main_doc (main_doc, gender)
       latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
@@ -207,8 +216,12 @@ class StarTestsController < ApplicationController
       main_doc.xpath('//w:highlight').each do |highlight_node|
         highlight_text = highlight_node.parent.next_element.content
         if highlight_node.parent.parent.next_element 
-          next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
-        end 
+          if highlight_node.parent.parent.next_element.name == 'r'
+            next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
+          elsif highlight_node.parent.parent.next_element.next_element && highlight_node.parent.parent.next_element.next_element.name = 'r'
+            next_highlight_node = highlight_node.parent.parent.next_element.next_element.xpath('.//w:highlight').first
+          end 
+        end  
         while next_highlight_node
           highlight_text += next_highlight_node.parent.next_element.content
           next_highlight_node.parent.next_element.content = ""
