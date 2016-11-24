@@ -170,8 +170,7 @@
 
   <div class="row">
     <div class="col-xs-6">
-      <h3>Reason to Where Pre-K Students Attended K(NOT FINISHED)</h3>
-      <%= pie_chart @students.group(:first_name).count,
+      <%= pie_chart @students.group(:reason).count,
       library: {
         title: {
             text: 'Reason to Where Pre-K Students Attended K for ' + params[:q] + ' SY'
@@ -191,8 +190,7 @@
 
   <div class="row">
     <div class="col-xs-6">
-      <h3>Kindergarten to 1st Grade Attendance(NOT FINISHED)</h3>
-      <%= column_chart @students.group(:first_name).count,
+      <%= column_chart @students.group(:K_First).count,
       library: {
         title: {
             text: 'Kindergarten to 1st Grade Attendance for ' + params[:q] + ' SY'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122020017) do
+ActiveRecord::Schema.define(version: 20161124013541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,8 +66,6 @@ ActiveRecord::Schema.define(version: 20161122020017) do
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float    "latitude"
-    t.float    "longitude"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -131,6 +129,8 @@ ActiveRecord::Schema.define(version: 20161122020017) do
     t.string   "email2"
     t.text     "note"
     t.boolean  "alumni"
+    t.string   "reason"
+    t.string   "K_First"
   end
 
   create_table "terra_nova_test_benchmarks", force: :cascade do |t|
