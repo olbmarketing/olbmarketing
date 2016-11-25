@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   end
 
   def charts
+    @studentList = Student.uniq.pluck(:school_year)
   	if params[:q] != nil
   		@students = Student.where("school_year = ?", params[:q])
   	else

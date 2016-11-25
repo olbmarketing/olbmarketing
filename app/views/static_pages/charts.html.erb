@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'https://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js'%>
 <body data-no-turbolink="true">
 
-  <%= form_tag({action: :charts}) do %>
+<%= form_tag({action: :charts}) do %>
   <%= label_tag("Enter Year: ") %>
   <%= select_tag :q, 
   options_from_collection_for_select(Student.all, "school_year", "school_year")%>
