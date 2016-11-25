@@ -11,6 +11,7 @@ TerraNovaTestBenchmark.delete_all
 TerraNovaTest.delete_all
 Parish.delete_all
 StarTest.delete_all
+=begin
 Student.delete_all
 
 # seed students
@@ -60,10 +61,12 @@ Student.create!(school_year: '2016-17',
   resides_with: 'Both',
   reference_from: 'Current / Alumni Family')
 
+=end 
+
 # seed star test data
 
 StarTest.create!(
-  student: Student.all.first,
+  student: Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).first,
   test_date: Date.new(2015,11,20),
   scaled_score: 781,
   developmental_stage: 'Emergent Reader Stage',
@@ -80,7 +83,7 @@ StarTest.create!(
 )
 
 StarTest.create!(
-  student: Student.all.first,
+  student: Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).first,
   test_date: Date.new(2016,01,14),
   scaled_score: 781,
   developmental_stage: 'Emergent Reader Stage',
@@ -97,7 +100,7 @@ StarTest.create!(
 )
 
 StarTest.create!(
-  student: Student.all.first,
+  student: Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).first,
   test_date: Date.new(2016,4,5),
   scaled_score: 781,
   developmental_stage: 'Emergent Reader Stage',
@@ -114,7 +117,7 @@ StarTest.create!(
 )
 
 StarTest.create!(
-  student: Student.all.first,
+  student: Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).first,
   test_date: Date.new(2016,5,12),
   scaled_score: 781,
   developmental_stage: 'Emergent Reader Stage',

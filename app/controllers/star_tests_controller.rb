@@ -218,6 +218,7 @@ class StarTestsController < ApplicationController
         if highlight_node.parent.parent.next_element 
           if highlight_node.parent.parent.next_element.name == 'r'
             next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
+          # go around the proofErr node
           elsif highlight_node.parent.parent.next_element.next_element && highlight_node.parent.parent.next_element.next_element.name = 'r'
             next_highlight_node = highlight_node.parent.parent.next_element.next_element.xpath('.//w:highlight').first
           end 
