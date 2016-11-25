@@ -8,8 +8,7 @@
 
 <%= form_tag({action: :charts}) do %>
   <%= label_tag("Enter Year: ") %>
-  <%= select_tag :q, 
-  options_from_collection_for_select(Student.all, "school_year", "school_year")%>
+  <%= select_tag :q, options_for_select(Student.where('created_at < :now', :now => Time.now).pluck('DISTINCT school_year')) %>
   <%= submit_tag"Generate Charts", :class => "btn btn-primary" %>
 <% end %>
 
