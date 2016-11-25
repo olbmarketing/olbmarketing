@@ -1,5 +1,6 @@
 class TerraNovaTestsController < ApplicationController
   before_action :set_terra_nova_test, only: [:show, :edit, :update, :destroy]
+  include Docx
 
   # GET /terra_nova_tests
   # GET /terra_nova_tests.json
@@ -82,10 +83,6 @@ class TerraNovaTestsController < ApplicationController
     )
   end
 
-  def create_report
-
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_terra_nova_test
@@ -96,4 +93,29 @@ class TerraNovaTestsController < ApplicationController
     def terra_nova_test_params
       params.require(:terra_nova_test).permit(:student_id, :test_date, :reading_scale_score, :reading_national_percentile, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :math_scale_score, :math_national_percentile, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :data_stats_and_probability_opi)
     end
+
+    def create_report
+      myz = Zip::File.open("#{Rails.root}/app/assets/Terra_Nova_testing/Terra_Nova_template.docx");
+      chart_doc1 = Nokogiri::XML(myz.read("word/charts/chart1.xml"););
+      chart_doc2 = Nokogiri::XML(myz.read("word/charts/chart2.xml"););
+      write_chart_doc1(chart_doc1)
+      write_chart_doc2(chart_doc2)
+      main_doc = Nokogiri::XML(myz.read('word/document.xml'));
+      write_main_doc(main_doc)
+      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx")
+
+    end
+    
+    def write_chart_doc1(chart_doc1)
+
+    end 
+
+    def write_chart_doc1(chart_doc2)
+
+    end 
+
+    def write_main_doc(main_doc)
+
+    end 
+
 end

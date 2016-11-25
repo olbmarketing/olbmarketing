@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'zip'
 class StarTestsController < ApplicationController
   before_action :set_star_test, only: [:show, :edit, :update, :destroy]
+  include Docx
 
   # GET /star_tests
   # GET /star_tests.json
@@ -116,7 +117,7 @@ class StarTestsController < ApplicationController
       write_chart_doc(chart_doc)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc, gender)
-      write_report_file(myz, chart_doc, main_doc)
+      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/SATR_testing/new.docx")
 
     end 
 
@@ -165,13 +166,6 @@ class StarTestsController < ApplicationController
       fix_order_tag chart_doc
     end
 
-    def fix_order_tag(chart_doc)
-      # order tag not in correct order cause word to crash. Hence need to fix order tag
-      chart_doc.xpath('//c:order').count.times do |i|
-        chart_doc.xpath('//c:order')[i]["val"] = i.to_s
-      end 
-    end 
-
     def write_main_doc (main_doc, gender)
       latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
       old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score 
@@ -208,42 +202,6 @@ class StarTestsController < ApplicationController
         change_docx_text(main_doc, 'His_Her', 'His')
       end 
     end
-
-    # combine splitted w:t node to single node (word will automatically split w:t node)
-    def combine_splitted_wt(main_doc)
-      # use highlight tag to get the whole variable string
-      # since most variable strings have highlight tag
-      main_doc.xpath('//w:highlight').each do |highlight_node|
-        highlight_text = highlight_node.parent.next_element.content
-        if highlight_node.parent.parent.next_element 
-          if highlight_node.parent.parent.next_element.name == 'r'
-            next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
-          # go around the proofErr node
-          elsif highlight_node.parent.parent.next_element.next_element && highlight_node.parent.parent.next_element.next_element.name = 'r'
-            next_highlight_node = highlight_node.parent.parent.next_element.next_element.xpath('.//w:highlight').first
-          end 
-        end  
-        while next_highlight_node
-          highlight_text += next_highlight_node.parent.next_element.content
-          next_highlight_node.parent.next_element.content = ""
-          if next_highlight_node.parent.parent.next_element 
-            next_highlight_node = next_highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
-          else 
-            next_highlight_node = nil 
-          end 
-        end 
-        highlight_node.parent.next_element.content = highlight_text
-      end 
-    end 
-
-    def change_docx_text(main_doc, before_text, after_text, node_type = nil)
-      default_node_type = node_type ? node_type : "w:t"
-      node_set = main_doc.xpath("//#{default_node_type}[contains(text(), '#{before_text}')]")
-      node_set.each do |n|
-        text = after_text.to_s
-        n.content = n.content.sub before_text, text
-      end 
-    end 
 
     def remove_extra_stage_text(main_doc, score)
       stage_text = get_stage(score)
@@ -282,28 +240,4 @@ class StarTestsController < ApplicationController
       result
     end 
 
-    def write_report_file(zip_file, chart_doc, main_doc)
-      # create buffer 
-      document_file_path = 'word/document.xml'
-      chart_file_path = "word/charts/chart1.xml"
-      buffer = Zip::OutputStream.write_buffer do |out|
-        zip_file.entries.each do |e|
-          unless [chart_file_path, document_file_path].include?(e.name)
-            out.put_next_entry(e.name)
-            out.write e.get_input_stream.read
-          end
-        end
-
-        out.put_next_entry(document_file_path)
-        out.write main_doc.to_xml(:indent => 0).gsub("\n","")
-
-        out.put_next_entry(chart_file_path)
-        out.write chart_doc.to_xml(:indent => 0).gsub("\n","")
-
-        #out.put_next_entry(RELS_FILE_PATH)
-        #out.write rels.to_xml(:indent => 0).gsub("\n","")
-      end
-      # write to file 
-      File.open("#{Rails.root}/app/assets/SATR_testing/new.docx", "wb") {|f| f.write(buffer.string) }
-    end 
 end
