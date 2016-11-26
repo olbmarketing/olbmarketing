@@ -9,11 +9,10 @@ class StarTestsController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
     if @student 
-      @star_tests = @student.star_tests
+      @star_tests = @student.star_tests.order('test_date desc')
     else 
       @star_tests = StarTest.all
     end 
-    
   end
 
   # GET /star_tests/1
@@ -83,12 +82,12 @@ class StarTestsController < ApplicationController
   def download_report_docx
     @student = Student.find(params[:student_id])
     if @student 
-      @star_tests = @student.star_tests
+      @star_tests = @student.star_tests.order('test_date')
     end 
     create_report(params[:gender])
     send_file(
       "#{Rails.root}/app/assets/SATR_testing/new.docx", 
-      filename: "#{@student.first_name}_#{@student.last_name}_STAR.docx", 
+      filename: "#{@student.get_first_name}_#{@student.last_name}_STAR.docx", 
       type: "application/docx"
     )
   end
@@ -127,8 +126,10 @@ class StarTestsController < ApplicationController
     end 
 
     def write_chart_doc (chart_doc)
+      first_name = @star_tests.first.student.get_first_name
+      last_name = @star_tests.first.student.last_name
       # update Child name in chart 
-      change_docx_text(chart_doc, "Child name", "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}", "a:t")
+      change_docx_text(chart_doc, "Child name", "#{first_name} #{last_name}", "a:t")
       for i in 0...@star_tests.count 
         test = @star_tests[i]
         # only update test score for available test date count 
@@ -168,12 +169,14 @@ class StarTestsController < ApplicationController
 
     def write_main_doc (main_doc, gender)
       latest_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
-      old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score 
+      old_score = (@star_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score
+      first_name = @star_tests.first.student.get_first_name
+      last_name = @star_tests.first.student.last_name 
 
       combine_splitted_wt(main_doc)
       remove_extra_stage_text(main_doc, latest_score)
-      change_docx_text(main_doc, 'Child_name_full', "#{@star_tests.first.student.first_name} #{@star_tests.first.student.last_name}")
-      change_docx_text(main_doc, 'Child_name', "#{@star_tests.first.student.first_name}")
+      change_docx_text(main_doc, 'Child_name_full', "#{first_name} #{last_name}")
+      change_docx_text(main_doc, 'Child_name', "#{first_name}")
       # update all latest_scaled_score
       change_docx_text(main_doc, 'latest_ss', "#{latest_score}")
       # update number of tests

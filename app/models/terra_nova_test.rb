@@ -57,12 +57,40 @@ class TerraNovaTest < ApplicationRecord
     result 
   end 
 
+  def get_most_recent_benchmark
+    terra_nova_test_benchmarks = TerraNovaTestBenchmark.order(test_date: :desc).all
+    terra_nova_test_benchmarks.find_by('test_date <= ?', send(:test_date))
+  end 
+
   def get_national_opi(test_category)
     result = 'NA'
-    terra_nova_test_benchmarks = TerraNovaTestBenchmark.order(test_date: :desc).all
-    tn_benchmark = terra_nova_test_benchmarks.find_by('test_date <= ?', send(:test_date))
+    tn_benchmark = get_most_recent_benchmark
     if tn_benchmark
       result = tn_benchmark[test_category]
+    end 
+    result
+  end 
+
+  def get_opi_range(test_category)
+    result = "NA"
+    tn_benchmark = get_most_recent_benchmark
+    if tn_benchmark
+      result = tn_benchmark[test_category.to_s.sub('opi', 'moderate_mastery_range').to_sym]
+    end 
+    result
+  end 
+
+  def get_opi_mastery(test_category)
+    result = "NA"
+    range_str = get_opi_range(test_category)
+    lower = range_str.split('-')[0].to_i
+    higher = range_str.split('-')[1].to_i
+    if send(test_category) < lower
+      result = "Low Mastery"
+    elsif send(test_category) > higher
+      result = "High Mastery"
+    else 
+      result = "Moderate Mastery"
     end 
     result
   end 

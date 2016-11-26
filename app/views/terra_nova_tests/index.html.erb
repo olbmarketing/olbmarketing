@@ -98,7 +98,7 @@
   
   <h3><%= terra_nova_test.test_date %></h3>
   <div class="terra_nova_test_date_section"> 
-  <%= link_to 'Download Report', terra_nova_tests_download_report_docx_url(student_id: @student.id), class: "btn btn-md btn-default btn-info", data: { :"no-turbolinks" => true }  %>
+  <%= link_to 'Download Report', terra_nova_tests_download_report_docx_url(student_id: @student.id, terra_nova_test_id: terra_nova_test.id), class: "btn btn-md btn-default btn-info", data: { :"no-turbolinks" => true }  %>
   <div>
   <h4>Reading Performance, Scale Score: <%= terra_nova_test.reading_scale_score %> (National Percentile Rank: <%= terra_nova_test.reading_national_percentile %>)</h4>
   <table id="terra_nova_reading_table" class="table table-striped table-bordered" style="table-layout:fixed"> 

@@ -91,4 +91,14 @@ class Student < ApplicationRecord
       csv_str
     end 
   end 
+
+  # sometimes first name can contain nicknames. want to get legal first name only
+  def get_first_name
+    input_name = send(:first_name)
+    result = input_name
+    if input_name.split('"').count > 1 
+      result = input_name.split('"')[0].strip
+    end 
+    result
+  end 
 end
