@@ -76,7 +76,7 @@ class TerraNovaTestsController < ApplicationController
     if @student 
       @terra_nova_test = @student.terra_nova_tests.where(id: params[:terra_nova_test_id]).first
     end 
-    create_report
+    create_report(params[:gender])
     send_file(
       "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx", 
       filename: "#{@student.first_name}_#{@student.last_name}_Terra_Nova.docx", 
@@ -95,14 +95,14 @@ class TerraNovaTestsController < ApplicationController
       params.require(:terra_nova_test).permit(:student_id, :test_date, :reading_scale_score, :reading_national_percentile, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :math_scale_score, :math_national_percentile, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :data_stats_and_probability_opi)
     end
 
-    def create_report
+    def create_report(gender)
       myz = Zip::File.open("#{Rails.root}/app/assets/Terra_Nova_testing/Terra_Nova_template.docx");
       chart_doc1 = Nokogiri::XML(myz.read("word/charts/chart1.xml"));
       chart_doc2 = Nokogiri::XML(myz.read("word/charts/chart2.xml"));
       write_chart_doc1(chart_doc1)
       write_chart_doc2(chart_doc2)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
-      write_main_doc(main_doc)
+      write_main_doc(main_doc, gender)
       write_report_file(myz, [chart_doc1, chart_doc2], main_doc, "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx")
 
     end
@@ -144,7 +144,7 @@ class TerraNovaTestsController < ApplicationController
       line_chart_values[3].content = @terra_nova_test.get_national_opi :data_stats_and_probability_opi
     end 
 
-    def write_main_doc(main_doc)
+    def write_main_doc(main_doc, gender)
 
       first_name = @terra_nova_test.student.get_first_name
       last_name = @terra_nova_test.student.last_name
@@ -229,6 +229,8 @@ class TerraNovaTestsController < ApplicationController
       change_docx_text(main_doc, 'me_mastery', "#{me_mastery}")
       change_docx_text(main_doc, 'gs_mastery', "#{gs_mastery}")
       change_docx_text(main_doc, 'dp_mastery', "#{dp_mastery}")
+
+      change_gender gender, main_doc
       
     end 
 

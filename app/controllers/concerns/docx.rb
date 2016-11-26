@@ -10,6 +10,7 @@ module Docx
 
   # combine splitted w:t node to single node (word will automatically split w:t node)
   def combine_splitted_wt(main_doc)
+    remove_bookmarks main_doc
     # use highlight tag to get the whole variable string
     # since most variable strings have highlight tag
     main_doc.xpath('//w:highlight').each do |highlight_node|
@@ -17,7 +18,7 @@ module Docx
       next if !highlight_node.parent.next_element
       highlight_text = highlight_node.parent.next_element.content
       if highlight_node.parent.parent.next_element 
-        if highlight_node.parent.parent.next_element.name == 'r'
+        if highlight_node.parent.parent.next_element.name == 'r' 
           next_highlight_node = highlight_node.parent.parent.next_element.xpath('.//w:highlight').first
         # go around the proofErr node
         elsif highlight_node.parent.parent.next_element.next_element && highlight_node.parent.parent.next_element.next_element.name = 'r'
@@ -79,6 +80,27 @@ module Docx
     end
     # write to file 
     File.open(destination, "wb") {|f| f.write(buffer.string) }
+  end 
+
+  def remove_bookmarks(main_doc)
+    
+    main_doc.at_xpath('//w:bookmarkStart').remove
+    main_doc.at_xpath('//w:bookmarkEnd').remove
+    
+  end 
+
+  def change_gender(gender, main_doc)
+    if gender == "girl"
+      change_docx_text(main_doc, 'he_she', 'she')
+      change_docx_text(main_doc, 'He_She', 'She')
+      change_docx_text(main_doc, 'his_her', 'her')
+      change_docx_text(main_doc, 'His_Her', 'Her')
+    else
+      change_docx_text(main_doc, 'he_she', 'he')
+      change_docx_text(main_doc, 'He_She', 'He')
+      change_docx_text(main_doc, 'his_her', 'his')
+      change_docx_text(main_doc, 'His_Her', 'His')
+    end 
   end 
 
 end 

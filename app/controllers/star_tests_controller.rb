@@ -193,17 +193,7 @@ class StarTestsController < ApplicationController
       # change stage 
       change_docx_text(main_doc, 'v_stage', get_stage(latest_score))
       change_docx_text(main_doc, 'v_reader', get_reader(latest_score))
-      if gender == "girl"
-        change_docx_text(main_doc, 'he_she', 'she')
-        change_docx_text(main_doc, 'He_She', 'She')
-        change_docx_text(main_doc, 'his_her', 'her')
-        change_docx_text(main_doc, 'His_Her', 'Her')
-      else
-        change_docx_text(main_doc, 'he_she', 'he')
-        change_docx_text(main_doc, 'He_She', 'He')
-        change_docx_text(main_doc, 'his_her', 'his')
-        change_docx_text(main_doc, 'His_Her', 'His')
-      end 
+      change_gender gender, main_doc
     end
 
     def remove_extra_stage_text(main_doc, score)
