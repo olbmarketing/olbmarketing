@@ -47,6 +47,8 @@
           <th>Reasons for Pre-K to K</th>
           <th>K to 1st</th>
           <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -77,29 +79,9 @@
           <td><%= student.note %></td>
           <td><%= student.reason %></td>
           <td><%= student.K_First %></td>
-          <td>
-            <div class="dropdown">
-
-              <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
-                <span class="button-content">
-                  <i class="glyphicon glyphicon-cog font-size-11"></i>
-                  <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
-                </span>
-              </a>
-              <ul class="dropdown-menu float-right">
-                <li>
-                  <%= link_to 'Show', student %>
-                </li>
-                <li>
-                  <%= link_to 'Edit', edit_student_path(student) %>
-                </li>
-                <li>
-                  <%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </li>
-              </ul>
-            </div>
-          </td>
-
+          <td><%= link_to 'Show', student %></td>
+          <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
 
         <% end %>
