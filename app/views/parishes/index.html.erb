@@ -1,8 +1,14 @@
- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
 
 <h1>Parish Database</h1>
+<div class="container">
+  <%= link_to 'New Parish', new_parish_path %>
+  <%= link_to 'Back', static_pages_dashboard_path %>
+</br>
+</br>
 
-<table id="parish_table" class="table table-striped table-bordered" >
+  <table id="parish_table" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -43,7 +49,5 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
-
-<%= link_to 'New Parish', new_parish_path %>

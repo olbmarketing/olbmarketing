@@ -11,62 +11,71 @@
     </div>
   <% end %>
 
+  <div class="form-new-student">
+      <div class="form-group">
+          <h2 class="create-student-heading">New Student</h2>
+      </div>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name,:class => "form-control", :placeholder=>"Name", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :contact %>
-    <%= f.text_field :contact %>
+    <%= f.text_field :contact,:class => "form-control", :placeholder=>"Contact", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone,:class => "form-control", :placeholder=>"Phone", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :fax %>
-    <%= f.text_field :fax %>
+    <%= f.text_field :fax,:class => "form-control", :placeholder=>"Fax", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email,:class => "form-control", :placeholder=>"Email", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :website %>
-    <%= f.text_field :website %>
+    <%= f.text_field :website,:class => "form-control", :placeholder=>"Website", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :deanery %>
-    <%= f.text_field :deanery %>
+    <%= f.text_field :deanery,:class => "form-control", :placeholder=>"Deanery", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :address %>
-    <%= f.text_field :address %>
+    <%= f.text_field :address,:class => "form-control", :placeholder=>"Address", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :city %>
-    <%= f.text_field :city %>
+    <%= f.text_field :city,:class => "form-control", :placeholder=>"City", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :state %>
-    <%= f.text_field :state %>
+    <%= f.text_field :state,:class => "form-control", :placeholder=>"State", :autofocus=>"" %>
   </div>
 
   <div class="field">
     <%= f.label :zip %>
-    <%= f.text_field :zip %>
+    <%= f.text_field :zip,:class => "form-control", :placeholder=>"Zip", :autofocus=>"" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+      <div class="buttons">
+          <%= f.submit "Save and Add New Parish", :class=>"btn btn-primary" %>
+          <%= link_to 'Cancel', '/parishes', :class=>"btn btn-default " %>
+          <div></div>
+      </div>
   </div>
 <% end %>
+</div>

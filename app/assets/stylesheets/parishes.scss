@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .parishes {
-    // fix phone and fax style to make them in one line 
+    // fix phone and fax style to make them in one line
     table tr td:nth-child(3) { white-space: nowrap; }
     table tr td:nth-child(4) { white-space: nowrap; }
 }
@@ -13,7 +13,6 @@
         float: left;
         width: 10em;
         margin-right: 1em;
-        text-align: right;
     }
 }
 .edit_parish {
