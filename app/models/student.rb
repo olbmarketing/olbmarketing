@@ -17,12 +17,10 @@ class Student < ApplicationRecord
     my_csv.each do |row| 
       # clean up email formating (remove mailto: prefix)
       tmp_hash = row.to_hash
-      puts row.to_hash.to_s
-      if tmp_hash["email1"] =~ /\Amailto:.*\z/i 
-        tmp_hash["email1"] = tmp_hash["email1"].sub 'mailto:', ''
-      end 
-      if tmp_hash["email2"] =~ /\Amailto:.*\z/i 
-        tmp_hash["email2"] = tmp_hash["email2"].sub 'mailto:', ''
+      row.headers.each do |h|
+        if tmp_hash[h] =~ /\Amailto:.*\z/i 
+          tmp_hash[h] = tmp_hash[h].sub 'mailto:', ''
+        end 
       end 
       students << Student.new(tmp_hash)
     end 
