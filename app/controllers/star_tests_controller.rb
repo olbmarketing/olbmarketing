@@ -75,7 +75,8 @@ class StarTestsController < ApplicationController
   # GET /star_tests/students
   def students
     @star_tests = StarTest.all
-    @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'])
+    @students = Student.select('DISTINCT school_year, student_class, first_name, last_name').where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).order('last_name')
+    
   end
 
   # get 'star_tests/download_report_docx'
