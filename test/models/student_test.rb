@@ -50,7 +50,6 @@ class StudentTest < ActiveSupport::TestCase
   test "cannot enter the same student in the same year more than once" do 
     student1 = Student.new(@new_student)
     student1.save
-    puts Student.all.count
     student2 = Student.new(@new_student)
     assert student2.invalid?
     assert_equal ["A student cannot be entered into the system in a school year more than once!"], student2.errors[:first_name]
@@ -62,6 +61,22 @@ class StudentTest < ActiveSupport::TestCase
   def add_school_year (year)
     first_year = year[0..3].to_i
     "#{first_year+1}-#{(first_year+2).to_s[-2..-1]}"
+  end 
+
+  test "should get correct first name" do 
+    student = Student.new(@new_student)
+    student.first_name = "Carter"
+    result = student.get_first_name
+    assert_equal "Carter", result
+    student.first_name = "Danielle \"Dani\""
+    result = student.get_first_name
+    assert_equal "Danielle", result
+    student.first_name = "Richard Jr. \"Ricky\""
+    result = student.get_first_name
+    assert_equal "Richard Jr.", result
+    student.first_name = "Mary-Maginn"
+    result = student.get_first_name
+    assert_equal "Mary-Maginn", result
   end 
 
 end
