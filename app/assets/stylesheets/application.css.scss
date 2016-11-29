@@ -95,3 +95,6 @@ a:not([class]):hover, a:not([class]):active {
     margin-right: 40px;
     margin-bottom: 20px;
 }
+div[class$="filter"] label {
+    float: right;
+}

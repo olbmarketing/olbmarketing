@@ -5,7 +5,7 @@
 
 $(document).on 'turbolinks:load', ->
     if $('#star_tests_table').length > 0 && !$('#star_tests_table').hasClass('data')
-        $('#star_tests_table').dataTable 'scrollX': true
+        #$('#star_tests_table').dataTable 'scrollX': true
         # make dataTable operation idempotent
         $('#star_tests_table').addClass('data')
     if $('#star_tests_students_table').length > 0 && !$('#star_tests_students_table').hasClass('data')
