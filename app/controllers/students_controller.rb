@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   before_filter :authorize
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-  @@valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "reason", "K_First"]
+  @@valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "reason", "K_First", "address2", "city2", "state2", "zip2"]
 
   # GET /students
   # GET /students.json
@@ -113,7 +113,7 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First)
+      params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2)
     end
 
     def remove_extra_columns_for_csv(my_csv)
