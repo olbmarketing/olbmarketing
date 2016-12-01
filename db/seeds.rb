@@ -11,6 +11,7 @@ TerraNovaTestBenchmark.delete_all
 TerraNovaTest.delete_all
 Parish.delete_all
 StarTest.delete_all
+Student.delete_all
 =begin
 Student.delete_all
 
@@ -61,7 +62,7 @@ Student.create!(school_year: '2016-17',
   resides_with: 'Both',
   reference_from: 'Current / Alumni Family')
 
-=end 
+ 
 
 # seed star test data
 
@@ -132,6 +133,6 @@ StarTest.create!(
   paragraph_level_comprehension: 78,
   early_numeracy: 94
 )
-
+=end
 # link external seed file 
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each { |seed| load seed }

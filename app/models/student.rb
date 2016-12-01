@@ -8,7 +8,7 @@ class Student < ApplicationRecord
         with: /\A\d{4}\-\d{2}\z/, 
         message: "must be the following format: YYYY-YY i.e. 2020-21"
     }
-    validates_uniqueness_of :first_name, scope: [:last_name, :school_year, :student_class, :father_name, :mother_name, :email1, :email2], 
+    validates_uniqueness_of :first_name, scope: [:last_name, :school_year, :student_class, :father_name, :mother_name, :email1, :email2, :phone1, :phone2], 
       message: "A student cannot be entered into the system in a school year more than once!"
 
    def self.get_students_from_csv(my_csv)
@@ -20,6 +20,7 @@ class Student < ApplicationRecord
       row.headers.each do |h|
         if tmp_hash[h] =~ /\Amailto:.*\z/i 
           tmp_hash[h] = tmp_hash[h].sub 'mailto:', ''
+          tmp_hash[h] = tmp_hash[h].strip
         end 
       end 
       students << Student.new(tmp_hash)
@@ -37,7 +38,7 @@ class Student < ApplicationRecord
       csv_str = file.read
     end 
     csv_str = Student.split_parent_column csv_str
-    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "address2", "city2", "state2", "zip2"]
+    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "address2", "city2", "state2", "zip2", "phone1", "phone2"]
     header_convert_lambda = lambda do |name| 
       new_name = name 
       if !(valid_column_names.include? name)
@@ -50,10 +51,14 @@ class Student < ApplicationRecord
         new_name  = "preK_to_K" if new_name == "transfer_from_prek_to_k"
         new_name  = "preK_to_K" if new_name == "Pre-K to K".strip.downcase.gsub(" ", "_")
         new_name  = "email1" if new_name == "email"
-        new_name  = "email1" if new_name == "father's_name"
-        new_name  = "email2" if new_name == "mother's_name"
-        new_name  = "email1" if new_name == "father_name"
-        new_name  = "email2" if new_name == "mother_name"
+        new_name  = "email1" if new_name == "email_1"
+        new_name  = "email2" if new_name == "email_2"
+        new_name  = "email1" if new_name == "father's_email"
+        new_name  = "email2" if new_name == "mother's_email"
+        new_name  = "email1" if new_name == "father_email"
+        new_name  = "email2" if new_name == "mother_email"
+        new_name  = "phone1" if new_name == "phone_1"
+        new_name  = "phone2" if new_name == "phone_2"
         new_name  = "father_name" if new_name == "father"
         new_name  = "mother_name" if new_name == "mother"
         new_name  = "reference_from" if new_name == "How You Heard About Us".strip.downcase.gsub(" ", "_")

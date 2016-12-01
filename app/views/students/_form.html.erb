@@ -71,11 +71,6 @@
             <%= f.label :zip %>
             <%= f.text_field :zip, :class => "form-control", :placeholder=>"Zip", :autofocus=>"" %>
         </div>
-    
-        <div class="field">
-            <%= f.label :address2 %>
-            <%= f.text_field :address2, :class => "form-control", :placeholder=>"Address2", :autofocus=>"" %>
-        </div>
 
         <div class="field">
             <%= f.label :city2 %>
@@ -100,6 +95,15 @@
         <div class="field">
             <%= f.label :email2 %>
             <%= f.text_field :email2, :class => "form-control", :placeholder=>"Mother's Email", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :phone1 %>
+            <%= f.text_field :phone1, :class => "form-control", :placeholder=>"Phone1", :autofocus=>"" %>
+        </div>
+        <div class="field">
+            <%= f.label :phone2 %>
+            <%= f.text_field :phone2, :class => "form-control", :placeholder=>"Phone2", :autofocus=>"" %>
         </div>
 
         <div class="field">
@@ -161,7 +165,7 @@
 
         <div class="actions">
             <div class="buttons">
-                <%= f.submit "Save and Add New Student", :class=>"btn btn-primary" %>
+                <%= f.submit "Save", :class=>"btn btn-primary" %>
                 <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
                 <div>
                 </div>
