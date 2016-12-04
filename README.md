@@ -13,10 +13,10 @@ This will have the app ready so run:  $ rails s
 
 ### System Requirements
 You must have: 
-*git
-*postgresql
-*ruby
-*rails
+* git
+* postgresql
+* ruby
+* rails
 
 ### Deployment
 The Web application is hosted on Heroku.
@@ -29,6 +29,6 @@ https://devcenter.heroku.com/articles/getting-started-with-rails4
 
 ### IDE
 The team used a variety of IDEs:
-*RubyMine
-*Atom
-*Sublime
+* RubyMine
+* Atom
+* Sublime
