@@ -38,13 +38,15 @@ class Student < ApplicationRecord
       csv_str = file.read
     end 
     csv_str = Student.split_parent_column csv_str
-    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "address2", "city2", "state2", "zip2", "phone1", "phone2"]
+    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "address2", "city2", "state2", "zip2", "phone1", "phone2", "reason", "K_First"]
     header_convert_lambda = lambda do |name| 
       new_name = name 
       if !(valid_column_names.include? name)
         # change column names to meet backend needs
         new_name = name.strip.downcase.gsub " ", "_"
         new_name = "last_name" if new_name == "student_last_name"
+	new_name = "first_name" if new_name == "first"
+        new_name = "last_name" if new_name == "last"
         new_name = "school_year" if new_name == "sy"
         new_name = "student_class" if new_name == "class"
         new_name  = "reference_from" if new_name == "referred_by"
@@ -64,6 +66,8 @@ class Student < ApplicationRecord
         new_name  = "reference_from" if new_name == "How You Heard About Us".strip.downcase.gsub(" ", "_")
         new_name  = "reference_from" if new_name == "Heard about OLB".strip.downcase.gsub(" ", "_")
         new_name  = "note" if new_name == "notes"
+	new_name  = "K_First" if new_name == "K to 1st Grade".strip.downcase.gsub(" ", "_")
+        new_name  = "K_First" if new_name == "K to 1st".strip.downcase.gsub(" ", "_")
       end 
       new_name
     end 
