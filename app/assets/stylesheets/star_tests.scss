@@ -4,6 +4,7 @@
 
 .star_tests {
     margin-left: 5px;
+
     table {
         border-collapse: collapse;
     }
@@ -16,13 +17,7 @@
         padding: 5px;
         vertical-align: top;
     }
-    .list_line_even {
-        background: #e0f8f8;
-    }
-  
-    .list_line_odd {
-        background: #f8b0f8;
-    }
+
 }
 
 .new_star_test {
@@ -31,7 +26,14 @@
         float: left;
         width: 10em;
         margin-right: 1em;
-        text-align: right;
+    }
+}
+.edit_star_test {
+
+    label {
+        float: left;
+        width: 10em;
+        margin-right: 1em;
     }
 }
 

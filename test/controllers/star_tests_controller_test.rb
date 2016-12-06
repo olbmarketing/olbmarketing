@@ -8,7 +8,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     @new_star_test = {
       student: @first_student,
       test_date: Date.new(2016,10,5),
-      scaled_score: 1,
+      scaled_score: 500,
       developmental_stage: 'MyString',
       alphabetic_principle: 1,
       concept_of_word: 1,
@@ -35,11 +35,12 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create star_test" do
+    assert @star_test.valid?
     assert_difference('StarTest.count') do
       post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: @star_test.test_date, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
     end
 
-    assert_redirected_to star_test_url(StarTest.last)
+    assert_redirected_to star_tests_url(student_id: @first_student.id)
   end
 
   test "should show star_test" do
@@ -99,6 +100,27 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   test "should get report" do 
     get star_tests_students_url(student_id: @first_student.id)
     assert_response :success
+  end 
+
+  test "should create star with test date mm/dd/yyyy" do 
+    correct_date_strs = ["2016-01-01", "11/25/2016"]
+    incorrect_date_strs = ["111/25/2016", "99/25/2016"]
+    correct_date_strs.each do |ds|
+      assert_difference('StarTest.count') do
+        post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: ds, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
+      end
+      assert_redirected_to star_tests_url(student_id: @first_student.id)
+      
+    end 
+    incorrect_date_strs.each do |ds|
+      assert_no_difference('StarTest.count') do
+        post star_tests_url, params: { star_test: { alphabetic_principle: @star_test.alphabetic_principle, concept_of_word: @star_test.concept_of_word, developmental_stage: @star_test.developmental_stage, paragraph_level_comprehension: @star_test.paragraph_level_comprehension, phonemic_awareness: @star_test.phonemic_awareness, phonics: @star_test.phonics, scaled_score: @star_test.scaled_score, sentence_level_comprehension: @star_test.sentence_level_comprehension, structural_analysis: @star_test.structural_analysis, student_id: @star_test.student.id, test_date: ds, visual_discrimination: @star_test.visual_discrimination, vocabulary: @star_test.vocabulary, early_numeracy: @star_test.early_numeracy } }
+      end
+      # should stay at :new page due to incorrect_date_strs
+      assert_template :new
+      assert css_select('#error_explanation').count > 0
+    end 
+    
   end 
  
 end

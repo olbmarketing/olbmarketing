@@ -4,16 +4,70 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Worksheet ss:Name="Students">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">First Name</Data></Cell>
+        <Cell><Data ss:Type="String">Last Name</Data></Cell>
+        <Cell><Data ss:Type="String">School Year</Data></Cell>
+        <Cell><Data ss:Type="String">New or Return</Data></Cell>
+        <Cell><Data ss:Type="String">Student Class</Data></Cell>
+        <Cell><Data ss:Type="String">Catholic</Data></Cell>
+        <Cell><Data ss:Type="String">Parish</Data></Cell>
+        <Cell><Data ss:Type="String">Race</Data></Cell>
+        <Cell><Data ss:Type="String">Resides With</Data></Cell>
+        <Cell><Data ss:Type="String">Reference From</Data></Cell>
+        <Cell><Data ss:Type="String">Student Transfer</Data></Cell>
+        <Cell><Data ss:Type="String">Pre K to K</Data></Cell>
+        <Cell><Data ss:Type="String">Father Name</Data></Cell>
+        <Cell><Data ss:Type="String">Mother Name</Data></Cell>
+        <Cell><Data ss:Type="String">Address</Data></Cell>
+        <Cell><Data ss:Type="String">City</Data></Cell>
+        <Cell><Data ss:Type="String">State</Data></Cell>
+        <Cell><Data ss:Type="String">Zip</Data></Cell>
+        <Cell><Data ss:Type="String">Address2</Data></Cell>
+        <Cell><Data ss:Type="String">City2</Data></Cell>
+        <Cell><Data ss:Type="String">State2</Data></Cell>
+        <Cell><Data ss:Type="String">Zip2</Data></Cell>
+        <Cell><Data ss:Type="String">Father Email</Data></Cell>
+        <Cell><Data ss:Type="String">Mother Email</Data></Cell>
+        <Cell><Data ss:Type="String">Phone1</Data></Cell>
+        <Cell><Data ss:Type="String">Phone2</Data></Cell>
+        <Cell><Data ss:Type="String">Note</Data></Cell>
+        <Cell><Data ss:Type="String">K to 1st</Data></Cell>
+        <Cell><Data ss:Type="String">Reason</Data></Cell>
       </Row>
     <% @students.each do |student| %>
       <Row>
-        <Cell><Data ss:Type="Number"><%= student.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= student.first_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.first_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.last_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.school_year %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.new_or_return %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.student_class %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.catholic %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.parish %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.race %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.resides_with %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.reference_from %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.student_transfer %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.preK_to_K %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.father_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.mother_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.address %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.city %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.state %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.zip %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.address2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.city2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.state2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.zip2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.email1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.email2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.phone1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.phone2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.note %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.K_First %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= student.reason %></Data></Cell>
       </Row>
     <% end %>
     </Table>

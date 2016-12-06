@@ -22,5 +22,91 @@
 @import "terra_nova_tests";
 @import "static_pages";
 @import "sessions";
+@import "parishes";
+@import "terra_nova_test_benchmarks";
 
 @import "datatables";
+
+html, body, .container-fluid {
+  height: 100%
+}
+#content {
+    height: calc(100% - 150px);
+}
+.navbar-image {
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 100px;
+}
+.navbar-logout {
+    margin-top: 20px;
+    float: right;
+    padding: 15px 15px;
+    margin-right: 20px;
+  }
+.navbar-custom {
+    background-color:#265a88 ;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+a.basic-btn:link, a.basic-btn:visited {
+    background-color: #808080;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+
+a.basic-btn:hover, a.basic-btn:active {
+    background-color: #606060;
+}
+// default link style for a tags without class
+a:not([class]):link, a:not([class]):visited {
+    background-color: #265a88;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 2px;
+}
+a:not([class]):hover, a:not([class]):active {
+    background-color: #606060;
+    margin: 2px;
+}
+.float-rt {
+    float: right;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+div[class$="filter"] label {
+    float: right;
+}
+
+.fill-available-space {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+}

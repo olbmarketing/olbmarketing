@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010043854) do
+ActiveRecord::Schema.define(version: 20161203212208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,15 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.string   "fax"
     t.string   "email"
     t.string   "website"
-    t.string   "denery"
+    t.string   "deanery"
     t.string   "address"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -127,6 +129,18 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.string   "zip"
     t.string   "email1"
     t.string   "email2"
+    t.text     "note"
+    t.boolean  "alumni"
+    t.string   "reason"
+    t.string   "K_First"
+    t.string   "address2"
+    t.string   "city2"
+    t.string   "state2"
+    t.string   "zip2"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "terra_nova_test_benchmarks", force: :cascade do |t|
@@ -137,8 +151,16 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.integer  "number_and_number_relations_opi"
     t.integer  "measurement_opi"
     t.integer  "geometry_and_spatial_sense_opi"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "data_stats_and_probability_opi"
+    t.string   "oral_comprehension_moderate_mastery_range"
+    t.string   "basic_understanding_moderate_mastery_range"
+    t.string   "introduction_to_print_moderate_mastery_range"
+    t.string   "number_and_number_relations_moderate_mastery_range"
+    t.string   "measurement_moderate_mastery_range"
+    t.string   "geometry_and_spatial_sense_moderate_mastery_range"
+    t.string   "data_stats_and_probability_moderate_mastery_range"
   end
 
   create_table "terra_nova_tests", force: :cascade do |t|
@@ -147,23 +169,16 @@ ActiveRecord::Schema.define(version: 20161010043854) do
     t.integer  "reading_scale_score"
     t.integer  "reading_national_percentile"
     t.integer  "oral_comprehension_opi"
-    t.string   "oral_comprehension_level"
     t.integer  "basic_understanding_opi"
-    t.string   "basic_understanding_level"
     t.integer  "introduction_to_print_opi"
-    t.string   "introduction_to_print_level"
     t.integer  "math_scale_score"
     t.integer  "math_national_percentile"
     t.integer  "number_and_number_relations_opi"
-    t.string   "number_and_number_relations_level"
     t.integer  "measurement_opi"
-    t.string   "measurement_level"
     t.integer  "geometry_and_spatial_sense_opi"
-    t.string   "geometry_and_spatial_sense_level"
     t.integer  "data_stats_and_probability_opi"
-    t.string   "data_stats_and_probability_level"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["student_id"], name: "index_terra_nova_tests_on_student_id", using: :btree
   end
 

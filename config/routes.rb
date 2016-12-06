@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   resources :exit_surveys
+  get 'star_tests/download_report_docx'
   get 'star_tests/report' => 'star_tests#report'
   get '/star_tests/students' => 'star_tests#students'
+  get 'terra_nova_tests/download_report_docx'
   resources :star_tests
   resources :terra_nova_test_benchmarks
   resources :terra_nova_tests
   resources :schools
   resources :parishes
   resources :employees
+  
   get 'static_pages/dashboard'
+  get 'static_pages/charts'
+  post 'static_pages/charts'
 
   resources :students do
     collection {post :import}

@@ -69,6 +69,6 @@ class TerraNovaTestBenchmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def terra_nova_test_benchmark_params
-      params.require(:terra_nova_test_benchmark).permit(:test_date, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi)
+      params.require(:terra_nova_test_benchmark).permit(:test_date, :oral_comprehension_opi, :basic_understanding_opi, :introduction_to_print_opi, :number_and_number_relations_opi, :measurement_opi, :geometry_and_spatial_sense_opi, :data_stats_and_probability_opi, :oral_comprehension_moderate_mastery_range, :basic_understanding_moderate_mastery_range, :introduction_to_print_moderate_mastery_range, :number_and_number_relations_moderate_mastery_range, :measurement_moderate_mastery_range, :geometry_and_spatial_sense_moderate_mastery_range, :data_stats_and_probability_moderate_mastery_range )
     end
 end

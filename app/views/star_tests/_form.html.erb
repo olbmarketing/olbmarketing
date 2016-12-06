@@ -11,77 +11,85 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :student_id %>
-    <%= f.text_field :student_id %>
-  </div>
 
-  <div class="field">
-    <%= f.label :test_date %>
-    <%= f.date_select :test_date %>
-  </div>
+  <div class="form-new-student">
+    <div class="form-group">
+      <h1 class="create-student-heading">New Star Test for <%= "#{@star_test.student.first_name} #{@star_test.student.last_name}" %></h1>
+    </div>
+      <div class="field">
+        <%= f.label :student_id %>
+        <%= f.text_field :student_id, readonly: true,:class => "form-control"%>
+      </div>
+      <div class="field">
+        <%= f.label :test_date %>
+        <%= f.text_field :test_date,:class => "form-control", placeholder: "mm/dd/yyyy" %>
+      </div>
+      <div class="field">
+        <%= f.label :scaled_score %>
+        <%= f.number_field :scaled_score, :class => "form-control", :placeholder=>"Scaled Score" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :scaled_score %>
-    <%= f.number_field :scaled_score %>
-  </div>
+      <div class="field">
+        <%= f.label :developmental_stage %>
 
-  <div class="field">
-    <%= f.label :developmental_stage %>
-    <%= f.text_field :developmental_stage %>
-  </div>
+        <%= f.text_field :developmental_stage, :class => "form-control", :placeholder=>"Literacy Classification" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :alphabetic_principle %>
-    <%= f.number_field :alphabetic_principle %>
-  </div>
+      <div class="field">
+        <%= f.label :alphabetic_principle %>
 
-  <div class="field">
-    <%= f.label :concept_of_word %>
-    <%= f.number_field :concept_of_word %>
-  </div>
+        <%= f.number_field :alphabetic_principle, :class => "form-control", :placeholder=>"Alphabetic Principle" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :visual_discrimination %>
-    <%= f.number_field :visual_discrimination %>
-  </div>
+      <div class="field">
+        <%= f.label :concept_of_word %>
 
-  <div class="field">
-    <%= f.label :phonemic_awareness %>
-    <%= f.number_field :phonemic_awareness %>
-  </div>
+        <%= f.number_field :concept_of_word, :class => "form-control", :placeholder=>"Concept of Word" %>
+      </div>
+      <div class="field">
+        <%= f.label :visual_discrimination %>
 
-  <div class="field">
-    <%= f.label :phonics %>
-    <%= f.number_field :phonics %>
-  </div>
+        <%= f.number_field :visual_discrimination, :class => "form-control", :placeholder=>"Visual Discrimination" %>
+      </div>
+      <div class="field">
+        <%= f.label :phonemic_awareness %>
 
-  <div class="field">
-    <%= f.label :structural_analysis %>
-    <%= f.number_field :structural_analysis %>
-  </div>
+        <%= f.number_field :phonemic_awareness, :class => "form-control", :placeholder=>"Phonemic Awareness" %>
+      </div>
+      <div class="field">
+        <%= f.label :phonics %>
 
-  <div class="field">
-    <%= f.label :vocabulary %>
-    <%= f.number_field :vocabulary %>
-  </div>
+        <%= f.number_field :phonics, :class => "form-control", :placeholder=>"Phonics" %>
+      </div>
+      <div class="field">
+        <%= f.label :structural_analysis %>
 
-  <div class="field">
-    <%= f.label :sentence_level_comprehension %>
-    <%= f.number_field :sentence_level_comprehension %>
-  </div>
+        <%= f.number_field :structural_analysis, :class => "form-control", :placeholder=>"Structural Analysis" %>
+      </div>
+      <div class="field">
+        <%= f.label :vocabulary %>
 
-  <div class="field">
-    <%= f.label :paragraph_level_comprehension %>
-    <%= f.number_field :paragraph_level_comprehension %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :early_numeracy %>
-    <%= f.number_field :early_numeracy %>
-  </div>
+        <%= f.number_field :vocabulary, :class => "form-control", :placeholder=>"Vocabulary" %>
+      </div>
+      <div class="field">
+        <%= f.label :sentence_level_comprehension %>
 
-  <div class="actions">
-    <%= f.submit %>
+        <%= f.number_field :sentence_level_comprehension, :class => "form-control", :placeholder=>"Sentence Level Comprehension" %>
+      </div>
+      <div class="field">
+        <%= f.label :paragraph_level_comprehension %>
+
+        <%= f.number_field :paragraph_level_comprehension, :class => "form-control", :placeholder=>"Paragraph level Comprehension" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :early_numeracy %>
+
+        <%= f.number_field :early_numeracy, :class => "form-control", :placeholder=>"Early Numeracy" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Save", :class=>"btn btn-primary" %>
+        <%= link_to 'Back', star_tests_path(student_id: @star_test.student.id), :class=>"btn btn-md btn-default" %>
+      </div>
   </div>
 <% end %>

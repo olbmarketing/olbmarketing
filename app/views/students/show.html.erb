@@ -1,41 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>School year: </strong>
+  <strong>School Year: </strong>
   <%= @student.school_year %>
 </p>
 
 <p>
-  <strong>New or return: </strong>
+  <strong>Student Type: </strong>
   <%= @student.new_or_return %>
 </p>
 
 <p>
-  <strong>Student class: </strong>
+  <strong>Student Class: </strong>
   <%= @student.student_class %>
 </p>
 
 <p>
-  <strong>First name: </strong>
+  <strong>First Name: </strong>
   <%= @student.first_name %>
 </p>
 
 <p>
-  <strong>Last name: </strong>
+  <strong>Last Name: </strong>
   <%= @student.last_name %>
 </p>
 
 <p>
-  <strong>Father name: </strong>
+  <strong>Father's Name: </strong>
   <%= @student.father_name %>
 </p>
-<p><strong>Mother name: </strong><%= @student.mother_name %></p>
+<p><strong>Mother's name: </strong><%= @student.mother_name %></p>
 <p><strong>Address: </strong><%= @student.address %></p>
 <p><strong>City: </strong><%= @student.city %></p>
 <p><strong>State: </strong><%= @student.state %></p>
 <p><strong>Zip: </strong><%= @student.zip %></p>
+<p><strong>Address2: </strong><%= @student.address2 %></p>
+<p><strong>City2: </strong><%= @student.city2 %></p>
+<p><strong>State2: </strong><%= @student.state2 %></p>
+<p><strong>Zip2: </strong><%= @student.zip2 %></p>
 <p><strong>Father's Email: </strong><%= @student.email1 %></p>
 <p><strong>Mother's Email: </strong><%= @student.email2 %></p>
+<p><strong>Mother's Email: </strong><%= @student.phone1 %></p>
+<p><strong>Mother's Email: </strong><%= @student.phone2 %></p>
 
 <p>
   <strong>Catholic: </strong>
@@ -63,15 +69,17 @@
 </p>
 
 <p>
-  <strong>Prek to k: </strong>
+  <strong>Prek to K: </strong>
   <%= @student.preK_to_K %>
 </p>
 
 <p>
-  <strong>Student transfer: </strong>
+  <strong>Student Transfer: </strong>
   <%= @student.student_transfer %>
 </p>
-
+<p><strong>Note: </strong><%= @student.note %></p>
+<p><strong>Reasons for Pre-K to K: </strong><%= @student.reason %></p>
+<p><strong>K to 1st: </strong><%= @student.K_First %></p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

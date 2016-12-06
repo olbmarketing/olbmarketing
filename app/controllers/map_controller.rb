@@ -1,10 +1,9 @@
 class MapController < ApplicationController
-	before_filter :authorize
 
   def show
 		@parishes = Parish.all
-		@students = Student.where.not('address' => nil)
-			.select("first_name, last_name, school_year, address, city, state, zip")
+		@students = Student.where.not('latitude' => nil)
+			.select("first_name, last_name, school_year, address, city, state, zip, latitude, longitude")
 			.group_by {
 				|student| student.school_year
 			}

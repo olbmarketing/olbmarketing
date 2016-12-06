@@ -1,5 +1,5 @@
-<h1>New Terra Nova Test</h1>
+<h1>New Terra Nova Test for <%= "#{@terra_nova_test.student.first_name} #{@terra_nova_test.student.last_name}" %></h1>
 
 <%= render 'form', terra_nova_test: @terra_nova_test %>
 
-<%= link_to 'Back', terra_nova_tests_path %>
+<%= link_to 'Back', terra_nova_tests_path(student_id: @terra_nova_test.student.id) %>

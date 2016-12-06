@@ -4,7 +4,7 @@ one:
   id: 1
   student_id: 1
   test_date: 2016-10-01
-  scaled_score: 1
+  scaled_score: 500
   developmental_stage: MyString
   alphabetic_principle: 1
   concept_of_word: 1
@@ -21,7 +21,24 @@ two:
   id: 2
   student_id: 1
   test_date: 2016-10-02
-  scaled_score: 1
+  scaled_score: 501
+  developmental_stage: MyString
+  alphabetic_principle: 1
+  concept_of_word: 1
+  visual_discrimination: 1
+  phonemic_awareness: 1
+  phonics: 1
+  structural_analysis: 1
+  vocabulary: 1
+  sentence_level_comprehension: 1
+  paragraph_level_comprehension: 1
+  early_numeracy: 92
+
+three:
+  id: 3
+  student_id: 1
+  test_date: 2016-09-15
+  scaled_score: 501
   developmental_stage: MyString
   alphabetic_principle: 1
   concept_of_word: 1

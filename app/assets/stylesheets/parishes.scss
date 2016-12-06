@@ -1,3 +1,25 @@
 // Place all the styles related to the Parishes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.parishes {
+    // fix phone and fax style to make them in one line
+    table tr td:nth-child(3) { white-space: nowrap; }
+    table tr td:nth-child(4) { white-space: nowrap; }
+}
+.new_parish {
+
+    label {
+        float: left;
+        width: 10em;
+        margin-right: 1em;
+    }
+}
+.edit_parish {
+
+    label {
+        float: left;
+        width: 10em;
+        margin-right: 1em;
+    }
+}

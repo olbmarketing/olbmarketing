@@ -1,88 +1,175 @@
 <%= form_for(student) do |f| %>
-<% if student.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+    <% if student.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(student.errors.count, "error") %>
+            prohibited this student from being saved:</h2>
 
-  <ul>
-    <% student.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+        <ul>
+            <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
     <% end %>
-  </ul>
-</div>
-<% end %>
-<div class="container" style="width:40%">
-  <div class="form-new-student">
-    <div class="form-group">
-      <h2 class="create-student-heading">New Student</h2>
+
+    <div class="form-new-student">
+        <div class="form-group">
+            <h2 class="create-student-heading">New Student</h2>
+        </div>
+
+        <div class="field">
+            <%= f.label :school_year %>
+            <%= f.text_field :school_year,:class => "form-control", :placeholder=>"School Year", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :new_or_return %>
+            <%= f.select :new_or_return, ['New', 'Return', 'Removed'], {:prompt => 'Student Type'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :student_class %>
+            <%= f.select :student_class, ['Infant', 'Toddler', 'CC', 'TTT','PS','AMPreK','PMPreK', 'K'], {:prompt => 'Class'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :father_name %>
+            <%= f.text_field :father_name,:class => "form-control", :placeholder=>"Father's Name", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :mother_name %>
+            <%= f.text_field :mother_name, :class => "form-control", :placeholder=>"Mother's Name", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :address %>
+            <%= f.text_field :address, :class => "form-control", :placeholder=>"Address", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :city %>
+            <%= f.text_field :city, :class => "form-control", :placeholder=>"City", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :state %>
+            <%= f.text_field :state, :class => "form-control", :placeholder=>"State", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :zip %>
+            <%= f.text_field :zip, :class => "form-control", :placeholder=>"Zip", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :city2 %>
+            <%= f.text_field :city2, :class => "form-control", :placeholder=>"City2", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :state2 %>
+            <%= f.text_field :state2, :class => "form-control", :placeholder=>"State2", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :zip2 %>
+            <%= f.text_field :zip2, :class => "form-control", :placeholder=>"Zip2", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :email1 %>
+            <%= f.text_field :email1, :class => "form-control", :placeholder=>"Father's Email", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :email2 %>
+            <%= f.text_field :email2, :class => "form-control", :placeholder=>"Mother's Email", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :phone1 %>
+            <%= f.text_field :phone1, :class => "form-control", :placeholder=>"Phone1", :autofocus=>"" %>
+        </div>
+        <div class="field">
+            <%= f.label :phone2 %>
+            <%= f.text_field :phone2, :class => "form-control", :placeholder=>"Phone2", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :catholic %>
+            <%= f.select :catholic, ['Y', 'N'], {:prompt => 'Catholic'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :parish %>
+            <%= f.select :parish, ['Corpus Christi', 'Holy Family','Immaculate Conception','OLP','St. Agatha','St. Andrew', 'St. Brendan', 'St. Brigid of Kildare', 'St. Catherine','St. Joan of Arc','St. John the Baptist', 'St. Joseph', 'St. Mary', 'St. Michael',
+            'St. Patrick', 'St. Paul', 'St. Peter', 'St. Stephen', 'St. Timothy' , 'Not Listed'], {:prompt => 'Parish'}, {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :race %>
+            <%= f.select :race, ['Asian', 'Black/African American','Hispanic','Multi-Racial','White/Caucasian'], {:prompt => 'Race'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :resides_with %>
+            <%= f.select :resides_with, ['Both', 'Father','Mother'], {:prompt => 'Resides With'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :reference_from %>
+            <%= f.select :reference_from, ['We are a Current / Alumni family', 'Church Bulletin', 'Social Media / Website', 'Print Media', 'Brochure/Flyer', 'Drive-by', 'Referred by Current / Alumni family', 'Other'], {:prompt => 'Referred By'}, {class:
+            "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :preK_to_K %>
+            <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Transfer from Prek to K", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :student_transfer %>
+            <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :alumni %>
+            <%= f.select :alumni, ['false', 'true'], {:prompt => 'Alumni?'},  {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+            <%= f.label :note %>
+            <%= f.text_field :note, :class => "form-control", :placeholder=>"Note", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :reason %>
+            <%= f.text_field :reason,:class => "form-control", :placeholder=>"Reasons for Pre-K to K", :autofocus=>"" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :K_First %>
+            <%= f.text_field :K_First,:class => "form-control", :placeholder=>"K to 1st", :autofocus=>"" %>
+        </div>
+
+        <div class="actions">
+            <div class="buttons">
+                <%= f.submit "Save", :class=>"btn btn-primary" %>
+                <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
+                <div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="field">
-      <%= f.text_field :school_year,:class => "form-control", :placeholder=>"School Year", :autofocus=>"" %>
-    </div>
-    <div class="field">
-      <%= f.select :new_or_return, ['New', 'Return'], {:prompt => 'New or Return'},  {class: "form-control"} %>
-    </div>
-
-    <div class="field">
-      <%= f.select :student_class, ['AMPrek', 'K','PMPrek','PS','TTT'], {:prompt => 'Class'},  {class: "form-control"} %>
-
-    </div>
-
-    <div class="field">
-      <%= f.text_field :first_name,:class => "form-control", :placeholder=>"First Name", :autofocus=>"" %>
-    </div>
-
-    <div class="field">
-      <%= f.text_field :last_name,:class => "form-control", :placeholder=>"Last Name", :autofocus=>"" %>
-    </div>
-
-    <div class="field">	 <%= f.text_field :father_name,:class => "form-control", :placeholder=>"father name", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :mother_name, :class => "form-control", :placeholder=>"mother name", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :address, :class => "form-control", :placeholder=>"address", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :city, :class => "form-control", :placeholder=>"city", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :state, :class => "form-control", :placeholder=>"state", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :zip, :class => "form-control", :placeholder=>"zip", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :email1, :class => "form-control", :placeholder=>"father email", :autofocus=>"" %>	</div>
-    <div class="field">	 <%= f.text_field :email2, :class => "form-control", :placeholder=>"mother email", :autofocus=>"" %>	</div>
-
-
-    <div class="field">
-      <%= f.select :catholic, ['Y', 'N'], {:prompt => 'Catholic'},  {class: "form-control"} %>
-
-    </div>
-
-    <div class="field">
-      <%= f.select :parish, ['Corpus Christi', 'Holy Family','Immaculate Conception','OLP','St. Agatha','St. Andrew', 'St. Brendan', 'St. Brigid of Kildare', 'St. Catherine','St. Joan of Arc','St. John the Baptist', 'St. Joseph', 'St. Mary', 'St. Michael', 'St. Patrick', 'St. Paul', 'St. Peter', 'St. Stephen', 'St. Timothy' , 'Not Listed'], {:prompt => 'Parish'},  {class: "form-control"} %>
-    </div>
-
-    <div class="field">
-      <%= f.select :race, ['Asian', 'Black/African American','Hispanic','Multi-Racial','White/Caucasian'], {:prompt => 'Race'},  {class: "form-control"} %>
-
-    </div>
-
-    <div class="field">
-      <%= f.select :resides_with, ['Both', 'Father','Mother'], {:prompt => 'Resides With'},  {class: "form-control"} %>
-
-    </div>
-
-    <div class="field">
-      <%= f.text_field :reference_from,:class => "form-control", :placeholder=>"Referred By", :autofocus=>"" %>
-
-    </div>
-
-    <div class="field">  <%= f.text_field :preK_to_K,:class => "form-control", :placeholder=>"Transfer from Prek to K", :autofocus=>"" %></div>
-
-     <div class="field">
-      <%= f.text_field :student_transfer,:class => "form-control", :placeholder=>"Student Transfer", :autofocus=>"" %>
-
-    </div>
-
-    <div class="actions">
-      <div class="buttons">
-      <%= f.submit "Save", :class=>"btn btn-primary" %>
-      <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
-      <div>
-    </div>
-  </div>
-</div>
 <% end %>

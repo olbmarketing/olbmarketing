@@ -1,0 +1,313 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+ <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick"%>
+  <%= stylesheet_link_tag 'https://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css'%>
+  <%= javascript_include_tag 'https://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js'%>
+<body data-no-turbolink="true">
+
+<%= form_tag({action: :charts}) do %>
+  <%= label_tag("Enter Year: ") %>
+  <%= select_tag :q, options_for_select(Student.where('created_at < :now', :now => Time.now).pluck('DISTINCT school_year')) %>
+  <%= submit_tag"Generate Charts", :class => "btn btn-primary" %>
+<% end %>
+
+<% if params[:q] != nil %>
+<div class="row">
+    <div class="col-xs-6">
+      <%= pie_chart @students.group(:parish).count,
+      library: {
+          title: {
+            text: 'Family Parish Comparison chart ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            pie: {
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+            }
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= pie_chart @students.group(:race).count,
+      library: {
+          title: {
+            text: 'Family Demographic '  + params[:q] + ' SY'
+          },
+          plotOptions: {
+            pie: {
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+            }
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:zip).count,
+      library: {
+        title: {
+            text: 'Zip Code Families Reside In ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'Zip Code Families Reside In'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Families'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:catholic).count,
+      library: {
+        title: {
+            text: 'Catholic Religion Comparison Chart ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'Family is Catholic, Y=yes N=no'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Families'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:resides_with).count,
+      library: {
+        title: {
+            text: 'Whom Child/ren Resides With ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'Resides With'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Families'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= pie_chart @students.group(:new_or_return).count,
+      library: {
+        title: {
+            text: 'Family Retention ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            pie: {
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+            }
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:reference_from).count,
+      library: {
+        title: {
+            text: 'How Did You Hear About OLB? ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'How Families Heard of OLB'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Families'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:parish).count,
+      library: {
+        title: {
+            text: 'PreK to Kindergarten Attendance ' + params[:q] + ' SY Attendance'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'School Attendance for Kindergarten'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Students'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= pie_chart @students.group(:reason).count,
+      library: {
+        title: {
+            text: 'Reason to Where Pre-K Students Attended K for ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            pie: {
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+            }
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:K_First).count,
+      library: {
+        title: {
+            text: 'Kindergarten to 1st Grade Attendance for ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'School that Students are Attending for 1st Grade'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Students'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= column_chart @students.group(:city).count,
+      library: {
+        title: {
+            text: 'Cities Families Reside In ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            column: {
+            dataLabels: {
+                enabled: true
+              }
+            }
+          },
+          xAxis: {
+            title: {
+                text: 'Name of City'
+            },
+            tickInterval: 1
+          },
+          yAxis: {
+            title: {
+                text: 'Number of Families'
+            },
+            tickInterval: 1
+          }
+        }
+      %>
+    </div>
+  </div>
+  <% end %>
+</body>

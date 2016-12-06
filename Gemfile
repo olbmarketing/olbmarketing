@@ -11,7 +11,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Added bootstrap Gem
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -62,3 +62,19 @@ gem 'gemrat', '0.4.6'
 
 # for import from and export to xlsx file
 gem 'roo', '~> 2.4.0'
+
+# to zip and unzip docx file
+gem 'rubyzip'
+# to parse docx xml file
+gem 'nokogiri'
+# for testing
+gem 'rails-controller-testing'
+# chart making stuff
+gem 'chartkick', '~> 1.2.4'
+gem 'groupdate', '~> 2.1.1'
+gem 'active_median', '~> 0.1.0'
+# for date formating
+gem 'american_date', '~> 1.1', '>= 1.1.1'
+
+# for address geocoding
+gem 'geocoder'
