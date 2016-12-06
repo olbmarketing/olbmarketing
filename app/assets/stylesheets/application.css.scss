@@ -100,12 +100,10 @@ a:not([class]):hover, a:not([class]):active {
 div[class$="filter"] label {
     float: right;
 }
-
 .fill-available-space {
   display: flex;
   flex-direction: column;
 }
-
 .no-padding {
    padding: 0 !important;
    margin: 0 !important;

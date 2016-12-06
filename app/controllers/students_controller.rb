@@ -92,7 +92,6 @@ class StudentsController < ApplicationController
         format.json { render json: @upload_errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def self.to_csv(options = {})
@@ -104,37 +103,37 @@ class StudentsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_student
+    @student = Student.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def student_params
-      params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2, :phone1, :phone2)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def student_params
+    params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2, :phone1, :phone2)
+  end
 
-    def remove_extra_columns_for_csv(my_csv)
-      removed_columns = []
-      my_csv.headers.each do |h|
-        if !(@@valid_column_names.include? h)
-          my_csv.delete h
-          removed_columns << h
-        end
-      end
-      removed_columns
-    end
-
-    # remove rows if the row has 'columnX' as content
-    def remove_column_rows(my_csv)
-      my_csv.delete_if do |row|
-        result = false
-        # check only first 3 columns
-        if row.headers.count >= 3
-          result = true if row.field(0) =~ /\Acolumn.*\z/i && row.field(1) =~ /\Acolumn.*\z/i && row.field(2) =~ /\Acolumn.*\z/i
-        end
-        result
+  def remove_extra_columns_for_csv(my_csv)
+    removed_columns = []
+    my_csv.headers.each do |h|
+      if !(@@valid_column_names.include? h)
+        my_csv.delete h
+        removed_columns << h
       end
     end
+    removed_columns
+  end
+
+  # remove rows if the row has 'columnX' as content
+  def remove_column_rows(my_csv)
+    my_csv.delete_if do |row|
+      result = false
+      # check only first 3 columns
+      if row.headers.count >= 3
+        result = true if row.field(0) =~ /\Acolumn.*\z/i && row.field(1) =~ /\Acolumn.*\z/i && row.field(2) =~ /\Acolumn.*\z/i
+      end
+      result
+    end
+  end
 end

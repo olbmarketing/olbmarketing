@@ -1,6 +1,7 @@
 require 'roo'
 require 'geocoder'
 class Student < ApplicationRecord
+  
   has_many :exit_surveys, dependent: :destroy
   has_many :terra_nova_tests, dependent: :destroy
   has_many :star_tests, dependent: :destroy
@@ -92,7 +93,6 @@ class Student < ApplicationRecord
 	    end
 	  end
 	end
-
   # split parent column if father and mother in the same field
   def self.split_parent_column(csv_str)
     if csv_str.include? "Father / Mother"

@@ -1,12 +1,5 @@
 #seed parishes
-=begin
-Parish.create(name: "St. Brendan",
-  phone: "1234567890",
-  address: "4475 Dublin Road",
-  city: "Columbus",
-  state: "OH",
-  zip: "43026")
-=end
+Parish.delete_all
 Parish.create(name: 'St. Agatha', deanery: '2. Northwest Columbus Deanery ', phone: '(614) 488-6149', fax: '(614) 488-6596', email: 'stagatha@st-agatha.org', website: 'st-agatha.org', address: '1860 Northam Rd.', city: 'Columbus', state: 'OH', zip: '43221')
 Parish.create(name: 'Our Lady of Victory', deanery: '2. Northwest Columbus Deanery ', phone: '(614) 488-2428', fax: '(614) 488-0507', email: 'office@ourladyofvictory.cc', website: 'ourladyofvictory.cc', address: '1559 Roxbury Rd.', city: 'Columbus', state: 'OH', zip: '43212')
 Parish.create(name: 'St. Brendan', deanery: '2. Northwest Columbus Deanery ', phone: '(614) 876-1272', fax: '(614) 876-1482', email: '', website: 'www.stbrendans.net', address: '4475 Dublin Road', city: 'Hilliard', state: 'OH', zip: '43026')
@@ -20,5 +13,3 @@ Parish.create(name: 'St. Michael', deanery: '2. Northwest Columbus Deanery ', ph
 Parish.create(name: 'St. Joan of Arc', deanery: '2. Northwest Columbus Deanery ', phone: '614-761-0905', fax: '(614) 761-0850', email: 'contactus@stjoanofarcpowell.org', website: 'www.stjoanofarcpowell.org', address: '10700 Liberty Rd. S.', city: 'Powell', state: 'OH', zip: '43065')
 Parish.create(name: 'St. Peter', deanery: '2. Northwest Columbus Deanery ', phone: '614-889-2221', fax: '(614) 889-6612', email: '', website: 'stpetercolumbus.com', address: '6899 Smoky Row Rd.', city: 'Columbus', state: 'OH', zip: '43235')
 Parish.create(name: 'Holy Name', deanery: '2. Northwest Columbus Deanery ', phone: '(614) 262-0390', fax: '', email: 'holynamechurchcolumbus@gmail.com', website: 'www.holynamercc.info/default.htm', address: '154 E. Patterson Ave.', city: 'Columbus', state: 'OH', zip: '43202')
-
-
