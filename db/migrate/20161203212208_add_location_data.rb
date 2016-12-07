@@ -7,6 +7,7 @@ class AddLocationData < ActiveRecord::Migration[5.0]
     Student.find_each do |student|
       student.valid?
       student.save
+      sleep 1
     end
     change_table :parishes do |t|
       t.float :latitude
@@ -15,6 +16,7 @@ class AddLocationData < ActiveRecord::Migration[5.0]
     Parish.find_each do |parish|
       parish.valid?
       parish.save
+      sleep 1
     end
   end
 
