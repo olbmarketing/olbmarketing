@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
 
 <h1>Parish Database</h1>
@@ -22,6 +21,7 @@
       <th>City</th>
       <th>State</th>
       <th>Zip</th>
+      <th>Note</th>
       <th colspan="1"></th>
       <th></th>
       <th></th>
@@ -42,6 +42,7 @@
         <td><%= parish.city %></td>
         <td><%= parish.state %></td>
         <td><%= parish.zip %></td>
+        <td><%= parish.note %></td>
         <td><%= link_to 'Show', parish %></td>
         <td><%= link_to 'Edit', edit_parish_path(parish) %></td>
         <td><%= link_to 'Delete', parish, method: :delete, data: { confirm: 'Are you sure?' } %></td>

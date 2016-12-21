@@ -70,6 +70,11 @@
     <%= f.text_field :zip,:class => "form-control", :placeholder=>"Zip", :autofocus=>"" %>
   </div>
 
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_field :note,:class => "form-control", :placeholder=>"Note", :autofocus=>"" %>
+  </div>
+
   <div class="actions">
       <div class="buttons">
           <%= f.submit "Save and Add New Parish", :class=>"btn btn-primary" %>

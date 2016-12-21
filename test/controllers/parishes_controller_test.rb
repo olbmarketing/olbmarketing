@@ -3,6 +3,7 @@ require 'test_helper'
 class ParishesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @parish = parishes(:one)
+    login_setup
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class ParishesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create parish" do
     assert_difference('Parish.count') do
-      post parishes_url, params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
+      post parishes_url, params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip, note: @parish.note } }
     end
 
     assert_redirected_to parish_url(Parish.last)
@@ -34,7 +35,7 @@ class ParishesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update parish" do
-    patch parish_url(@parish), params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip } }
+    patch parish_url(@parish), params: { parish: { address: @parish.address, city: @parish.city, contact: @parish.contact, deanery: @parish.deanery, email: @parish.email, fax: @parish.fax, name: @parish.name, phone: @parish.phone, state: @parish.state, website: @parish.website, zip: @parish.zip, note: @parish.note } }
     assert_redirected_to parish_url(@parish)
   end
 

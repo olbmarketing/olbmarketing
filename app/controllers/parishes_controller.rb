@@ -69,6 +69,6 @@ class ParishesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parish_params
-      params.require(:parish).permit(:name, :contact, :phone, :fax, :email, :website, :deanery, :address, :city, :state, :zip)
+      params.require(:parish).permit(:name, :contact, :phone, :fax, :email, :website, :deanery, :address, :city, :state, :zip, :note)
     end
 end
