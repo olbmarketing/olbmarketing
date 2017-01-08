@@ -17,7 +17,13 @@
       </ul>
     </div>
     <% end %>
-
+    <!--
+    <select>
+      <% Student.get_past_school_years(3, Time.now).each do |school_year| %>
+        <option><%= school_year %></option>
+      <% end %>
+    </select>
+    -->
     <table id="studentsTable" class="table table-striped table-bordered" style="table-layout:fixed">
       <thead>
         <tr>

@@ -79,4 +79,40 @@ class StudentTest < ActiveSupport::TestCase
     assert_equal "Mary-Maginn", result
   end 
 
+  test "should get school year" do 
+    my_school_year = '2016-17'
+    assert_equal my_school_year, Student.get_school_year(Time.new(2016, 7, 1))
+    assert_equal my_school_year, Student.get_school_year(Time.new(2017, 1, 7))
+    assert_equal my_school_year, Student.get_school_year(Time.new(2017, 6, 30))
+    
+    my_school_year = '2017-18'
+    assert_equal my_school_year, Student.get_school_year(Time.new(2017, 7, 1))
+    assert_equal my_school_year, Student.get_school_year(Time.new(2018, 1, 7))
+    assert_equal my_school_year, Student.get_school_year(Time.new(2018, 6, 30))
+  end 
+
+  test "should get past school years" do 
+    n_year = 3
+    result = Student.get_past_school_years(n_year, Time.new(2017, 1, 7))
+    assert_equal n_year, result.count 
+    assert_includes result, '2016-17'
+    assert_includes result, '2015-16'
+    assert_includes result, '2014-15'
+
+    n_year = 3
+    result = Student.get_past_school_years(n_year, Time.new(2017, 7, 1))
+    assert_equal n_year, result.count 
+    assert_includes result, '2017-18'
+    assert_includes result, '2016-17'
+    assert_includes result, '2015-16'
+
+    n_year = 4
+    result = Student.get_past_school_years(n_year, Time.new(2017, 7, 1))
+    assert_equal n_year, result.count 
+    assert_includes result, '2017-18'
+    assert_includes result, '2016-17'
+    assert_includes result, '2015-16'
+    assert_includes result, '2014-15'
+  end 
+
 end

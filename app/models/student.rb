@@ -120,6 +120,25 @@ class Student < ApplicationRecord
     end
   end
 
+  def self.get_school_year(my_time)
+    if my_time.month <= 6 
+      current_year = my_time.year
+      "#{current_year-1}-#{current_year.to_s[2..-1]}"
+    else
+      current_year = my_time.year
+      "#{current_year}-#{(current_year+1).to_s[2..-1]}"
+    end 
+  end 
+
+  def self.get_past_school_years(n_year, my_time)
+    result = []
+    my_school_year = Student.get_school_year(my_time)
+    n_year.times do |i|
+      result << "#{my_school_year[0..3].to_i - i}-#{my_school_year[-2..-1].to_i - i}"
+    end 
+    result
+  end 
+
   # sometimes first name can contain nicknames. want to get legal first name only
   def get_first_name
     input_name = send(:first_name)
