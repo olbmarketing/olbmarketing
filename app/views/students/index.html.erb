@@ -24,6 +24,8 @@
       <% end %>
     </select>
     -->
+    <%= select('student', 'school_year', options_for_select(Student.get_past_school_years(3, Time.now), @school_year))  %>
+
     <table id="studentsTable" class="table table-striped table-bordered" style="table-layout:fixed">
       <thead>
         <tr>

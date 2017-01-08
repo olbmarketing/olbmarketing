@@ -6,7 +6,16 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    if params[:school_year]
+      @students = Student.where(school_year: params[:school_year])
+      @school_year = params[:school_year]
+    else 
+      # only show current year student by default 
+      current_school_year = Student.get_school_year(Time.now)
+      @students = Student.where(school_year: current_school_year)
+      @school_year = current_school_year
+    end 
+    #@students = Student.all
   end
 
   # GET /students/1
