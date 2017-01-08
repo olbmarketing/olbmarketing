@@ -134,7 +134,7 @@ class Student < ApplicationRecord
     result = []
     my_school_year = Student.get_school_year(my_time)
     n_year.times do |i|
-      result << "#{my_school_year[0..3].to_i - i}-#{my_school_year[-2..-1].to_i - i}"
+      result << "#{my_school_year[0..3].to_i - i}-#{(my_school_year[-2..-1].to_i - i).to_s.rjust(2,'0')}"
     end 
     result
   end 

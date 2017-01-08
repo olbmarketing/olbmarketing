@@ -113,6 +113,13 @@ class StudentTest < ActiveSupport::TestCase
     assert_includes result, '2016-17'
     assert_includes result, '2015-16'
     assert_includes result, '2014-15'
+
+    n_year = 3
+    result = Student.get_past_school_years(n_year, Time.new(2010, 1, 7))
+    assert_equal n_year, result.count 
+    assert_includes result, '2009-10'
+    assert_includes result, '2008-09'
+    assert_includes result, '2007-08'
   end 
 
 end
