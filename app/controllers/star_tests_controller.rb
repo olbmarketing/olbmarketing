@@ -75,7 +75,14 @@ class StarTestsController < ApplicationController
   # GET /star_tests/students
   def students
     @star_tests = StarTest.all
-    @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK']).order('last_name')
+    current_school_year = Student.get_school_year(Time.now)
+    if params[:school_year]
+      @school_year = params[:school_year]
+      @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'], school_year: @school_year).order('last_name')
+    else 
+      @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'], school_year: current_school_year).order('last_name')
+    end 
+    
     
   end
 

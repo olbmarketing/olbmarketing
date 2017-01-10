@@ -1,5 +1,8 @@
 
 <h1>Student Tests</h1>
+
+<%= select('student', 'school_year', options_for_select(Student.get_past_school_years(10, Time.now), @school_year))  %>
+
 <table id="star_tests_students_table" class="table table-striped table-bordered">
   <thead>
     <tr>
