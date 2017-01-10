@@ -109,7 +109,8 @@
   <h1>Import Data</h1>
   <div class="import">
     <%= form_tag import_students_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import Data", :class => "btn btn-md btn-default btn-info" %>
+    <label for="file">File to Upload</label>:
+    <%= file_field_tag :file, required: true %>
+    <%= submit_tag "Import Data", :class => "btn btn-md btn-default btn-info students-import-btn" %>
     <% end %>
   </div>
