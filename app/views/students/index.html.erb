@@ -24,6 +24,7 @@
       <% end %>
     </select>
     -->
+    <%= label_tag 'student[school_year]', 'School Year' %>:
     <%= select('student', 'school_year', options_for_select(Student.get_past_school_years(10, Time.now), @school_year))  %>
 
     <table id="studentsTable" class="table table-striped table-bordered" style="table-layout:fixed">
