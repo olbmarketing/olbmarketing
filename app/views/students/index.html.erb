@@ -110,7 +110,16 @@
   <h1>Import Data</h1>
   <div class="import">
     <p>
-      Note: the import will use only the first tab of the excel sheet. Tabs other than the first one will be ignored. 
+      Note: 
+      <ul>
+        <li>
+          The import will use only the first tab of the excel sheet. Tabs other than the first one will be ignored. 
+        </li>
+        <li>
+          Currently only one time import is supported. i.e. Second time import to update data is not yet available.  
+        </li>
+      </ul>
+      
     </p>
     <%= form_tag import_students_path, multipart: true do %>
     <label for="file">File to Upload</label>:
