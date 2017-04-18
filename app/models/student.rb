@@ -60,6 +60,7 @@ class Student < ApplicationRecord
         new_name = "school_year" if new_name == "sy"
         new_name = "student_class" if new_name == "class"
         new_name  = "reference_from" if new_name == "referred_by"
+        new_name  = "preK_to_K" if new_name == "pre_k_to_k"
         new_name  = "preK_to_K" if new_name == "transfer_from_prek_to_k"
         new_name  = "preK_to_K" if new_name == "Pre-K to K".strip.downcase.gsub(" ", "_")
         new_name  = "email1" if new_name == "email"

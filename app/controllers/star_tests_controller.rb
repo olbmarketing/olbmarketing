@@ -76,11 +76,13 @@ class StarTestsController < ApplicationController
   def students
     @star_tests = StarTest.all
     current_school_year = Student.get_school_year(Time.now)
+    # since only students of certain class take star tests 
+    student_filter = ['amprek', 'pmprek', 'k', 'pm prek']
     if params[:school_year]
       @school_year = params[:school_year]
-      @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'], school_year: @school_year).order('last_name')
+      @students = Student.where('lower(student_class) in (?)', student_filter).where(school_year: @school_year).order('last_name')
     else 
-      @students = Student.where(student_class: ['AMPrek', 'PMPrek', 'K', 'PreK', 'PM PreK'], school_year: current_school_year).order('last_name')
+      @students = Student.where('lower(student_class) in (?)', student_filter).where(school_year: current_school_year).order('last_name')
     end 
     
     
