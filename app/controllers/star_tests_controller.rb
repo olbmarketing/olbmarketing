@@ -76,7 +76,7 @@ class StarTestsController < ApplicationController
   def students
     @star_tests = StarTest.all
     current_school_year = Student.get_school_year(Time.now)
-    # since only students of certain class take star tests 
+    # since only students of certain classes take star tests 
     student_filter = ['amprek', 'pmprek', 'k', 'pm prek']
     if params[:school_year]
       @school_year = params[:school_year]
