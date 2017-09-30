@@ -37,70 +37,7 @@
       </tbody>
     </table>
   </div>
-<!---
-<table id="terraNovaTest" class="table table-striped table-bordered" style="table-layout:fixed">
-  <thead>
-    <tr>
-      <th>Student</th>
-      <th>Test date</th>
-      <th>Reading scale score</th>
-      <th>Reading national percentile</th>
-      <th>Oral comprehension opi</th>
-      <th>Basic understanding opi</th>
-      <th>Introduction to print opi</th>
-      <th>Math scale score</th>
-      <th>Math national percentile</th>
-      <th>Number and number relations opi</th>
-      <th>Measurement opi</th>
-      <th>Geometry and spatial sense opi</th>
-      <th>Data stats and probability opi</th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @terra_nova_tests.each do |terra_nova_test| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= terra_nova_test.student %></td>
-        <td><%= terra_nova_test.test_date %></td>
-        <td><%= terra_nova_test.reading_scale_score %></td>
-        <td><%= terra_nova_test.reading_national_percentile %></td>
-        <td><%= terra_nova_test.oral_comprehension_opi %></td>
-        <td><%= terra_nova_test.basic_understanding_opi %></td>
-        <td><%= terra_nova_test.introduction_to_print_opi %></td>
-        <td><%= terra_nova_test.math_scale_score %></td>
-        <td><%= terra_nova_test.math_national_percentile %></td>
-        <td><%= terra_nova_test.number_and_number_relations_opi %></td>
-        <td><%= terra_nova_test.measurement_opi %></td>
-        <td><%= terra_nova_test.geometry_and_spatial_sense_opi %></td>
-        <td><%= terra_nova_test.data_stats_and_probability_opi %></td>
-        <td>
-          <div class="dropdown">
-            <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">
-              <span class="button-content">
-                <i class="glyphicon glyphicon-cog font-size-11"></i>
-                <i class="glyphicon glyphicon-chevron-down font-size-11"></i>
-              </span>
-            </a>
-            <ul class="dropdown-menu float-right">
-              <li>
-                <%= link_to 'Show', terra_nova_test %>
-              </li>
-              <li>
-                <%= link_to 'Edit', edit_terra_nova_test_path(terra_nova_test) %>              </li>
-              <li>
-                <%= link_to 'Delete', terra_nova_test, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </li>
-            </ul>
-          </div>
-        </td>
-
-      </tr>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-!-->
 <div>
   <% if @terra_nova_tests.count == 0 %>
   <h3>No tests available</h3>
@@ -204,3 +141,4 @@
 <br>
 
 <%= link_to 'New Terra Nova Test', new_terra_nova_test_path(student_id: @student.id), :class => "btn btn-md btn-default btn-info"  %>
+<%= link_to 'Back', "/star_tests/students" %>
