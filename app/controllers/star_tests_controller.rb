@@ -96,7 +96,7 @@ class StarTestsController < ApplicationController
     end 
     create_report(params[:gender])
     send_file(
-      "#{Rails.root}/app/assets/SATR_testing/new.docx", 
+      "#{Rails.root}/app/assets/STAR_testing/new.docx", 
       filename: "#{@student.get_first_name}_#{@student.last_name}_STAR.docx", 
       type: "application/docx"
     )
@@ -120,13 +120,13 @@ class StarTestsController < ApplicationController
     end
 
     def create_report(gender)
-      myz = Zip::File.open("#{Rails.root}/app/assets/SATR_testing/STAR_template.docx");
+      myz = Zip::File.open("#{Rails.root}/app/assets/STAR_testing/STAR_template.docx");
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
       write_chart_doc(chart_doc)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc, gender)
-      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/SATR_testing/new.docx")
+      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/new.docx")
 
     end 
 
