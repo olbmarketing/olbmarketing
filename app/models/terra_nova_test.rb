@@ -71,6 +71,12 @@ class TerraNovaTest < ApplicationRecord
     result
   end 
 
+  def get_national_opi_int(test_category)
+    result = get_national_opi test_category
+    result = 0 if result == 'NA'
+    result 
+  end 
+
   def get_opi_range(test_category)
     result = "NA"
     tn_benchmark = get_most_recent_benchmark

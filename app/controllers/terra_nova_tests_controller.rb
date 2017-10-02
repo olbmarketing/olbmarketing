@@ -122,9 +122,9 @@ class TerraNovaTestsController < ApplicationController
       bar_chart_values[1].content = @terra_nova_test.basic_understanding_opi
       bar_chart_values[2].content = @terra_nova_test.introduction_to_print_opi
       line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      line_chart_values[0].content = @terra_nova_test.get_national_opi :oral_comprehension_opi
-      line_chart_values[1].content = @terra_nova_test.get_national_opi :basic_understanding_opi
-      line_chart_values[2].content = @terra_nova_test.get_national_opi :introduction_to_print_opi
+      line_chart_values[0].content = @terra_nova_test.get_national_opi_int :oral_comprehension_opi
+      line_chart_values[1].content = @terra_nova_test.get_national_opi_int :basic_understanding_opi
+      line_chart_values[2].content = @terra_nova_test.get_national_opi_int :introduction_to_print_opi
     end 
 
     def write_chart_doc2(chart_doc2)
@@ -140,10 +140,10 @@ class TerraNovaTestsController < ApplicationController
       bar_chart_values[2].content = @terra_nova_test.geometry_and_spatial_sense_opi
       bar_chart_values[3].content = @terra_nova_test.data_stats_and_probability_opi
       line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      line_chart_values[0].content = @terra_nova_test.get_national_opi :number_and_number_relations_opi
-      line_chart_values[1].content = @terra_nova_test.get_national_opi :measurement_opi
-      line_chart_values[2].content = @terra_nova_test.get_national_opi :geometry_and_spatial_sense_opi
-      line_chart_values[3].content = @terra_nova_test.get_national_opi :data_stats_and_probability_opi
+      line_chart_values[0].content = @terra_nova_test.get_national_opi_int :number_and_number_relations_opi
+      line_chart_values[1].content = @terra_nova_test.get_national_opi_int :measurement_opi
+      line_chart_values[2].content = @terra_nova_test.get_national_opi_int :geometry_and_spatial_sense_opi
+      line_chart_values[3].content = @terra_nova_test.get_national_opi_int :data_stats_and_probability_opi
     end 
 
     def write_main_doc(main_doc, gender)
