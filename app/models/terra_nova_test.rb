@@ -71,6 +71,7 @@ class TerraNovaTest < ApplicationRecord
     result
   end 
 
+  # return 0 if national opi is not available 
   def get_national_opi_int(test_category)
     result = get_national_opi test_category
     result = 0 if result == 'NA'
