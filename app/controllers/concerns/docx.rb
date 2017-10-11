@@ -95,11 +95,15 @@ module Docx
       change_docx_text(main_doc, 'He_She', 'She')
       change_docx_text(main_doc, 'his_her', 'her')
       change_docx_text(main_doc, 'His_Her', 'Her')
+      change_docx_text(main_doc, 'him_her', 'her')
+      change_docx_text(main_doc, 'Him_Her', 'Her')
     else
       change_docx_text(main_doc, 'he_she', 'he')
       change_docx_text(main_doc, 'He_She', 'He')
       change_docx_text(main_doc, 'his_her', 'his')
       change_docx_text(main_doc, 'His_Her', 'His')
+      change_docx_text(main_doc, 'him_her', 'him')
+      change_docx_text(main_doc, 'Him_Her', 'Him')
     end 
   end 
 
