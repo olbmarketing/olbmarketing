@@ -109,7 +109,7 @@ module Docx
 
   def remove_highlight(main_doc)
     main_doc.xpath('//w:highlight').each do |highlight_node|
-      highlight_node.swap(highlight_node.children)
+      highlight_node.replace(highlight_node.children)
     end 
   end 
 
