@@ -204,6 +204,7 @@ class StarTestsController < ApplicationController
       change_docx_text(main_doc, 'v_stage', get_stage(latest_score))
       change_docx_text(main_doc, 'v_reader', get_reader(latest_score))
       change_gender gender, main_doc
+      remove_highlight main_doc
     end
 
     def remove_extra_stage_text(main_doc, score)

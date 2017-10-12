@@ -233,7 +233,7 @@ class TerraNovaTestsController < ApplicationController
       change_docx_text(main_doc, 'dp_mastery', "#{dp_mastery}")
 
       change_gender gender, main_doc
-      
+      remove_highlight main_doc
     end 
 
 end
