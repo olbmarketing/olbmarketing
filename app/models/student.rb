@@ -10,7 +10,7 @@ class Student < ApplicationRecord
       with: /\A\d{4}\-\d{2}\z/,
       message: "must be the following format: YYYY-YY i.e. 2020-21"
   }
-  validates_uniqueness_of :first_name, scope: [:last_name, :school_year, :student_class, :father_name, :mother_name, :email1, :email2, :phone1, :phone2],
+  validates_uniqueness_of :first_name, scope: [:last_name, :school_year],
     message: "A student cannot be entered into the system in a school year more than once!"
 
   geocoded_by :full_address
