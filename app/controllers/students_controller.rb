@@ -83,10 +83,24 @@ class StudentsController < ApplicationController
     @upload_errors = []
     # check for errors before insert data
     students_from_file.each_with_index do |s, index|
-      all_valid = false if s.invalid?
-      s.errors.full_messages.each do |e|
-        @upload_errors << "At row #{index + 2}: #{e}"
-      end
+      # check if insert or update 
+      query_result = Student.where('first_name = ? AND last_name = ? AND school_year = ?', s.first_name, s.last_name, s.school_year)
+      if query_result.count > 0 # if update 
+        matched_student = query_result.first 
+        updated = false 
+        @@valid_column_names.each do |cn|
+          if s[cn] != nil && s[cn] != matched_student[cn]
+            updated = true 
+            matched_student[cn] = s[cn]
+          end 
+        end 
+        matched_student.save if updated
+      else # needs to insert 
+        all_valid = false if s.invalid?
+        s.errors.full_messages.each do |e|
+          @upload_errors << "At row #{index + 2}: #{e}"
+        end
+      end 
     end
     # insert data into db if all data valid
     if all_valid
