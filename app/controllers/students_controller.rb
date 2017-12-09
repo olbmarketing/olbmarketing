@@ -80,35 +80,54 @@ class StudentsController < ApplicationController
     students_from_file = Student.get_students_from_csv my_csv
 
     all_valid = true
+    insert_count = 0 
+    update_count = 0 
+    insert_students = []
+    update_students = []
     @upload_errors = []
+    @@abc = 'hello_abc'
+    @notice_array = ['abc']
     # check for errors before insert data
     students_from_file.each_with_index do |s, index|
       # check if insert or update 
       query_result = Student.where('first_name = ? AND last_name = ? AND school_year = ?', s.first_name, s.last_name, s.school_year)
       if query_result.count > 0 # if update 
         matched_student = query_result.first 
-        updated = false 
         @@valid_column_names.each do |cn|
           if s[cn] != nil && s[cn] != matched_student[cn]
-            updated = true 
             matched_student[cn] = s[cn]
+            update_students << matched_student
           end 
         end 
-        matched_student.save if updated
       else # needs to insert 
-        all_valid = false if s.invalid?
-        s.errors.full_messages.each do |e|
-          @upload_errors << "At row #{index + 2}: #{e}"
-        end
+        if s.invalid? 
+          all_valid = false
+          s.errors.full_messages.each do |e|
+            @upload_errors << "At row #{index + 2}: #{e}"
+          end
+        else 
+          insert_students << s
+        end 
       end 
     end
     # insert data into db if all data valid
     if all_valid
-      students_from_file.each{|s| s.save}
+      insert_students.each{|s| s.save}
+      insert_count = insert_students.count
+      update_students.each{|s| s.save}
+      update_count = update_students.count
     end
     respond_to do |format|
       if all_valid
-        format.html { redirect_to students_url, notice: "Data imported! #{"Unidentified columns : " + removed_columns.to_s if removed_columns.count > 0}" }
+        notice_hash = {}
+        notice_hash['data_imported'] = "Data imported!"
+        if removed_columns.count > 0
+          notice_hash['removed_columns'] = "Unidentified columns : " + removed_columns.to_s
+        end 
+        notice_hash['insert_count'] = "#{insert_count} student(s) inserted."
+        notice_hash['update_count'] = "#{update_count} student(s) updated."
+        
+        format.html { redirect_to students_url, flash: notice_hash}
       else
         @students = Student.all
         format.html { render :index }

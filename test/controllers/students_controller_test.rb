@@ -104,7 +104,10 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference "Student.count", insert_count do
       post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+      follow_redirect!
+      assert_template :index
     end
+    
     assert Student.count == original_student_count + insert_count
     s_first_name = 'f1'
     s_last_name = 'l1'
@@ -119,16 +122,18 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     file2.rewind
 
     post "/students/import", params: { file: Rack::Test::UploadedFile.new(file2, 'text/csv')}
+    follow_redirect!
     assert_equal original_student_count + insert_count, Student.count
     query_results = Student.where('first_name = ? AND last_name = ?', s_first_name, s_last_name)
     student_from_db = query_results.first
-    css_select('#error_explanation').each do |match|
-      puts match.class 
-      puts match.to_s
-    end
     assert_equal 0, css_select('#error_explanation').count
+    #puts css_select('html').first.to_s
+    flash_notice = css_select('[id^=flash]')
+    assert_operator flash_notice.count, :>, 0
+    flash_notice_str = flash_notice.to_a.join
+    assert_match '0 student(s) inserted', flash_notice_str
+    assert_match '1 student(s) updated', flash_notice_str
     assert_equal s_address, student_from_db.address
-    puts 
 
   end 
 
