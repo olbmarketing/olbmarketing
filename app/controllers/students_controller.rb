@@ -92,11 +92,17 @@ class StudentsController < ApplicationController
       # check if insert or update 
       query_result = Student.where('first_name = ? AND last_name = ? AND school_year = ?', s.first_name, s.last_name, s.school_year)
       if query_result.count > 0 # if update 
-        matched_student = query_result.first 
-        @@valid_column_names.each do |cn|
-          if s[cn] != nil && s[cn] != matched_student[cn]
-            matched_student[cn] = s[cn]
-            update_students << matched_student
+        if query_result.count > 1 # if there are more than 1 match in DB 
+          all_valid = false
+          error_msg = 'There are more than 1 record in database with the same first_name, last_name, and school_year,please manually update respective data through web interface'
+          @upload_errors << "At row #{index + 2}: #{error_msg}"
+        else 
+          matched_student = query_result.first 
+          @@valid_column_names.each do |cn|
+            if s[cn] != nil && s[cn] != matched_student[cn]
+              matched_student[cn] = s[cn]
+              update_students << matched_student
+            end 
           end 
         end 
       else # needs to insert 

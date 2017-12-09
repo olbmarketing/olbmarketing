@@ -137,6 +137,79 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
   end 
 
+  test "import csv file (one record) to update with no changes" do 
+    original_student_count = Student.count
+    s_first_name = 'f1'
+    s_last_name = 'l1'
+    s_school_year = '2016-17'
+    s_address = "123 Main St."
+    csv_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "Address"]
+      csv << [s_first_name, s_last_name, s_school_year, s_address]
+    end
+    insert_count = 1
+    file = Tempfile.new('new_users.csv')
+    file.write(csv_rows)
+    file.rewind
+
+    assert_difference "Student.count", insert_count do
+      post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+      follow_redirect!
+      assert_template :index
+    end
+    
+    assert Student.count == original_student_count + insert_count
+    
+    csv2_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "Address"]
+      csv << [s_first_name, s_last_name, s_school_year, s_address]
+    end
+    file2 = Tempfile.new('new_users_to_update.csv')
+    file2.write(csv2_rows)
+    file2.rewind
+
+    post "/students/import", params: { file: Rack::Test::UploadedFile.new(file2, 'text/csv')}
+    follow_redirect!
+    assert_equal original_student_count + insert_count , Student.count
+    
+    query_results = Student.where('first_name = ? AND last_name = ?', s_first_name, s_last_name)
+    student_from_db = query_results.first
+    assert_equal 0, css_select('#error_explanation').count
+    #puts css_select('html').first.to_s
+    flash_notice = css_select('[id^=flash]')
+    assert_operator flash_notice.count, :>, 0
+    flash_notice_str = flash_notice.to_a.join
+    assert_match '0 student(s) inserted', flash_notice_str
+    assert_match '0 student(s) updated', flash_notice_str
+    assert_equal s_address, student_from_db.address
+  end 
+
+  test "import csv file (one record) to update with 2 matching records in DB" do 
+    original_student_count = Student.count
+    s_first_name = 'fname1'
+    s_last_name = 'lname1'
+    s_school_year = '2015-16'
+    s_address = "123 Main St."
+    csv_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "Address"]
+      csv << [s_first_name, s_last_name, s_school_year, s_address]
+    end
+    insert_count = 1
+    file = Tempfile.new('new_users.csv')
+    file.write(csv_rows)
+    file.rewind
+
+    assert_difference "Student.count", 0 do
+      post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+      assert_template :index
+    end
+    flash_notice = css_select('[id^=flash]')
+    assert_equal 0, flash_notice.count
+    assert_not_nil css_select('#error_explanation') 
+    assert_match 'There are more than 1 record in database with the same first_name, last_name, and school_year,please manually update respective data through web interface',
+       css_select('#error_explanation').first.to_s
+  end 
+
 =begin
 
   test "should be true" do 

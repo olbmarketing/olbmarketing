@@ -47,3 +47,9 @@ two:
   email1: MyString
   email2: MyString
   note: MyString
+
+three:
+  id: 3
+  first_name: fname1
+  last_name: lname1
+  school_year: 2015-16
