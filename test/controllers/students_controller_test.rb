@@ -394,6 +394,66 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     assert_match '0 student(s) updated', flash_notice_str
   end 
 
+  test "import csv file (two record) both not in DB but both are the same" do 
+    original_student_count = Student.count
+    s_first_name = 'f1'
+    s_last_name = 'l1'
+    s_school_year = '2015-16'
+    s_address = "MyString"
+    s2_first_name = 'f1'
+    s2_last_name = 'l1'
+    s2_school_year = '2015-16'
+    s2_address = "MyString"
+    csv_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "Address"]
+      csv << [s_first_name, s_last_name, s_school_year, s_address]
+      csv << [s2_first_name, s2_last_name, s2_school_year, s2_address]
+    end
+    insert_count = 0
+    file = Tempfile.new('new_users.csv')
+    file.write(csv_rows)
+    file.rewind
+
+    assert_difference "Student.count", insert_count do
+      post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+      assert_template :index
+    end
+
+    assert_not_nil css_select('#error_explanation') 
+    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 has the same first_name, last_name, school_year',
+       css_select('#error_explanation').first.to_s
+  end 
+
+  test "import csv file (two record) both already in DB but both are the same" do 
+    original_student_count = Student.count
+    s_first_name = 'fname2'
+    s_last_name = 'lname2'
+    s_school_year = '2015-16'
+    s_address = "MyString"
+    s2_first_name = 'fname2'
+    s2_last_name = 'lname2'
+    s2_school_year = '2015-16'
+    s2_address = "MyString"
+    csv_rows = CSV.generate(headers: true) do |csv|
+      csv << ["first_name","Last Name", "SY", "Address"]
+      csv << [s_first_name, s_last_name, s_school_year, s_address]
+      csv << [s2_first_name, s2_last_name, s2_school_year, s2_address]
+    end
+    insert_count = 0
+    file = Tempfile.new('new_users.csv')
+    file.write(csv_rows)
+    file.rewind
+
+    assert_difference "Student.count", insert_count do
+      post "/students/import", params: { file: Rack::Test::UploadedFile.new(file, 'text/csv')}
+      assert_template :index
+    end
+
+    assert_not_nil css_select('#error_explanation') 
+    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 has the same first_name, last_name, school_year',
+       css_select('#error_explanation').first.to_s
+  end 
+
 =begin
 
   test "should be true" do 

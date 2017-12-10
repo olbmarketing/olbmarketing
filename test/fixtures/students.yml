@@ -59,3 +59,4 @@ four:
   first_name: fname4
   last_name: lname4
   school_year: 2015-16
+  address: MyString

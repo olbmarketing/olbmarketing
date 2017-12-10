@@ -89,6 +89,15 @@ class StudentsController < ApplicationController
     @notice_array = ['abc']
     # check for errors before insert data
     students_from_file.each_with_index do |s, index|
+      # check if duplicate with other studnents from file 
+      students_from_file.each_with_index do |s2, index2|
+        if index != index2 && s.first_name == s2.first_name && s.last_name == s2.last_name && s.school_year == s2.school_year
+          all_valid = false
+          error_msg = "Duplicate students in data source: student at row #{index + 2} and student at row #{index2 + 2} has the same first_name, last_name, school_year"
+          @upload_errors << error_msg
+          break
+        end 
+      end 
       # check if insert or update 
       query_result = Student.where('first_name = ? AND last_name = ? AND school_year = ?', s.first_name, s.last_name, s.school_year)
       if query_result.count > 0 # if update 
