@@ -26,9 +26,9 @@ one:
 
 two:
   id: 2
-  first_name: MyString
-  last_name: MyString
-  school_year: 1
+  first_name: fname2
+  last_name: lname2
+  school_year: 2015-16
   new_or_return: MyString
   student_class: MyString
   catholic: MyString
@@ -52,4 +52,10 @@ three:
   id: 3
   first_name: fname1
   last_name: lname1
+  school_year: 2015-16
+
+four:
+  id: 4
+  first_name: fname4
+  last_name: lname4
   school_year: 2015-16
