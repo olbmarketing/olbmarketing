@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
         s2 = students_from_file[i]
         if s.first_name == s2.first_name && s.last_name == s2.last_name && s.school_year == s2.school_year
           all_valid = false
-          error_msg = "Duplicate students in data source: student at row #{index + 2} and student at row #{i + 2} has the same first_name, last_name, school_year"
+          error_msg = "Duplicate students in data source: student at row #{index + 2} and student at row #{i + 2} have the same first_name, last_name, school_year"
           @upload_errors << error_msg
           break
         end 
