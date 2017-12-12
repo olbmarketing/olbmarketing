@@ -420,7 +420,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_not_nil css_select('#error_explanation') 
-    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 has the same first_name, last_name, school_year',
+    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 have the same first_name, last_name, school_year',
        css_select('#error_explanation').first.to_s
   end 
 
@@ -450,7 +450,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_not_nil css_select('#error_explanation') 
-    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 has the same first_name, last_name, school_year',
+    assert_match 'Duplicate students in data source: student at row 2 and student at row 3 have the same first_name, last_name, school_year',
        css_select('#error_explanation').first.to_s
   end 
 
