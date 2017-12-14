@@ -59,6 +59,7 @@ class Student < ApplicationRecord
         new_name = "last_name" if new_name == "last"
         new_name = "school_year" if new_name == "sy"
         new_name = "student_class" if new_name == "class"
+        new_name = "new_or_return" if new_name == "student_type"
         new_name  = "reference_from" if new_name == "referred_by"
         new_name  = "preK_to_K" if new_name == "pre_k_to_k"
         new_name  = "preK_to_K" if new_name == "transfer_from_prek_to_k"
@@ -74,6 +75,8 @@ class Student < ApplicationRecord
         new_name  = "phone2" if new_name == "phone_2"
         new_name  = "father_name" if new_name == "father"
         new_name  = "mother_name" if new_name == "mother"
+        new_name  = "father_name" if new_name == "father's_name"
+        new_name  = "mother_name" if new_name == "mother's_name"
         new_name  = "reference_from" if new_name == "How You Heard About Us".strip.downcase.gsub(" ", "_")
         new_name  = "reference_from" if new_name == "Heard about OLB".strip.downcase.gsub(" ", "_")
         new_name  = "note" if new_name == "notes"
