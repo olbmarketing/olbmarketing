@@ -92,7 +92,9 @@ class TerraNovaTest < ApplicationRecord
     range_str = get_opi_range(test_category)
     lower = range_str.split('-')[0].to_i
     higher = range_str.split('-')[1].to_i
-    if send(test_category) < lower
+    if lower == nil || higher == nil 
+      result
+    elsif send(test_category) < lower
       result = "Low Mastery"
     elsif send(test_category) > higher
       result = "High Mastery"
