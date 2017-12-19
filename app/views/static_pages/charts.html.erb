@@ -53,7 +53,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <%= column_chart @students.group(:zip).count,
       library: {
         title: {
@@ -77,12 +77,15 @@
                 text: 'Number of Families'
             },
             tickInterval: 1
+          }, 
+          chart: {
+            width: 800
           }
         }
       %>
     </div>
   </div>
-
+  
   <div class="row">
     <div class="col-xs-6">
       <%= column_chart @students.group(:catholic).count,
@@ -165,8 +168,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-6">
+  <div class="row" >
+    <div class="col-xs-12" style="height: 500px;">
       <%= column_chart @students.group(:reference_from).count,
       library: {
         title: {
@@ -183,6 +186,11 @@
             title: {
                 text: 'How Families Heard of OLB'
             },
+            labels: {
+              style: {
+                textOverflow: 'none'
+              }
+            },
             tickInterval: 1
           },
           yAxis: {
@@ -190,6 +198,10 @@
                 text: 'Number of Families'
             },
             tickInterval: 1
+          },
+          chart: {
+            width: 1100, 
+            height: 500
           }
         }
       %>
