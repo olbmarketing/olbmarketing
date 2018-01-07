@@ -2,7 +2,7 @@
 
 <p>
   <strong>Student:</strong>
-  <%= @star_math_test.student %>
+  <%= "#{@star_math_test.student.first_name} #{@star_math_test.student.last_name}" %>
 </p>
 
 <p>
@@ -36,4 +36,4 @@
 </p>
 
 <%= link_to 'Edit', edit_star_math_test_path(@star_math_test) %> |
-<%= link_to 'Back', star_math_tests_path %>
+<%= link_to 'Back', star_math_tests_path(student_id: @star_math_test.student.id) %>

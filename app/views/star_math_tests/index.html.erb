@@ -37,7 +37,6 @@
   <table id="star_math_tests_table" class="table table-striped table-bordered" style="table-layout:fixed">
     <thead>
       <tr>
-        <th>Student</th>
         <th>Test date</th>
         <th>Scaled score</th>
         <th>Numbers and operations</th>
@@ -51,7 +50,6 @@
     <tbody>
       <% @star_math_tests.each do |star_math_test| %>
         <tr>
-          <td><%= star_math_test.student %></td>
           <td><%= star_math_test.test_date %></td>
           <td><%= star_math_test.scaled_score %></td>
           <td><%= star_math_test.numbers_and_operations %></td>
@@ -60,7 +58,7 @@
           <td><%= star_math_test.geometry %></td>
           <td><%= link_to 'Show', star_math_test %></td>
           <td><%= link_to 'Edit', edit_star_math_test_path(star_math_test) %></td>
-          <td><%= link_to 'Destroy', star_math_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', star_math_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

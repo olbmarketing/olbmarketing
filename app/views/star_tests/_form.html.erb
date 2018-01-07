@@ -13,9 +13,6 @@
 
 
   <div class="form-new-student">
-    <div class="form-group">
-      <h1 class="create-student-heading">New Star Test Literacy for <%= "#{@star_test.student.first_name} #{@star_test.student.last_name}" %></h1>
-    </div>
       <div class="field">
         <%= f.label :student_id %>
         <%= f.text_field :student_id, readonly: true,:class => "form-control"%>

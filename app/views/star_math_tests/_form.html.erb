@@ -11,42 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :student_id %>
-    <%= f.text_field :student_id %>
-  </div>
+  <div class="form-new-student">
+    <div class="field">
+      <%= f.label :student_id %>
+      <%= f.text_field :student_id, readonly: true,:class => "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :test_date %>
-    <%= f.date_select :test_date %>
-  </div>
+    <div class="field">
+      <%= f.label :test_date %>
+      <%= f.text_field :test_date, :class => "form-control", placeholder: "mm/dd/yyyy" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :scaled_score %>
-    <%= f.number_field :scaled_score %>
-  </div>
+    <div class="field">
+      <%= f.label :scaled_score %>
+      <%= f.number_field :scaled_score, :class => "form-control", :placeholder=>"Scaled Score" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :numbers_and_operations %>
-    <%= f.number_field :numbers_and_operations %>
-  </div>
+    <div class="field">
+      <%= f.label :numbers_and_operations %>
+      <%= f.number_field :numbers_and_operations, class: "form-control", placeholder: "Numbers and Operations" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :algebra %>
-    <%= f.number_field :algebra %>
-  </div>
+    <div class="field">
+      <%= f.label :algebra %>
+      <%= f.number_field :algebra, class: "form-control", placeholder: "Algebra" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :measurement_and_data %>
-    <%= f.number_field :measurement_and_data %>
-  </div>
+    <div class="field">
+      <%= f.label :measurement_and_data %>
+      <%= f.number_field :measurement_and_data, class: "form-control", placeholder: "Measurement and Data" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :geometry %>
-    <%= f.number_field :geometry %>
-  </div>
+    <div class="field">
+      <%= f.label :geometry %>
+      <%= f.number_field :geometry, class: "form-control", placeholder: "Geometry" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', star_math_tests_path(student_id: @star_math_test.student.id), :class=>"btn btn-md btn-default" %>
+    </div>
   </div>
 <% end %>
