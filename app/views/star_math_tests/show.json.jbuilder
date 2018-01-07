@@ -1,0 +1,1 @@
+json.partial! "star_math_tests/star_math_test", star_math_test: @star_math_test

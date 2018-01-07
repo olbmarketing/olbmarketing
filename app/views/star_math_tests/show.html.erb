@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @star_math_test.student %>
+</p>
+
+<p>
+  <strong>Test date:</strong>
+  <%= @star_math_test.test_date %>
+</p>
+
+<p>
+  <strong>Scaled score:</strong>
+  <%= @star_math_test.scaled_score %>
+</p>
+
+<p>
+  <strong>Numbers and operations:</strong>
+  <%= @star_math_test.numbers_and_operations %>
+</p>
+
+<p>
+  <strong>Algebra:</strong>
+  <%= @star_math_test.algebra %>
+</p>
+
+<p>
+  <strong>Measurement and data:</strong>
+  <%= @star_math_test.measurement_and_data %>
+</p>
+
+<p>
+  <strong>Geometry:</strong>
+  <%= @star_math_test.geometry %>
+</p>
+
+<%= link_to 'Edit', edit_star_math_test_path(@star_math_test) %> |
+<%= link_to 'Back', star_math_tests_path %>

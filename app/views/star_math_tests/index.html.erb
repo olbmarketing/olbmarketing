@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Star Math Tests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Test date</th>
+      <th>Scaled score</th>
+      <th>Numbers and operations</th>
+      <th>Algebra</th>
+      <th>Measurement and data</th>
+      <th>Geometry</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @star_math_tests.each do |star_math_test| %>
+      <tr>
+        <td><%= star_math_test.student %></td>
+        <td><%= star_math_test.test_date %></td>
+        <td><%= star_math_test.scaled_score %></td>
+        <td><%= star_math_test.numbers_and_operations %></td>
+        <td><%= star_math_test.algebra %></td>
+        <td><%= star_math_test.measurement_and_data %></td>
+        <td><%= star_math_test.geometry %></td>
+        <td><%= link_to 'Show', star_math_test %></td>
+        <td><%= link_to 'Edit', edit_star_math_test_path(star_math_test) %></td>
+        <td><%= link_to 'Destroy', star_math_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Star Math Test', new_star_math_test_path %>

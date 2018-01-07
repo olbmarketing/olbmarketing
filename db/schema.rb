@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221020704) do
+ActiveRecord::Schema.define(version: 20180107044351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,19 @@ ActiveRecord::Schema.define(version: 20161221020704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parish_id"], name: "index_schools_on_parish_id", using: :btree
+  end
+
+  create_table "star_math_tests", force: :cascade do |t|
+    t.integer  "student_id"
+    t.date     "test_date"
+    t.integer  "scaled_score"
+    t.integer  "numbers_and_operations"
+    t.integer  "algebra"
+    t.integer  "measurement_and_data"
+    t.integer  "geometry"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["student_id"], name: "index_star_math_tests_on_student_id", using: :btree
   end
 
   create_table "star_tests", force: :cascade do |t|
@@ -193,6 +206,7 @@ ActiveRecord::Schema.define(version: 20161221020704) do
 
   add_foreign_key "exit_surveys", "students"
   add_foreign_key "schools", "parishes"
+  add_foreign_key "star_math_tests", "students"
   add_foreign_key "star_tests", "students"
   add_foreign_key "terra_nova_tests", "students"
 end
