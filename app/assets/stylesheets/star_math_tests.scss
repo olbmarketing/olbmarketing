@@ -1,3 +1,21 @@
 // Place all the styles related to the StarMathTests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.star_math_tests {
+  margin-left: 5px;
+
+  table {
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: 5px;
+  }
+
+  table tr td {
+      padding: 5px;
+      vertical-align: top;
+  }
+
+}
