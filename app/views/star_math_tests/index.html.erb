@@ -11,6 +11,13 @@
       <input name="gender" value="girl" type="radio"> Girl
     </form>
   </div>-->
+  <div>
+    <% if @star_math_tests.count > 0 %>
+    <%= link_to 'Download Report', star_math_tests_download_report_docx_url(student_id: @student.id, id: 123, mm: 345), class: "btn btn-md btn-default btn-info float-rt", id: "star_math_test_download_report_link", data: { :"no-turbolinks" => true }  %>
+    <% else %>
+    <%= "No Report Download Available" %>
+    <% end %>
+  </div>
 
   <div>
     <table>

@@ -1,5 +1,6 @@
 class StarMathTestsController < ApplicationController
   before_action :set_star_math_test, only: [:show, :edit, :update, :destroy]
+  include Docx
 
   # GET /star_math_tests
   # GET /star_math_tests.json
@@ -68,6 +69,20 @@ class StarMathTestsController < ApplicationController
     end
   end
 
+  # get 'star_math_tests/download_report_docx'
+  def download_report_docx
+    @student = Student.find(params[:student_id])
+    if @student 
+      @star_math_tests = @student.star_math_tests.order('test_date')
+    end 
+    create_report(params[:gender])
+    send_file(
+      "#{Rails.root}/app/assets/STAR_testing/STAR_Math_new.docx", 
+      filename: "#{@student.get_first_name}_#{@student.last_name}_STAR_Math.docx", 
+      type: "application/docx"
+    )
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_star_math_test
@@ -78,4 +93,32 @@ class StarMathTestsController < ApplicationController
     def star_math_test_params
       params.require(:star_math_test).permit(:student_id, :test_date, :scaled_score, :numbers_and_operations, :algebra, :measurement_and_data, :geometry)
     end
+
+    def create_report(gender)
+
+      myz = Zip::File.open("#{Rails.root}/app/assets/STAR_testing/STAR_Math_template.docx");
+
+      xml_str = myz.read("word/charts/chart1.xml");
+      chart_doc = Nokogiri::XML(xml_str);
+      #write_chart_doc(chart_doc)
+
+      main_doc = Nokogiri::XML(myz.read('word/document.xml'));
+      write_main_doc(main_doc, gender)
+      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/STAR_Math_new.docx")
+
+    end 
+
+    def write_main_doc (main_doc, gender)
+      latest_score = (@star_math_tests.to_a.sort_by!{|s|s.test_date}).last.scaled_score
+      old_score = (@star_math_tests.to_a.sort_by!{|s|s.test_date}).first.scaled_score
+      first_name = @star_math_tests.first.student.get_first_name
+      last_name = @star_math_tests.first.student.last_name 
+      test_count = @star_math_tests.count
+      combine_splitted_wt(main_doc)
+
+      write_STAR_main_doc_texts(main_doc, gender, test_count, latest_score, old_score, first_name, last_name)
+
+      #remove_highlight main_doc
+    end
+
 end

@@ -113,4 +113,23 @@ module Docx
     end 
   end 
 
+  def write_STAR_main_doc_texts(main_doc, gender, test_count, latest_score, old_score, first_name, last_name)
+    change_docx_text(main_doc, 'Child_name_full', "#{first_name} #{last_name}")
+    change_docx_text(main_doc, 'Child_name', "#{first_name}")
+    # update all latest_scaled_score
+    change_docx_text(main_doc, 'latest_ss', "#{latest_score}")
+    # update number of tests
+    words_hash = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six"}
+    text = words_hash[test_count]
+    change_docx_text(main_doc, 'n_tests', text)
+    # update scaled score change text 
+    new_text = text = latest_score > old_score ? "increase" : "decrease"
+    change_docx_text(main_doc, 'ss_cg', new_text )
+    # update scaled score difference 
+    change_docx_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
+    # update old score 
+    change_docx_text(main_doc, 'old_ss', old_score)
+    change_gender gender, main_doc
+  end 
+
 end 

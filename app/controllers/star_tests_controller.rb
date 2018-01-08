@@ -96,8 +96,8 @@ class StarTestsController < ApplicationController
     end 
     create_report(params[:gender])
     send_file(
-      "#{Rails.root}/app/assets/STAR_testing/new.docx", 
-      filename: "#{@student.get_first_name}_#{@student.last_name}_STAR.docx", 
+      "#{Rails.root}/app/assets/STAR_testing/STAR_Literacy_new.docx", 
+      filename: "#{@student.get_first_name}_#{@student.last_name}_STAR_Literacy.docx", 
       type: "application/docx"
     )
   end
@@ -126,7 +126,7 @@ class StarTestsController < ApplicationController
       write_chart_doc(chart_doc)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc, gender)
-      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/new.docx")
+      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/STAR_Literacy_new.docx")
 
     end 
 
@@ -185,25 +185,13 @@ class StarTestsController < ApplicationController
 
       combine_splitted_wt(main_doc)
       remove_extra_stage_text(main_doc, latest_score)
-      change_docx_text(main_doc, 'Child_name_full', "#{first_name} #{last_name}")
-      change_docx_text(main_doc, 'Child_name', "#{first_name}")
-      # update all latest_scaled_score
-      change_docx_text(main_doc, 'latest_ss', "#{latest_score}")
-      # update number of tests
-      words_hash = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six"}
-      text = words_hash[@star_tests.count]
-      change_docx_text(main_doc, 'n_tests', text)
-      # update scaled score change text 
-      new_text = text = latest_score > old_score ? "increase" : "decrease"
-      change_docx_text(main_doc, 'ss_cg', new_text )
-      # update scaled score difference 
-      change_docx_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
-      # update old score 
-      change_docx_text(main_doc, 'old_ss', old_score)
+      test_count = @star_tests.count
+
+      write_STAR_main_doc_texts(main_doc, gender, test_count, latest_score, old_score, first_name, last_name)
       # change stage 
       change_docx_text(main_doc, 'v_stage', get_stage(latest_score))
       change_docx_text(main_doc, 'v_reader', get_reader(latest_score))
-      change_gender gender, main_doc
+
       remove_highlight main_doc
     end
 
