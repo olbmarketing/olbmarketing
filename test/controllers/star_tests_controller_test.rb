@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class StarTestsControllerTest < ActionDispatch::IntegrationTest
+  fixtures :users
   setup do
     @star_test = star_tests(:one)
     @first_student = students(:one)
@@ -21,6 +22,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
       paragraph_level_comprehension: 1,
       early_numeracy: 94
     }
+    login_setup
   end
 
   test "should get index" do
