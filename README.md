@@ -28,6 +28,9 @@ This means that: $ git status                   --should return a message of a c
 run:             $ heroku login                 --enter the credentials to Lauren Harrington Heroku account. 
 run:             $ git push heroku master       --wait for the push succeed message. 
 ```
+After this, navigate to the website and see your changes. We used the guide on heroku.com to help us and can be found here:
+https://devcenter.heroku.com/articles/getting-started-with-rails4
+### Database
 To migrate database changes: 
 ```
 first cd into the local olb app folder
@@ -40,8 +43,6 @@ first cd into the local olb app folder
 run:             $ heroku pg:psql
 inspect database data through sql
 ```
-After this, navigate to the website and see your changes. We used the guide on heroku.com to help us and can be found here:
-https://devcenter.heroku.com/articles/getting-started-with-rails4
 
 ### IDE
 The team used a variety of IDEs:
