@@ -49,4 +49,9 @@ class StarMathTestsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to star_math_tests_url(student_id: @star_math_test.student_id)
   end
+
+  test "should download report" do 
+    get star_math_tests_download_report_docx_url(student_id: @star_math_test.student_id)
+    assert_response :success
+  end 
 end
