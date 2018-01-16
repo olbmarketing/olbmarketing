@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.1.4', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record
 
-#gem 'sqlite3'
-gem 'pg'
+# rails still does not support pg 1.0.0 yet 
+gem 'pg', '~> 0.19.0'
 
 
 # Use Puma as the app server
@@ -66,12 +66,12 @@ gem 'roo', '~> 2.4.0'
 # to zip and unzip docx file
 gem 'rubyzip'
 # to parse docx xml file
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.8.1'
 # for testing
 gem 'rails-controller-testing'
 # chart making stuff
 gem 'chartkick', '~> 1.2.4'
-gem 'groupdate', '~> 2.1.1'
+gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
 # for date formating
 gem 'american_date', '~> 1.1', '>= 1.1.1'
