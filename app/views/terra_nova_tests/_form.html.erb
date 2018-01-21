@@ -59,7 +59,8 @@
     <div class="actions">
         <div class="buttons">
             <%= f.submit "Save and Add New Terra Nova Test", :class=>"btn btn-primary" %>
-            <%= link_to 'Cancel', '/static_pages/dashboard', :class=>"btn btn-default " %>
+            
+            <%= link_to 'Back', terra_nova_tests_path(student_id: @terra_nova_test.student.id), :class=>"btn btn-md btn-default" %>
             <div></div>
         </div>
     </div>
