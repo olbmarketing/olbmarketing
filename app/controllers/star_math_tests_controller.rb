@@ -118,7 +118,7 @@ class StarMathTestsController < ApplicationController
 
       write_STAR_main_doc_texts(main_doc, gender, test_count, latest_score, old_score, first_name, last_name)
 
-      #remove_highlight main_doc
+      remove_highlight main_doc
     end
 
     def write_chart_doc (chart_doc)
