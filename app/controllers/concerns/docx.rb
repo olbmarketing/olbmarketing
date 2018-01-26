@@ -123,7 +123,7 @@ module Docx
     text = words_hash[test_count]
     change_docx_text(main_doc, 'n_tests', text)
     # update scaled score change text 
-    new_text = text = latest_score > old_score ? "increase" : "decrease"
+    new_text = text = latest_score > old_score ? "an increase" : "a decrease"
     change_docx_text(main_doc, 'ss_cg', new_text )
     # update scaled score difference 
     change_docx_text(main_doc, 'ss_diff', (latest_score - old_score).abs.to_s)
