@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
+  fixtures :users
   setup do
     @terra_nova_test = terra_nova_tests(:one)
     @first_student = students(:one)
@@ -20,6 +21,7 @@ class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
       geometry_and_spatial_sense_opi: 75, 
       data_stats_and_probability_opi: 89
     }
+    login_setup
   end
 
   test "should get index" do
@@ -60,7 +62,7 @@ class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
       delete terra_nova_test_url(@terra_nova_test)
     end
 
-    assert_redirected_to terra_nova_tests_url
+    assert_redirected_to terra_nova_tests_url(student_id: @terra_nova_test.student.id)
   end
 
   test "should post to create without levels" do 
@@ -87,5 +89,9 @@ class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @terra_nova_test.basic_understanding_opi + 1, returned_terra_nova['basic_understanding_opi'], "after update the oral_comprehension_opi level should be updated "
   end 
 
+  test "create new terra nova test object" do 
+    obj = TerraNovaTest.new 
+    assert_nil obj.reading_scale_score
+  end 
 
 end
