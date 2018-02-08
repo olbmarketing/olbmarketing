@@ -78,3 +78,6 @@ gem 'american_date', '~> 1.1', '>= 1.1.1'
 
 # for address geocoding
 gem 'geocoder'
+
+# address minitest bug with rails 
+gem 'minitest', '~> 5.10.3'

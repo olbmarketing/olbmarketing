@@ -94,4 +94,9 @@ class TerraNovaTestsControllerTest < ActionDispatch::IntegrationTest
     assert_nil obj.reading_scale_score
   end 
 
+  test "should download report" do 
+    get terra_nova_tests_download_report_docx_url(student_id: @terra_nova_test.student_id)
+    assert_response :success
+  end 
+ 
 end

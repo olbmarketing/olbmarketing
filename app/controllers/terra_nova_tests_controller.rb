@@ -74,7 +74,7 @@ class TerraNovaTestsController < ApplicationController
   def download_report_docx
     @student = Student.find(params[:student_id])
     if @student 
-      @terra_nova_test = @student.terra_nova_tests.where(id: params[:terra_nova_test_id]).first
+      @terra_nova_tests = @student.terra_nova_tests.order('test_date desc')
     end 
     create_report(params[:gender])
     send_file(
@@ -111,78 +111,95 @@ class TerraNovaTestsController < ApplicationController
     
     def write_chart_doc1(chart_doc1)
       # update student name in chart 
-      first_name = @terra_nova_test.student.get_first_name
-      last_name = @terra_nova_test.student.last_name
+      first_name = @terra_nova_tests.first.student.get_first_name
+      last_name = @terra_nova_tests.first.student.last_name
       change_docx_text(chart_doc1, "Student Name", "#{first_name} #{last_name}", "a:t")
 
       bar_chart = chart_doc1.at_xpath('//c:barChart')
       line_chart = chart_doc1.at_xpath('//c:lineChart')
       bar_chart_values = bar_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      bar_chart_values[0].content = @terra_nova_test.oral_comprehension_opi
-      bar_chart_values[1].content = @terra_nova_test.basic_understanding_opi
-      bar_chart_values[2].content = @terra_nova_test.introduction_to_print_opi
+      bar_chart_values[0].content = @terra_nova_tests.first.oral_comprehension_opi
+      bar_chart_values[1].content = @terra_nova_tests.first.basic_understanding_opi
+      bar_chart_values[2].content = @terra_nova_tests.first.introduction_to_print_opi
       line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      line_chart_values[0].content = @terra_nova_test.get_national_opi_int :oral_comprehension_opi
-      line_chart_values[1].content = @terra_nova_test.get_national_opi_int :basic_understanding_opi
-      line_chart_values[2].content = @terra_nova_test.get_national_opi_int :introduction_to_print_opi
+      line_chart_values[0].content = @terra_nova_tests.first.get_national_opi_int :oral_comprehension_opi
+      line_chart_values[1].content = @terra_nova_tests.first.get_national_opi_int :basic_understanding_opi
+      line_chart_values[2].content = @terra_nova_tests.first.get_national_opi_int :introduction_to_print_opi
     end 
 
     def write_chart_doc2(chart_doc2)
       # update student name in chart 
-      first_name = @terra_nova_test.student.get_first_name
-      last_name = @terra_nova_test.student.last_name
+      first_name = @terra_nova_tests.first.student.get_first_name
+      last_name = @terra_nova_tests.first.student.last_name
       change_docx_text(chart_doc2, "Student Name", "#{first_name} #{last_name}", "a:t")
       bar_chart = chart_doc2.at_xpath('//c:barChart')
       line_chart = chart_doc2.at_xpath('//c:lineChart')
-      bar_chart_values = bar_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      bar_chart_values[0].content = @terra_nova_test.number_and_number_relations_opi
-      bar_chart_values[1].content = @terra_nova_test.measurement_opi
-      bar_chart_values[2].content = @terra_nova_test.geometry_and_spatial_sense_opi
-      bar_chart_values[3].content = @terra_nova_test.data_stats_and_probability_opi
+      ser_node = bar_chart.at_xpath('.//c:ser')
+      bar_chart_values = ser_node.at_xpath('.//c:val').xpath('.//c:v')
+
+      # insert another ser for second test 
+      #new_ser_node = ser_node.dup
+      #ser_node.add_next_sibling(new_ser_node)
+      puts ser_node.parent.to_s
+
+      bar_chart_values[0].content = @terra_nova_tests.first.number_and_number_relations_opi
+      bar_chart_values[1].content = @terra_nova_tests.first.measurement_opi
+      bar_chart_values[2].content = @terra_nova_tests.first.geometry_and_spatial_sense_opi
+      bar_chart_values[3].content = @terra_nova_tests.first.data_stats_and_probability_opi
       line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      line_chart_values[0].content = @terra_nova_test.get_national_opi_int :number_and_number_relations_opi
-      line_chart_values[1].content = @terra_nova_test.get_national_opi_int :measurement_opi
-      line_chart_values[2].content = @terra_nova_test.get_national_opi_int :geometry_and_spatial_sense_opi
-      line_chart_values[3].content = @terra_nova_test.get_national_opi_int :data_stats_and_probability_opi
+      line_chart_values[0].content = @terra_nova_tests.first.get_national_opi_int :number_and_number_relations_opi
+      line_chart_values[1].content = @terra_nova_tests.first.get_national_opi_int :measurement_opi
+      line_chart_values[2].content = @terra_nova_tests.first.get_national_opi_int :geometry_and_spatial_sense_opi
+      line_chart_values[3].content = @terra_nova_tests.first.get_national_opi_int :data_stats_and_probability_opi
     end 
 
     def write_main_doc(main_doc, gender)
 
-      first_name = @terra_nova_test.student.get_first_name
-      last_name = @terra_nova_test.student.last_name
-      reading_scale_score = @terra_nova_test.reading_scale_score || 0
-      math_scale_score = @terra_nova_test.math_scale_score || 0
-      reading_national_percentile = @terra_nova_test.reading_national_percentile || 0
-      math_national_percentile = @terra_nova_test.math_national_percentile || 0
-      oral_comprehension_opi = @terra_nova_test.oral_comprehension_opi || 0
-      basic_understanding_opi = @terra_nova_test.basic_understanding_opi || 0
-      introduction_to_print_opi = @terra_nova_test.introduction_to_print_opi || 0
-      number_and_number_relations_opi = @terra_nova_test.number_and_number_relations_opi || 0
-      measurement_opi = @terra_nova_test.measurement_opi || 0
-      geometry_and_spatial_sense_opi = @terra_nova_test.geometry_and_spatial_sense_opi || 0
-      data_stats_and_probability_opi = @terra_nova_test.data_stats_and_probability_opi || 0
-      oc_national_opi = @terra_nova_test.get_national_opi(:oral_comprehension_opi)
-      bu_national_opi = @terra_nova_test.get_national_opi(:basic_understanding_opi)
-      ip_national_opi = @terra_nova_test.get_national_opi(:introduction_to_print_opi)
-      nn_national_opi = @terra_nova_test.get_national_opi(:number_and_number_relations_opi)
-      me_national_opi = @terra_nova_test.get_national_opi(:measurement_opi)
-      gs_national_opi = @terra_nova_test.get_national_opi(:geometry_and_spatial_sense_opi)
-      dp_national_opi = @terra_nova_test.get_national_opi(:data_stats_and_probability_opi)
-      oc_range = @terra_nova_test.get_opi_range(:oral_comprehension_opi)
-      bu_range = @terra_nova_test.get_opi_range(:basic_understanding_opi)
-      ip_range = @terra_nova_test.get_opi_range(:introduction_to_print_opi)
-      nn_range = @terra_nova_test.get_opi_range(:number_and_number_relations_opi)
-      me_range = @terra_nova_test.get_opi_range(:measurement_opi)
-      gs_range = @terra_nova_test.get_opi_range(:geometry_and_spatial_sense_opi)
-      dp_range = @terra_nova_test.get_opi_range(:data_stats_and_probability_opi)
-      oc_mastery = @terra_nova_test.get_opi_mastery(:oral_comprehension_opi)
-      bu_mastery = @terra_nova_test.get_opi_mastery(:basic_understanding_opi)
-      ip_mastery = @terra_nova_test.get_opi_mastery(:introduction_to_print_opi)
-      nn_mastery = @terra_nova_test.get_opi_mastery(:number_and_number_relations_opi)
-      me_mastery = @terra_nova_test.get_opi_mastery(:measurement_opi)
-      gs_mastery = @terra_nova_test.get_opi_mastery(:geometry_and_spatial_sense_opi)
-      dp_mastery = @terra_nova_test.get_opi_mastery(:data_stats_and_probability_opi)
+      first_name = @terra_nova_tests.first.student.get_first_name
+      last_name = @terra_nova_tests.first.student.last_name
+      reading_scale_score = @terra_nova_tests.first.reading_scale_score || 0
+      math_scale_score = @terra_nova_tests.first.math_scale_score || 0
+      reading_national_percentile = @terra_nova_tests.first.reading_national_percentile || 0
+      math_national_percentile = @terra_nova_tests.first.math_national_percentile || 0
+      oc_national_opi = @terra_nova_tests.first.get_national_opi(:oral_comprehension_opi)
+      bu_national_opi = @terra_nova_tests.first.get_national_opi(:basic_understanding_opi)
+      ip_national_opi = @terra_nova_tests.first.get_national_opi(:introduction_to_print_opi)
+      nn_national_opi = @terra_nova_tests.first.get_national_opi(:number_and_number_relations_opi)
+      me_national_opi = @terra_nova_tests.first.get_national_opi(:measurement_opi)
+      gs_national_opi = @terra_nova_tests.first.get_national_opi(:geometry_and_spatial_sense_opi)
+      dp_national_opi = @terra_nova_tests.first.get_national_opi(:data_stats_and_probability_opi)
+      oc_range = @terra_nova_tests.first.get_opi_range(:oral_comprehension_opi)
+      bu_range = @terra_nova_tests.first.get_opi_range(:basic_understanding_opi)
+      ip_range = @terra_nova_tests.first.get_opi_range(:introduction_to_print_opi)
+      nn_range = @terra_nova_tests.first.get_opi_range(:number_and_number_relations_opi)
+      me_range = @terra_nova_tests.first.get_opi_range(:measurement_opi)
+      gs_range = @terra_nova_tests.first.get_opi_range(:geometry_and_spatial_sense_opi)
+      dp_range = @terra_nova_tests.first.get_opi_range(:data_stats_and_probability_opi)
+      oc_mastery = @terra_nova_tests.first.get_opi_mastery(:oral_comprehension_opi)
+      bu_mastery = @terra_nova_tests.first.get_opi_mastery(:basic_understanding_opi)
+      ip_mastery = @terra_nova_tests.first.get_opi_mastery(:introduction_to_print_opi)
+      nn_mastery = @terra_nova_tests.first.get_opi_mastery(:number_and_number_relations_opi)
+      me_mastery = @terra_nova_tests.first.get_opi_mastery(:measurement_opi)
+      gs_mastery = @terra_nova_tests.first.get_opi_mastery(:geometry_and_spatial_sense_opi)
+      dp_mastery = @terra_nova_tests.first.get_opi_mastery(:data_stats_and_probability_opi)  
 
+      oral_comprehension_opi = []
+      basic_understanding_opi = []
+      introduction_to_print_opi = []
+      number_and_number_relations_opi = []
+      measurement_opi = []
+      geometry_and_spatial_sense_opi = []
+      data_stats_and_probability_opi = []
+      
+      @terra_nova_tests.each do |test|
+        oral_comprehension_opi << test.oral_comprehension_opi || 0
+        basic_understanding_opi << test.basic_understanding_opi || 0
+        introduction_to_print_opi << test.introduction_to_print_opi || 0
+        number_and_number_relations_opi << test.number_and_number_relations_opi || 0
+        measurement_opi << test.measurement_opi || 0
+        geometry_and_spatial_sense_opi << test.geometry_and_spatial_sense_opi || 0
+        data_stats_and_probability_opi << test.data_stats_and_probability_opi || 0
+      end 
       combine_splitted_wt(main_doc)
 
       change_docx_text(main_doc, 'child_name_full', "#{first_name} #{last_name}")
@@ -194,43 +211,44 @@ class TerraNovaTestsController < ApplicationController
       change_docx_text(main_doc, 'reading_national_percentile', "#{reading_national_percentile}")
       change_docx_text(main_doc, 'math_national_percentile', "#{math_national_percentile}")
 
-      # change student opi variables in table 
-      change_docx_text(main_doc, 'oc_opi', "#{oral_comprehension_opi}")
-      change_docx_text(main_doc, 'bu_opi', "#{basic_understanding_opi}")
-      change_docx_text(main_doc, 'ip_opi', "#{introduction_to_print_opi}")
-      change_docx_text(main_doc, 'oc_opi', "#{oral_comprehension_opi}")
-      change_docx_text(main_doc, 'nn_opi', "#{number_and_number_relations_opi}")
-      change_docx_text(main_doc, 'me_opi', "#{measurement_opi}")
-      change_docx_text(main_doc, 'gs_opi', "#{geometry_and_spatial_sense_opi}")
-      change_docx_text(main_doc, 'dp_opi', "#{data_stats_and_probability_opi}")
+      @terra_nova_tests.each_with_index do |test, index|
+        # change student opi variables in table 
+        change_docx_text(main_doc, "oc_opi_#{index}", "#{oral_comprehension_opi[index]}")
+        change_docx_text(main_doc, "bu_opi_#{index}", "#{basic_understanding_opi[index]}")
+        change_docx_text(main_doc, "ip_opi_#{index}", "#{introduction_to_print_opi[index]}")
+        change_docx_text(main_doc, "oc_opi_#{index}", "#{oral_comprehension_opi[index]}")
+        change_docx_text(main_doc, "nn_opi_#{index}", "#{number_and_number_relations_opi[index]}")
+        change_docx_text(main_doc, "me_opi_#{index}", "#{measurement_opi[index]}")
+        change_docx_text(main_doc, "gs_opi_#{index}", "#{geometry_and_spatial_sense_opi[index]}")
+        change_docx_text(main_doc, "dp_opi_#{index}", "#{data_stats_and_probability_opi[index]}")
+      end 
 
       # change national opi variables in table 
-      change_docx_text(main_doc, 'oc_national_opi', "#{oc_national_opi}")
-      change_docx_text(main_doc, 'bu_national_opi', "#{bu_national_opi}")
-      change_docx_text(main_doc, 'ip_national_opi', "#{ip_national_opi}")
-      change_docx_text(main_doc, 'oc_national_opi', "#{oc_national_opi}")
-      change_docx_text(main_doc, 'nn_national_opi', "#{nn_national_opi}")
-      change_docx_text(main_doc, 'me_national_opi', "#{me_national_opi}")
-      change_docx_text(main_doc, 'gs_national_opi', "#{gs_national_opi}")
-      change_docx_text(main_doc, 'dp_national_opi', "#{dp_national_opi}")
+      change_docx_text(main_doc, "oc_national_opi", "#{oc_national_opi}")
+      change_docx_text(main_doc, "bu_national_opi", "#{bu_national_opi}")
+      change_docx_text(main_doc, "ip_national_opi", "#{ip_national_opi}")
+      change_docx_text(main_doc, "nn_national_opi", "#{nn_national_opi}")
+      change_docx_text(main_doc, "me_national_opi", "#{me_national_opi}")
+      change_docx_text(main_doc, "gs_national_opi", "#{gs_national_opi}")
+      change_docx_text(main_doc, "dp_national_opi", "#{dp_national_opi}")
 
       # change opi range variables in table 
-      change_docx_text(main_doc, 'oc_range', "#{oc_range}")
-      change_docx_text(main_doc, 'bu_range', "#{bu_range}")
-      change_docx_text(main_doc, 'ip_range', "#{ip_range}")
-      change_docx_text(main_doc, 'nn_range', "#{nn_range}")
-      change_docx_text(main_doc, 'me_range', "#{me_range}")
-      change_docx_text(main_doc, 'gs_range', "#{gs_range}")
-      change_docx_text(main_doc, 'dp_range', "#{dp_range}")
+      change_docx_text(main_doc, "oc_range", "#{oc_range}")
+      change_docx_text(main_doc, "bu_range", "#{bu_range}")
+      change_docx_text(main_doc, "ip_range", "#{ip_range}")
+      change_docx_text(main_doc, "nn_range", "#{nn_range}")
+      change_docx_text(main_doc, "me_range", "#{me_range}")
+      change_docx_text(main_doc, "gs_range", "#{gs_range}")
+      change_docx_text(main_doc, "dp_range", "#{dp_range}")
 
       # change opi mastery variables in table 
-      change_docx_text(main_doc, 'oc_mastery', "#{oc_mastery}")
-      change_docx_text(main_doc, 'bu_mastery', "#{bu_mastery}")
-      change_docx_text(main_doc, 'ip_mastery', "#{ip_mastery}")
-      change_docx_text(main_doc, 'nn_mastery', "#{nn_mastery}")
-      change_docx_text(main_doc, 'me_mastery', "#{me_mastery}")
-      change_docx_text(main_doc, 'gs_mastery', "#{gs_mastery}")
-      change_docx_text(main_doc, 'dp_mastery', "#{dp_mastery}")
+      change_docx_text(main_doc, "oc_mastery", "#{oc_mastery}")
+      change_docx_text(main_doc, "bu_mastery", "#{bu_mastery}")
+      change_docx_text(main_doc, "ip_mastery", "#{ip_mastery}")
+      change_docx_text(main_doc, "nn_mastery", "#{nn_mastery}")
+      change_docx_text(main_doc, "me_mastery", "#{me_mastery}")
+      change_docx_text(main_doc, "gs_mastery", "#{gs_mastery}")
+      change_docx_text(main_doc, "dp_mastery", "#{dp_mastery}")
 
       change_gender gender, main_doc
       remove_highlight main_doc
