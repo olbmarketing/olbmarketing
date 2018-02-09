@@ -96,7 +96,7 @@ class TerraNovaTestsController < ApplicationController
     end
 
     def create_report(gender)
-      zip_path = "#{Rails.root}/app/assets/Terra_Nova_testing/Terra_Nova_Template.docx"
+      zip_path = "#{Rails.root}/app/assets/Terra_Nova_testing/Terra_Nova_Template_2.docx"
       output_path = "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx"
       myz = Zip::File.open(zip_path);
       chart_doc1 = Nokogiri::XML(myz.read("word/charts/chart1.xml"));
