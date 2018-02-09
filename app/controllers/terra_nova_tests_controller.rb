@@ -134,23 +134,33 @@ class TerraNovaTestsController < ApplicationController
       change_docx_text(chart_doc2, "Student Name", "#{first_name} #{last_name}", "a:t")
       bar_chart = chart_doc2.at_xpath('//c:barChart')
       line_chart = chart_doc2.at_xpath('//c:lineChart')
-      ser_node = bar_chart.at_xpath('.//c:ser')
-      bar_chart_values = ser_node.at_xpath('.//c:val').xpath('.//c:v')
+
+      @terra_nova_tests.each_with_index do |test, index|
+        ser_node = bar_chart.at_xpath(".//c:ser[#{index + 1}]")
+        if ser_node
+          bar_chart_values = ser_node.at_xpath('.//c:val').xpath('.//c:v')
+          bar_chart_values[0].content = test.number_and_number_relations_opi
+          bar_chart_values[1].content = test.measurement_opi
+          bar_chart_values[2].content = test.geometry_and_spatial_sense_opi
+          bar_chart_values[3].content = test.data_stats_and_probability_opi
+          line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
+          line_chart_values[0].content = test.get_national_opi_int :number_and_number_relations_opi
+          line_chart_values[1].content = test.get_national_opi_int :measurement_opi
+          line_chart_values[2].content = test.get_national_opi_int :geometry_and_spatial_sense_opi
+          line_chart_values[3].content = test.get_national_opi_int :data_stats_and_probability_opi
+        end 
+      end 
+
+      
 
       # insert another ser for second test 
       #new_ser_node = ser_node.dup
       #ser_node.add_next_sibling(new_ser_node)
-      puts ser_node.parent.to_s
+      if bar_chart.at_xpath('.//c:ser[3]')
+        puts "hello"
+      end 
 
-      bar_chart_values[0].content = @terra_nova_tests.first.number_and_number_relations_opi
-      bar_chart_values[1].content = @terra_nova_tests.first.measurement_opi
-      bar_chart_values[2].content = @terra_nova_tests.first.geometry_and_spatial_sense_opi
-      bar_chart_values[3].content = @terra_nova_tests.first.data_stats_and_probability_opi
-      line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      line_chart_values[0].content = @terra_nova_tests.first.get_national_opi_int :number_and_number_relations_opi
-      line_chart_values[1].content = @terra_nova_tests.first.get_national_opi_int :measurement_opi
-      line_chart_values[2].content = @terra_nova_tests.first.get_national_opi_int :geometry_and_spatial_sense_opi
-      line_chart_values[3].content = @terra_nova_tests.first.get_national_opi_int :data_stats_and_probability_opi
+      
     end 
 
     def write_main_doc(main_doc, gender)
