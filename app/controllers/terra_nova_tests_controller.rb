@@ -117,10 +117,16 @@ class TerraNovaTestsController < ApplicationController
 
       bar_chart = chart_doc1.at_xpath('//c:barChart')
       line_chart = chart_doc1.at_xpath('//c:lineChart')
-      bar_chart_values = bar_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-      bar_chart_values[0].content = @terra_nova_tests.first.oral_comprehension_opi
-      bar_chart_values[1].content = @terra_nova_tests.first.basic_understanding_opi
-      bar_chart_values[2].content = @terra_nova_tests.first.introduction_to_print_opi
+
+      @terra_nova_tests.reverse_order.each_with_index do |test, index|
+        ser_node = bar_chart.at_xpath(".//c:ser[#{index + 1}]")
+        if ser_node
+          bar_chart_values = ser_node.at_xpath('.//c:val').xpath('.//c:v')
+          bar_chart_values[0].content = test.oral_comprehension_opi
+          bar_chart_values[1].content = test.basic_understanding_opi
+          bar_chart_values[2].content = test.introduction_to_print_opi
+        end 
+      end 
       line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
       line_chart_values[0].content = @terra_nova_tests.first.get_national_opi_int :oral_comprehension_opi
       line_chart_values[1].content = @terra_nova_tests.first.get_national_opi_int :basic_understanding_opi
@@ -135,7 +141,7 @@ class TerraNovaTestsController < ApplicationController
       bar_chart = chart_doc2.at_xpath('//c:barChart')
       line_chart = chart_doc2.at_xpath('//c:lineChart')
 
-      @terra_nova_tests.each_with_index do |test, index|
+      @terra_nova_tests.reverse_order.each_with_index do |test, index|
         ser_node = bar_chart.at_xpath(".//c:ser[#{index + 1}]")
         if ser_node
           bar_chart_values = ser_node.at_xpath('.//c:val').xpath('.//c:v')
@@ -143,23 +149,13 @@ class TerraNovaTestsController < ApplicationController
           bar_chart_values[1].content = test.measurement_opi
           bar_chart_values[2].content = test.geometry_and_spatial_sense_opi
           bar_chart_values[3].content = test.data_stats_and_probability_opi
-          line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
-          line_chart_values[0].content = test.get_national_opi_int :number_and_number_relations_opi
-          line_chart_values[1].content = test.get_national_opi_int :measurement_opi
-          line_chart_values[2].content = test.get_national_opi_int :geometry_and_spatial_sense_opi
-          line_chart_values[3].content = test.get_national_opi_int :data_stats_and_probability_opi
         end 
+        line_chart_values = line_chart.at_xpath('.//c:ser').at_xpath('.//c:val').xpath('.//c:v')
+        line_chart_values[0].content = test.get_national_opi_int :number_and_number_relations_opi
+        line_chart_values[1].content = test.get_national_opi_int :measurement_opi
+        line_chart_values[2].content = test.get_national_opi_int :geometry_and_spatial_sense_opi
+        line_chart_values[3].content = test.get_national_opi_int :data_stats_and_probability_opi
       end 
-
-      
-
-      # insert another ser for second test 
-      #new_ser_node = ser_node.dup
-      #ser_node.add_next_sibling(new_ser_node)
-      if bar_chart.at_xpath('.//c:ser[3]')
-        puts "hello"
-      end 
-
       
     end 
 
