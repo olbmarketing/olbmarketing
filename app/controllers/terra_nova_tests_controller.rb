@@ -197,7 +197,7 @@ class TerraNovaTestsController < ApplicationController
       geometry_and_spatial_sense_opi = []
       data_stats_and_probability_opi = []
       
-      @terra_nova_tests.each do |test|
+      @terra_nova_tests.reverse_order.each do |test|
         oral_comprehension_opi << test.oral_comprehension_opi || 0
         basic_understanding_opi << test.basic_understanding_opi || 0
         introduction_to_print_opi << test.introduction_to_print_opi || 0
@@ -217,7 +217,7 @@ class TerraNovaTestsController < ApplicationController
       change_docx_text(main_doc, 'reading_national_percentile', "#{reading_national_percentile}")
       change_docx_text(main_doc, 'math_national_percentile', "#{math_national_percentile}")
 
-      @terra_nova_tests.each_with_index do |test, index|
+      @terra_nova_tests.reverse_order.each_with_index do |test, index|
         # change student opi variables in table 
         change_docx_text(main_doc, "oc_opi_#{index}", "#{oral_comprehension_opi[index]}")
         change_docx_text(main_doc, "bu_opi_#{index}", "#{basic_understanding_opi[index]}")

@@ -18,7 +18,7 @@ one:
 
 two:
   student_id: 1
-  test_date: 2016-10-01
+  test_date: 2016-10-02
   reading_scale_score: 1
   reading_national_percentile: 1
   oral_comprehension_opi: 1
