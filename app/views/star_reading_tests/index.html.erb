@@ -1,41 +1,61 @@
-<p id="notice"><%= notice %></p>
+<h1>Star Reading Tests
+  <%= 'for ' + @student.first_name + ' ' + @student.last_name if @student %></h1>
+  <hr/>
+  <div>
+    <table class="star_test_student_tag">
+      <thead>
+        <tr>
+          <th>School year</th>
+          <th>Class</th>
+          <th>Last name</th>
+          <th>First name</th>
+        </tr>
+      </thead>
 
-<h1>Star Reading Tests</h1>
+      <tbody>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td><%= @student.school_year %></td>
+          <td><%= @student.student_class %></td>
+          <td><%= @student.last_name %></td>
+          <td><%= @student.first_name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <table id="star_reading_tests_table" class="table table-striped table-bordered" style="table-layout:fixed">
+      <thead>
+        <tr>
+          <th>Test date</th>
+          <th>Scaled score</th>
+          <th>Percentile rank</th>
+          <th>Literature key ideas and details</th>
+          <th>Literature craft and structure</th>
+          <th>Informational text key ideas and details</th>
+          <th>Language vocabulary acquisition and use</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Student</th>
-      <th>Test date</th>
-      <th>Scaled score</th>
-      <th>Percentile rank</th>
-      <th>Literature key ideas and details</th>
-      <th>Literature craft and structure</th>
-      <th>Informational text key ideas and details</th>
-      <th>Language vocabulary acquisition and use</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @star_reading_tests.each do |star_reading_test| %>
-      <tr>
-        <td><%= star_reading_test.student %></td>
-        <td><%= star_reading_test.test_date %></td>
-        <td><%= star_reading_test.scaled_score %></td>
-        <td><%= star_reading_test.percentile_rank %></td>
-        <td><%= star_reading_test.literature_key_ideas_and_details %></td>
-        <td><%= star_reading_test.literature_craft_and_structure %></td>
-        <td><%= star_reading_test.informational_text_key_ideas_and_details %></td>
-        <td><%= star_reading_test.language_vocabulary_acquisition_and_use %></td>
-        <td><%= link_to 'Show', star_reading_test %></td>
-        <td><%= link_to 'Edit', edit_star_reading_test_path(star_reading_test) %></td>
-        <td><%= link_to 'Destroy', star_reading_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+      <tbody>
+        <% @star_reading_tests.each do |star_reading_test| %>
+          <tr>
+            <td><%= star_reading_test.test_date %></td>
+            <td><%= star_reading_test.scaled_score %></td>
+            <td><%= star_reading_test.percentile_rank %></td>
+            <td><%= star_reading_test.literature_key_ideas_and_details %></td>
+            <td><%= star_reading_test.literature_craft_and_structure %></td>
+            <td><%= star_reading_test.informational_text_key_ideas_and_details %></td>
+            <td><%= star_reading_test.language_vocabulary_acquisition_and_use %></td>
+            <td><%= link_to 'Show', star_reading_test %></td>
+            <td><%= link_to 'Edit', edit_star_reading_test_path(star_reading_test) %></td>
+            <td><%= link_to 'Destroy', star_reading_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <br>
 
 <%= link_to 'New Star Reading Test', new_star_reading_test_path %>
+<%= link_to 'Back', "/star_tests/students" %>

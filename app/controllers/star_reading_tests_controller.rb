@@ -4,7 +4,12 @@ class StarReadingTestsController < ApplicationController
   # GET /star_reading_tests
   # GET /star_reading_tests.json
   def index
-    @star_reading_tests = StarReadingTest.all
+    @student = Student.find(params[:student_id])
+    if @student 
+      @star_reading_tests = @student.star_reading_tests.order('test_date desc')
+    else 
+      @star_reading_tests = StarReadingTest.all
+    end
   end
 
   # GET /star_reading_tests/1

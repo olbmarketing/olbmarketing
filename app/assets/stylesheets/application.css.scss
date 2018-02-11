@@ -109,3 +109,16 @@ div[class$="filter"] label {
    padding: 0 !important;
    margin: 0 !important;
 }
+
+table.star_test_student_tag {
+    border-collapse: collapse;
+}
+
+table.star_test_student_tag th {
+    padding: 5px;
+}
+
+table.star_test_student_tag tr td {
+    padding: 5px;
+    vertical-align: top;
+}

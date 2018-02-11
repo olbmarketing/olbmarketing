@@ -6,6 +6,7 @@ class Student < ApplicationRecord
   has_many :terra_nova_tests, dependent: :destroy
   has_many :star_tests, dependent: :destroy
   has_many :star_math_tests, dependent: :destroy
+  has_many :star_reading_tests, dependent: :destroy
   validates :first_name, :last_name, :school_year, presence: true
   validates :school_year, format: {
       with: /\A\d{4}\-\d{2}\z/,
