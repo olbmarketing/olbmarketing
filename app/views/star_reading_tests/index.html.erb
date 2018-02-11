@@ -49,7 +49,7 @@
             <td><%= star_reading_test.language_vocabulary_acquisition_and_use %></td>
             <td><%= link_to 'Show', star_reading_test %></td>
             <td><%= link_to 'Edit', edit_star_reading_test_path(star_reading_test) %></td>
-            <td><%= link_to 'Destroy', star_reading_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', star_reading_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -57,5 +57,5 @@
   </div>
 <br>
 
-<%= link_to 'New Star Reading Test', new_star_reading_test_path %>
+<%= link_to 'New Star Reading Test', new_star_reading_test_path(student_id: @student.id) %>
 <%= link_to 'Back', "/star_tests/students" %>

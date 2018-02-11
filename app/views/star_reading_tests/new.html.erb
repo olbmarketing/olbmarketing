@@ -1,5 +1,4 @@
-<h1>New Star Reading Test</h1>
+<h1>New Star Reading Test for <%= "#{@star_reading_test.student.first_name} #{@star_reading_test.student.last_name}" %></h1> 
 
 <%= render 'form', star_reading_test: @star_reading_test %>
 
-<%= link_to 'Back', star_reading_tests_path %>

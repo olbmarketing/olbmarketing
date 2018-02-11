@@ -19,7 +19,9 @@ class StarReadingTestsController < ApplicationController
 
   # GET /star_reading_tests/new
   def new
+    student = Student.find(params[:student_id])
     @star_reading_test = StarReadingTest.new
+    @star_reading_test.student = student
   end
 
   # GET /star_reading_tests/1/edit
@@ -33,7 +35,7 @@ class StarReadingTestsController < ApplicationController
 
     respond_to do |format|
       if @star_reading_test.save
-        format.html { redirect_to @star_reading_test, notice: 'Star reading test was successfully created.' }
+        format.html { redirect_to star_reading_tests_url(student_id: @star_reading_test.student.id), notice: 'Star reading test was successfully created.' }
         format.json { render :show, status: :created, location: @star_reading_test }
       else
         format.html { render :new }
@@ -61,7 +63,7 @@ class StarReadingTestsController < ApplicationController
   def destroy
     @star_reading_test.destroy
     respond_to do |format|
-      format.html { redirect_to star_reading_tests_url, notice: 'Star reading test was successfully destroyed.' }
+      format.html { redirect_to star_reading_tests_url(student_id: @star_reading_test.student.id), notice: 'Star reading test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

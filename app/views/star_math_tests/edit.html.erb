@@ -1,6 +1,7 @@
 <h1>Editing Star Math Test</h1>
+<h1>Editing Star Math Test for <%= "#{@star_math_test.student.first_name} #{@star_math_test.student.last_name}" %></h1>
 
 <%= render 'form', star_math_test: @star_math_test %>
 
 <%= link_to 'Show', @star_math_test %> |
-<%= link_to 'Back', star_math_tests_path %>
+<%= link_to 'Back', star_math_tests_path(student_id: @star_math_test.student.id) %>

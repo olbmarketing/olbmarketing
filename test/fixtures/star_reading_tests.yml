@@ -1,20 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  student: one
+  id: 1
+  student_id: 1
   test_date: 2018-02-10
-  scaled_score: 1
-  percentile_rank: 1
+  scaled_score: 400
+  percentile_rank: 80
   literature_key_ideas_and_details: 1
   literature_craft_and_structure: 1
   informational_text_key_ideas_and_details: 1
   language_vocabulary_acquisition_and_use: 1
 
 two:
-  student: two
-  test_date: 2018-02-10
-  scaled_score: 1
-  percentile_rank: 1
+  id: 2
+  student_id: 2
+  test_date: 2018-02-11
+  scaled_score: 500
+  percentile_rank: 60
   literature_key_ideas_and_details: 1
   literature_craft_and_structure: 1
   informational_text_key_ideas_and_details: 1

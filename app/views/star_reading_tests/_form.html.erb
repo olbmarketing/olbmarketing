@@ -11,47 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :student_id %>
-    <%= form.text_field :student_id, id: :star_reading_test_student_id %>
-  </div>
+  <div class="form-new-student">
+    <div class="field">
+      <%= form.label :student_id %>
+      <%= form.text_field :student_id, readonly: true, :class => "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :test_date %>
-    <%= form.date_select :test_date, id: :star_reading_test_test_date %>
-  </div>
+    <div class="field">
+      <%= form.label :test_date %>
+      <%= form.text_field :test_date, :class => "form-control", placeholder: "mm/dd/yyyy" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :scaled_score %>
-    <%= form.number_field :scaled_score, id: :star_reading_test_scaled_score %>
-  </div>
+    <div class="field">
+      <%= form.label :scaled_score %>
+      <%= form.number_field :scaled_score, :class => "form-control", :placeholder=>"Scaled Score" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :percentile_rank %>
-    <%= form.number_field :percentile_rank, id: :star_reading_test_percentile_rank %>
-  </div>
+    <div class="field">
+      <%= form.label :percentile_rank %>
+      <%= form.number_field :percentile_rank, class: "form-control", placeholder: "Percentile Rank" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :literature_key_ideas_and_details %>
-    <%= form.number_field :literature_key_ideas_and_details, id: :star_reading_test_literature_key_ideas_and_details %>
-  </div>
+    <div class="field">
+      <%= form.label :literature_key_ideas_and_details %>
+      <%= form.number_field :literature_key_ideas_and_details, class: "form-control", placeholder: "Literature Key Ideas and Details" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :literature_craft_and_structure %>
-    <%= form.number_field :literature_craft_and_structure, id: :star_reading_test_literature_craft_and_structure %>
-  </div>
+    <div class="field">
+      <%= form.label :literature_craft_and_structure %>
+      <%= form.number_field :literature_craft_and_structure, class: "form-control", placeholder: "Literature Craft and Structure" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :informational_text_key_ideas_and_details %>
-    <%= form.number_field :informational_text_key_ideas_and_details, id: :star_reading_test_informational_text_key_ideas_and_details %>
-  </div>
+    <div class="field">
+      <%= form.label :informational_text_key_ideas_and_details %>
+      <%= form.number_field :informational_text_key_ideas_and_details, class: "form-control", placeholder: "Informational Text Key Ideas and Details" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :language_vocabulary_acquisition_and_use %>
-    <%= form.number_field :language_vocabulary_acquisition_and_use, id: :star_reading_test_language_vocabulary_acquisition_and_use %>
-  </div>
+    <div class="field">
+      <%= form.label :language_vocabulary_acquisition_and_use %>
+      <%= form.number_field :language_vocabulary_acquisition_and_use, class: "form-control", placeholder: "Language Vocabulary Acquisition and Use" %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', star_math_tests_path(student_id: @star_reading_test.student.id), :class=>"btn btn-md btn-default" %>
+    </div>
   </div>
 <% end %>
