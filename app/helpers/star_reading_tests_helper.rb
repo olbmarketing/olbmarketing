@@ -1,0 +1,2 @@
+module StarReadingTestsHelper
+end

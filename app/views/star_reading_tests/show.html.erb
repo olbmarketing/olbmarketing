@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @star_reading_test.student %>
+</p>
+
+<p>
+  <strong>Test date:</strong>
+  <%= @star_reading_test.test_date %>
+</p>
+
+<p>
+  <strong>Scaled score:</strong>
+  <%= @star_reading_test.scaled_score %>
+</p>
+
+<p>
+  <strong>Percentile rank:</strong>
+  <%= @star_reading_test.percentile_rank %>
+</p>
+
+<p>
+  <strong>Literature key ideas and details:</strong>
+  <%= @star_reading_test.literature_key_ideas_and_details %>
+</p>
+
+<p>
+  <strong>Literature craft and structure:</strong>
+  <%= @star_reading_test.literature_craft_and_structure %>
+</p>
+
+<p>
+  <strong>Informational text key ideas and details:</strong>
+  <%= @star_reading_test.informational_text_key_ideas_and_details %>
+</p>
+
+<p>
+  <strong>Language vocabulary acquisition and use:</strong>
+  <%= @star_reading_test.language_vocabulary_acquisition_and_use %>
+</p>
+
+<%= link_to 'Edit', edit_star_reading_test_path(@star_reading_test) %> |
+<%= link_to 'Back', star_reading_tests_path %>

@@ -1,0 +1,57 @@
+<%= form_with(model: star_reading_test, local: true) do |form| %>
+  <% if star_reading_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(star_reading_test.errors.count, "error") %> prohibited this star_reading_test from being saved:</h2>
+
+      <ul>
+      <% star_reading_test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.text_field :student_id, id: :star_reading_test_student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :test_date %>
+    <%= form.date_select :test_date, id: :star_reading_test_test_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scaled_score %>
+    <%= form.number_field :scaled_score, id: :star_reading_test_scaled_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percentile_rank %>
+    <%= form.number_field :percentile_rank, id: :star_reading_test_percentile_rank %>
+  </div>
+
+  <div class="field">
+    <%= form.label :literature_key_ideas_and_details %>
+    <%= form.number_field :literature_key_ideas_and_details, id: :star_reading_test_literature_key_ideas_and_details %>
+  </div>
+
+  <div class="field">
+    <%= form.label :literature_craft_and_structure %>
+    <%= form.number_field :literature_craft_and_structure, id: :star_reading_test_literature_craft_and_structure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :informational_text_key_ideas_and_details %>
+    <%= form.number_field :informational_text_key_ideas_and_details, id: :star_reading_test_informational_text_key_ideas_and_details %>
+  </div>
+
+  <div class="field">
+    <%= form.label :language_vocabulary_acquisition_and_use %>
+    <%= form.number_field :language_vocabulary_acquisition_and_use, id: :star_reading_test_language_vocabulary_acquisition_and_use %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

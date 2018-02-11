@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :star_reading_tests
   resources :exit_surveys
   # need to be placed before resources :star_tests 
   get 'star_tests/download_report_docx'
