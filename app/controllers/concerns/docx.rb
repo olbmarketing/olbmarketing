@@ -132,4 +132,42 @@ module Docx
     change_gender gender, main_doc
   end 
 
+  def write_STAR_chart_doc(chart_doc, tests)
+    first_name = tests.first.student.get_first_name
+    last_name = tests.first.student.last_name
+    # update Child name in chart 
+    change_docx_text(chart_doc, "Child name", "#{first_name} #{last_name}", "a:t")
+    test_count = chart_doc.xpath('//c:ser[descendant::c:cat]').count  
+    for i in 0...tests.count 
+      test = tests[i]
+      # only update test score for available test date count 
+      if i < test_count
+        # set test date label 
+        chart_doc.at_xpath("//c:ser[descendant::c:cat][#{i+1}]/c:tx/c:strRef/c:strCache/c:pt/c:v").content = test.test_date.strftime('%m/%d/%Y')
+        # get test categorys 
+        test_category_array = []
+        chart_doc.xpath("//c:ser[#{i+1}]/c:cat/c:strRef/c:strCache/c:pt/c:v").each do |node|
+          ser_node = node.parent.parent.parent.parent.parent
+          
+          test_category = node.content
+          test_category_array << test_category
+          test_category_index = test_category_array.count
+          
+          test_category_value_node = ser_node.at_xpath("(./c:val/c:numRef/c:numCache/c:pt/c:v)[#{test_category_index}]")
+          test_category_value_node.content = test[test_category.downcase.gsub(" ", "_").gsub(":", "")]
+        end  
+      end 
+    end 
+  
+    # remove extra test dates (columns)
+    if tests.count < test_count
+      (test_count - tests.count).times do 
+        chart_doc.xpath('//c:ser[descendant::c:cat]').last.remove
+      end 
+    end 
+  
+    # fix order tag 
+    fix_order_tag chart_doc
+  end
+
 end 

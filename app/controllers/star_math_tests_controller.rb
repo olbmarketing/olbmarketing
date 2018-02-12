@@ -73,7 +73,7 @@ class StarMathTestsController < ApplicationController
   def download_report_docx
     @student = Student.find(params[:student_id])
     if @student 
-      @star_math_tests = @student.star_math_tests.order('test_date')
+      @star_math_tests = @student.star_math_tests.order('test_date desc')
     end 
     create_report(params[:gender])
     send_file(
@@ -100,7 +100,7 @@ class StarMathTestsController < ApplicationController
 
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
-      write_chart_doc(chart_doc)
+      write_STAR_chart_doc(chart_doc, @star_math_tests.reverse_order)
 
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc, gender)
@@ -119,45 +119,6 @@ class StarMathTestsController < ApplicationController
       write_STAR_main_doc_texts(main_doc, gender, test_count, latest_score, old_score, first_name, last_name)
 
       remove_highlight main_doc
-    end
-
-    def write_chart_doc (chart_doc)
-      first_name = @star_math_tests.first.student.get_first_name
-      last_name = @star_math_tests.first.student.last_name
-      # update Child name in chart 
-      change_docx_text(chart_doc, "Child name", "#{first_name} #{last_name}", "a:t")
-      test_count = chart_doc.xpath('//c:ser[descendant::c:cat]').count  
-      for i in 0...@star_math_tests.count 
-        test = @star_math_tests[i]
-        # only update test score for available test date count 
-        if i < test_count
-          # set test date label 
-          chart_doc.at_xpath("//c:ser[descendant::c:cat][#{i+1}]/c:tx/c:strRef/c:strCache/c:pt/c:v").content = test.test_date.strftime('%m/%d/%Y')
-          # get test categorys 
-          test_category_array = []
-          chart_doc.xpath("//c:ser[#{i+1}]/c:cat/c:strRef/c:strCache/c:pt/c:v").each do |node|
-            ser_node = node.parent.parent.parent.parent.parent
-            
-            test_category = node.content
-            test_category_array << test_category
-            test_category_index = test_category_array.count
-            
-            test_category_value_node = ser_node.at_xpath("(./c:val/c:numRef/c:numCache/c:pt/c:v)[#{test_category_index}]")
-            test_category_value_node.content = test[test_category.downcase.gsub(" ", "_")]
-          end  
-        end 
-        
-      end 
-
-      # remove extra test dates (columns)
-      if @star_math_tests.count < test_count
-        (test_count - @star_math_tests.count).times do 
-          chart_doc.xpath('//c:ser[descendant::c:cat]').last.remove
-        end 
-      end 
-
-      # fix order tag 
-      fix_order_tag chart_doc
     end
 
 end
