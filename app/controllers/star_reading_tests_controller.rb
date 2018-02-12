@@ -74,8 +74,7 @@ class StarReadingTestsController < ApplicationController
     if @student 
       @star_reading_tests = @student.star_reading_tests.order('test_date desc')
     end 
-    #create_report(params[:gender])
-    create_report('')
+    create_report(params[:gender])
     send_file(
       "#{Rails.root}/app/assets/STAR_testing/STAR_Reading_new.docx", 
       filename: "#{@student.get_first_name}_#{@student.last_name}_STAR_Reading.docx", 
