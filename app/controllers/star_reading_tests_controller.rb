@@ -119,6 +119,6 @@ class StarReadingTestsController < ApplicationController
 
       change_docx_text(main_doc, 'percentile_rank', "#{@star_reading_tests.first.percentile_rank}")
 
-      #remove_highlight main_doc
+      remove_highlight main_doc
     end
 end
