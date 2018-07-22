@@ -16,6 +16,14 @@ class StudentsController < ApplicationController
       @school_year = current_school_year
     end 
     #@students = Student.all
+    respond_to do |format|
+      format.html
+      format.xls {
+        filename = "#{@school_year}_students"
+        response.headers['Content-Disposition'] = 'attachment; filename="' + filename + '.xls"'
+        render 
+      }
+    end
   end
 
   # GET /students/1

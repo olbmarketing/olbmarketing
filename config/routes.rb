@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   
   get 'static_pages/dashboard'
   get 'static_pages/charts'
+  get 'static_pages/download_students'
   post 'static_pages/charts'
 
   resources :students do

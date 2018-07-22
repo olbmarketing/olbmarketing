@@ -4,7 +4,11 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Students">
+  <% if @school_year %>
+    <Worksheet ss:Name="<%= @school_year %>">
+  <% else %>
+    <Worksheet ss:Name="Students">
+  <% end %>
     <Table>
       <Row>
         <Cell><Data ss:Type="String">First Name</Data></Cell>

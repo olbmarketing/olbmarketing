@@ -1,0 +1,16 @@
+<h2>
+Download Students
+</h2>
+
+<div>
+
+  <ul>
+    <% Student.get_past_school_years(10, Time.now).each do |school_year| %>
+    <li>
+      <%= link_to school_year, students_path(format: "xls", school_year: school_year)  %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to 'Back', '/static_pages/dashboard' %>
