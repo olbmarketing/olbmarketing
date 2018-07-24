@@ -66,7 +66,7 @@ gem 'roo', '~> 2.4.0'
 # to zip and unzip docx file
 gem 'rubyzip'
 # to parse docx xml file
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.8.2'
 # for testing
 gem 'rails-controller-testing'
 # chart making stuff
