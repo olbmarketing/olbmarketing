@@ -23,6 +23,14 @@ class Student < ApplicationRecord
     return [self.address, self.city, self.state, self.zip].compact.reject(&:empty?).join(', ')
   end
 
+  def self.get_valid_fields
+    return ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "address2", "city2", "state2", "zip2", "email1", "email2", "phone1", "phone2", "note", "K_First", "reason"]
+  end
+
+  def self.get_display_fields
+    return ["First Name", "Last Name", "School Year", "New or Return", "Student Class", "Catholic", "Parish", "Race", "Resides With", "Referred By", "Student Transfer", "Pre K to K", "Father Name", "Mother Name", "Address", "City", "State", "Zip", "Address2", "City2", "State2", "Zip2", "Father Email", "Mother Email", "Phone1", "Phone2", "Note", "K to 1st", "Reason"]
+  end 
+
   def self.get_students_from_csv(my_csv)
     students = []
     # a block that run through a loop for each row in the csv file
@@ -50,7 +58,7 @@ class Student < ApplicationRecord
       csv_str = file.read
     end
     csv_str = Student.split_parent_column csv_str
-    valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "address2", "city2", "state2", "zip2", "phone1", "phone2", "reason", "K_First"]
+    valid_column_names = Student.get_valid_fields
     header_convert_lambda = lambda do |name|
       new_name = name
       if !(valid_column_names.include? name)
@@ -93,9 +101,9 @@ class Student < ApplicationRecord
 
    def self.to_csv(options = {})
 	  CSV.generate(options) do |csv|
-	    csv << column_names
-	    all.each do |student|
-	      csv << student.attributes.values_at(*column_names)
+	    csv << Student.get_display_fields
+	    Student.all.each do |student|
+	      csv << student.attributes.values_at(*(Student.get_valid_fields))
 	    end
 	  end
 	end

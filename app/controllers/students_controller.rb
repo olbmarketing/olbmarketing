@@ -1,11 +1,13 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-  @@valid_column_names = ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "email1", "email2", "note", "alumni", "reason", "K_First", "address2", "city2", "state2", "zip2", "phone1", "phone2"]
+  @@valid_column_names = Student.get_valid_fields
 
   # GET /students
   # GET /students.json
   def index
+    @valid_fields = @@valid_column_names 
+    @display_fields = Student.get_display_fields
     if params[:school_year]
       @students = Student.where(school_year: params[:school_year])
       @school_year = params[:school_year]
@@ -22,6 +24,9 @@ class StudentsController < ApplicationController
         filename = "#{@school_year}_students"
         response.headers['Content-Disposition'] = 'attachment; filename="' + filename + '.xls"'
         render 
+      }
+      format.csv {
+        send_data @students.to_csv
       }
     end
   end
