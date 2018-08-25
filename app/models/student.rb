@@ -31,6 +31,16 @@ class Student < ApplicationRecord
     return ["First Name", "Last Name", "School Year", "New or Return", "Reason for New or Return", "Toddler to TTT", "TTT to PS", "Reason: TTT to PS", "PS to PreK", "Reason: PS to PreK", "Pre K to K", "Reason: PreK to K", "K to 1st", "Student Class", "Catholic", "Parish", "Race", "Resides With", "Referred By", "Student Transfer", "Father Name", "Mother Name", "Address", "City", "State", "Zip", "Address2", "City2", "State2", "Zip2", "Father Email", "Mother Email", "Phone1", "Phone2", "Note", "Reason"]
   end 
 
+  def self.get_reason_fields
+    my_hash = {}
+    reason_valid_fields = Student.get_valid_fields.select {|item| /^reason/i.match item}
+    reason_display_fields = Student.get_display_fields.select {|item| /^reason/i.match item}
+    reason_valid_fields.each_with_index do |item, index|
+      my_hash[item] = reason_display_fields[index]
+    end 
+    my_hash
+  end 
+
   def self.get_students_from_csv(my_csv)
     students = []
     # a block that run through a loop for each row in the csv file

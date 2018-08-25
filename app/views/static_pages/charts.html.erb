@@ -239,25 +239,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-6">
-      <%= pie_chart @students.group(:reason).count,
-      library: {
-        title: {
-            text: 'Reason to Where Pre-K Students Attended K for ' + params[:q] + ' SY'
-          },
-          plotOptions: {
-            pie: {
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-              }
-            }
-          }
-        }
-      %>
-    </div>
-  </div>
+  <% Student.get_reason_fields.each do |my_field, my_display_field| %>
+    <%= render 'pie_chart_partial', students: @students, valid_field: my_field, display_field: my_display_field %>
+  <% end %>
 
   <div class="row">
     <div class="col-xs-6">

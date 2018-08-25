@@ -1,0 +1,19 @@
+  <div class="row">
+    <div class="col-xs-6">
+      <%= pie_chart students.group(valid_field.to_sym).count,
+      library: {
+        title: {
+            text: display_field + ' for ' + params[:q] + ' SY'
+          },
+          plotOptions: {
+            pie: {
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+            }
+          }
+        }
+      %>
+    </div>
+  </div>
