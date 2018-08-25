@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211004800) do
+ActiveRecord::Schema.define(version: 20180819221457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,13 @@ ActiveRecord::Schema.define(version: 20180211004800) do
     t.string "phone2"
     t.float "latitude"
     t.float "longitude"
+    t.string "reason_new_or_return"
+    t.string "toddler_to_ttt"
+    t.string "ttt_to_ps"
+    t.string "reason_ttt_to_ps"
+    t.string "ps_to_prek"
+    t.string "reason_ps_to_prek"
+    t.string "reason_prek_to_k"
   end
 
   create_table "terra_nova_test_benchmarks", id: :serial, force: :cascade do |t|

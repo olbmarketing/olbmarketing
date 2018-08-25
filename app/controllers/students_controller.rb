@@ -1,13 +1,12 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_data_fields, only: [:index, :show, :edit, :update, :new, :import]
 
   @@valid_column_names = Student.get_valid_fields
 
   # GET /students
   # GET /students.json
   def index
-    @valid_fields = @@valid_column_names 
-    @display_fields = Student.get_display_fields
     if params[:school_year]
       @students = Student.where(school_year: params[:school_year])
       @school_year = params[:school_year]
@@ -121,12 +120,14 @@ class StudentsController < ApplicationController
           @upload_errors << "At row #{index + 2}: #{error_msg}"
         else 
           matched_student = query_result.first 
+          matched_student_update = false 
           @@valid_column_names.each do |cn|
             if s[cn] != nil && s[cn] != matched_student[cn]
               matched_student[cn] = s[cn]
-              update_students << matched_student
+              matched_student_update = true
             end 
           end 
+          update_students << matched_student if matched_student_update
         end 
       else # needs to insert 
         if s.invalid? 
@@ -158,7 +159,8 @@ class StudentsController < ApplicationController
         
         format.html { redirect_to students_url, flash: notice_hash}
       else
-        @students = Student.all
+        current_school_year = Student.get_school_year(Time.now)
+        @students = Student.where(school_year: current_school_year)
         format.html { render :index }
         format.json { render json: @upload_errors, status: :unprocessable_entity }
       end
@@ -180,9 +182,14 @@ private
     @student = Student.find(params[:id])
   end
 
+  def set_data_fields
+    @valid_fields = @@valid_column_names 
+    @display_fields = Student.get_display_fields
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2, :phone1, :phone2)
+    params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2, :phone1, :phone2, :reason_new_or_return, :toddler_to_ttt, :ttt_to_ps, :reason_ttt_to_ps, :ps_to_prek, :reason_ps_to_prek, :reason_prek_to_k)
   end
 
   def remove_extra_columns_for_csv(my_csv)

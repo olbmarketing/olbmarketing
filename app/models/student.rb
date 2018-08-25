@@ -24,11 +24,11 @@ class Student < ApplicationRecord
   end
 
   def self.get_valid_fields
-    return ["first_name", "last_name", "school_year", "new_or_return", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "preK_to_K", "father_name", "mother_name", "address", "city", "state", "zip", "address2", "city2", "state2", "zip2", "email1", "email2", "phone1", "phone2", "note", "K_First", "reason"]
+    return ["first_name", "last_name", "school_year", "new_or_return", "reason_new_or_return", "toddler_to_ttt", "ttt_to_ps", "reason_ttt_to_ps", "ps_to_prek", "reason_ps_to_prek", "preK_to_K", "reason_prek_to_k", "K_First", "student_class", "catholic", "parish", "race", "resides_with", "reference_from", "student_transfer", "father_name", "mother_name", "address", "city", "state", "zip", "address2", "city2", "state2", "zip2", "email1", "email2", "phone1", "phone2", "note", "reason"]
   end
 
   def self.get_display_fields
-    return ["First Name", "Last Name", "School Year", "New or Return", "Student Class", "Catholic", "Parish", "Race", "Resides With", "Referred By", "Student Transfer", "Pre K to K", "Father Name", "Mother Name", "Address", "City", "State", "Zip", "Address2", "City2", "State2", "Zip2", "Father Email", "Mother Email", "Phone1", "Phone2", "Note", "K to 1st", "Reason"]
+    return ["First Name", "Last Name", "School Year", "New or Return", "Reason for New or Return", "Toddler to TTT", "TTT to PS", "Reason: TTT to PS", "PS to PreK", "Reason: PS to PreK", "Pre K to K", "Reason: PreK to K", "K to 1st", "Student Class", "Catholic", "Parish", "Race", "Resides With", "Referred By", "Student Transfer", "Father Name", "Mother Name", "Address", "City", "State", "Zip", "Address2", "City2", "State2", "Zip2", "Father Email", "Mother Email", "Phone1", "Phone2", "Note", "Reason"]
   end 
 
   def self.get_students_from_csv(my_csv)
@@ -63,7 +63,7 @@ class Student < ApplicationRecord
       new_name = name
       if !(valid_column_names.include? name)
         # change column names to meet backend needs
-        new_name = name.strip.downcase.gsub " ", "_"
+        new_name = name.strip.downcase.gsub(" ", "_").gsub(":", "")
         new_name = "last_name" if new_name == "student_last_name"
         new_name = "first_name" if new_name == "first"
         new_name = "last_name" if new_name == "last"
@@ -92,6 +92,7 @@ class Student < ApplicationRecord
         new_name  = "note" if new_name == "notes"
         new_name  = "K_First" if new_name == "K to 1st Grade".strip.downcase.gsub(" ", "_")
         new_name  = "K_First" if new_name == "K to 1st".strip.downcase.gsub(" ", "_")
+        new_name = "reason_new_or_return" if new_name == "Reason for New or Return".strip.downcase.gsub(" ", "_")
       end
       new_name
     end

@@ -1,85 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School Year: </strong>
-  <%= @student.school_year %>
-</p>
 
-<p>
-  <strong>Student Type: </strong>
-  <%= @student.new_or_return %>
-</p>
-
-<p>
-  <strong>Student Class: </strong>
-  <%= @student.student_class %>
-</p>
-
-<p>
-  <strong>First Name: </strong>
-  <%= @student.first_name %>
-</p>
-
-<p>
-  <strong>Last Name: </strong>
-  <%= @student.last_name %>
-</p>
-
-<p>
-  <strong>Father's Name: </strong>
-  <%= @student.father_name %>
-</p>
-<p><strong>Mother's name: </strong><%= @student.mother_name %></p>
-<p><strong>Address: </strong><%= @student.address %></p>
-<p><strong>City: </strong><%= @student.city %></p>
-<p><strong>State: </strong><%= @student.state %></p>
-<p><strong>Zip: </strong><%= @student.zip %></p>
-<p><strong>Address2: </strong><%= @student.address2 %></p>
-<p><strong>City2: </strong><%= @student.city2 %></p>
-<p><strong>State2: </strong><%= @student.state2 %></p>
-<p><strong>Zip2: </strong><%= @student.zip2 %></p>
-<p><strong>Father's Email: </strong><%= @student.email1 %></p>
-<p><strong>Mother's Email: </strong><%= @student.email2 %></p>
-<p><strong>Mother's Email: </strong><%= @student.phone1 %></p>
-<p><strong>Mother's Email: </strong><%= @student.phone2 %></p>
-
-<p>
-  <strong>Catholic: </strong>
-  <%= @student.catholic %>
-</p>
-
-<p>
-  <strong>Parish: </strong>
-  <%= @student.parish %>
-</p>
-
-<p>
-  <strong>Race: </strong>
-  <%= @student.race %>
-</p>
-
-<p>
-  <strong>Resides with: </strong>
-  <%= @student.resides_with %>
-</p>
-
-<p>
-  <strong>Referred By: </strong>
-  <%= @student.reference_from %>
-</p>
-
-<p>
-  <strong>Prek to K: </strong>
-  <%= @student.preK_to_K %>
-</p>
-
-<p>
-  <strong>Student Transfer: </strong>
-  <%= @student.student_transfer %>
-</p>
-<p><strong>Note: </strong><%= @student.note %></p>
-<p><strong>Reasons for Pre-K to K: </strong><%= @student.reason %></p>
-<p><strong>K to 1st: </strong><%= @student.K_First %></p>
-
+<% @display_fields.each_with_index do |field_name, index| %>
+  <p>
+    <strong><%= @display_fields[index] %>: </strong>
+    <%= @student[@valid_fields[index]] %>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
