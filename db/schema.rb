@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180819221457) do
+ActiveRecord::Schema.define(version: 20181003015802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 20180819221457) do
     t.string "ps_to_prek"
     t.string "reason_ps_to_prek"
     t.string "reason_prek_to_k"
+    t.string "gender"
   end
 
   create_table "terra_nova_test_benchmarks", id: :serial, force: :cascade do |t|
