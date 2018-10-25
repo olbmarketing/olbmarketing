@@ -189,7 +189,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :school_year, :new_or_return, :student_class, :catholic, :parish, :race, :resides_with, :reference_from, :student_transfer, :preK_to_K, :father_name, :mother_name, :address, :city, :state, :zip, :email1, :email2, :note, :alumni, :reason, :K_First, :address2, :city2, :state2, :zip2, :phone1, :phone2, :reason_new_or_return, :toddler_to_ttt, :ttt_to_ps, :reason_ttt_to_ps, :ps_to_prek, :reason_ps_to_prek, :reason_prek_to_k)
+    params.require(:student).permit(@@valid_column_names.map{ | x | x.to_sym})
   end
 
   def remove_extra_columns_for_csv(my_csv)

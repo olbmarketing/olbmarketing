@@ -203,6 +203,11 @@
             <%= f.text_field :reason,:class => "form-control", :placeholder=>"Reasons for Pre-K to K", :autofocus=>"" %>
         </div>
 
+        <div class="field">
+            <%= f.label :gender %>
+            <%= f.select :gender, ['M', 'F'], {}, {class: "form-control"} %>
+        </div>
+
         <div class="actions">
             <div class="buttons">
                 <%= f.submit "Save", :class=>"btn btn-primary" %>
