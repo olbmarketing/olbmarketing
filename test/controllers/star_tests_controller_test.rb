@@ -124,5 +124,13 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     end 
     
   end 
+
+  test "should get all STAR Literarcy reports" do 
+    #get star_tests_students_url(student_id: @first_student.id)
+    get "/star_tests/all_star_literarcy_download"
+    assert File.directory?('app/assets/STAR_testing/star_literarcy_all'), 'should create new zip file'
+    #assert_file 'app/controllers/star_tests_controller.rb'
+    assert_response :success
+  end 
  
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :exit_surveys
   # need to be placed before resources :star_tests 
   get 'star_tests/download_report_docx'
+  get 'star_tests/all_star_literarcy_download'
   get 'star_reading_tests/download_report_docx'
   get 'star_math_tests/download_report_docx'
   get 'star_tests/report' => 'star_tests#report'

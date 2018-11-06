@@ -108,6 +108,16 @@ class StarTestsController < ApplicationController
     #@star_tests = StarTest.all
   end 
 
+  # GET /star_tests/all_star_literarcy_download 
+  def all_star_literarcy_download
+    File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
+    #File.delete 'app/assets/STAR_testing/abc.zip'
+    respond_to do |format|
+      format.html { head :no_content }
+      format.json { head :no_content }
+    end
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_star_test
