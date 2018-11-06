@@ -81,3 +81,6 @@ gem 'geocoder'
 
 # address minitest bug with rails 
 gem 'minitest', '~> 5.10.3'
+
+# fix vulnerability 
+gem 'loofah', '~> 2.2', '>= 2.2.3'
