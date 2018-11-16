@@ -84,3 +84,4 @@ gem 'minitest', '~> 5.10.3'
 
 # fix vulnerability 
 gem 'loofah', '~> 2.2', '>= 2.2.3'
+gem 'rack', '>= 2.0.6'
