@@ -110,7 +110,18 @@ class StarTestsController < ApplicationController
 
   # GET /star_tests/all_star_literarcy_download 
   def all_star_literarcy_download
-    File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
+    #File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
+    if !File.directory?('app/assets/STAR_testing/star_literarcy_all')
+      Dir.mkdir 'app/assets/STAR_testing/star_literarcy_all'
+    end 
+    Student.all.each do |student|
+      
+    end 
+    @student = Student.all.first
+    if @student 
+      @star_tests = @student.star_tests.order('test_date')
+    end 
+    create_report(@student.gender, "#{Rails.root}/app/assets/STAR_testing/star_literarcy_all/#{@student.first_name}_#{@student.last_name}.docx")
     #File.delete 'app/assets/STAR_testing/abc.zip'
     respond_to do |format|
       format.html { head :no_content }
@@ -129,14 +140,18 @@ class StarTestsController < ApplicationController
       params.require(:star_test).permit(:student_id, :test_date, :scaled_score, :developmental_stage, :alphabetic_principle, :concept_of_word, :visual_discrimination, :phonemic_awareness, :phonics, :structural_analysis, :vocabulary, :sentence_level_comprehension, :paragraph_level_comprehension, :early_numeracy)
     end
 
-    def create_report(gender)
+    def create_report(gender, location = nil)
       myz = Zip::File.open("#{Rails.root}/app/assets/STAR_testing/STAR_template.docx");
       xml_str = myz.read("word/charts/chart1.xml");
       chart_doc = Nokogiri::XML(xml_str);
       write_chart_doc(chart_doc)
       main_doc = Nokogiri::XML(myz.read('word/document.xml'));
       write_main_doc(main_doc, gender)
-      write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/STAR_Literacy_new.docx")
+      if location 
+        write_report_file(myz, [chart_doc], main_doc, location)
+      else 
+        write_report_file(myz, [chart_doc], main_doc, "#{Rails.root}/app/assets/STAR_testing/STAR_Literacy_new.docx")
+      end
 
     end 
 
