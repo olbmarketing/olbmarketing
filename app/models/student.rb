@@ -164,6 +164,10 @@ class Student < ApplicationRecord
     result
   end 
 
+  def self.get_students_by_sy(school_year)
+    Student.where(school_year: school_year).order('last_name')
+  end 
+
   # sometimes first name can contain nicknames. want to get legal first name only
   def get_first_name
     input_name = send(:first_name)

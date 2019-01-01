@@ -60,3 +60,17 @@ four:
   last_name: lname4
   school_year: 2015-16
   address: MyString
+
+five: 
+  id: 5
+  first_name: fname4
+  last_name: lname4
+  school_year: <%= Student.get_school_year(Time.now) %>
+  address: MyString
+
+six: 
+  id: 6
+  first_name: fname4
+  last_name: lname4
+  school_year: <%= Student.get_school_year(Time.now) %>
+  address: MyString
