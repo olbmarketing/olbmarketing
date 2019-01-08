@@ -4,6 +4,8 @@ class StarTestsController < ApplicationController
   before_action :set_star_test, only: [:show, :edit, :update, :destroy]
   include Docx
 
+  @@student_filter = ['amprek', 'pmprek', 'k', 'pm prek']
+
   # GET /star_tests
   # GET /star_tests.json
   def index
@@ -77,7 +79,7 @@ class StarTestsController < ApplicationController
     @star_tests = StarTest.all
     current_school_year = Student.get_school_year(Time.now)
     # since only students of certain classes take star tests 
-    student_filter = ['amprek', 'pmprek', 'k', 'pm prek']
+    student_filter = @@student_filter
     if params[:school_year]
       @school_year = params[:school_year]
       @students = Student.where('lower(student_class) in (?)', student_filter).where(school_year: @school_year).order('last_name')
@@ -113,15 +115,18 @@ class StarTestsController < ApplicationController
     #File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
     if !File.directory?('app/assets/STAR_testing/star_literarcy_all')
       Dir.mkdir 'app/assets/STAR_testing/star_literarcy_all'
+    else 
+      Dir['app/assets/STAR_testing/star_literarcy_all/*'].each do |file_path|
+        File.delete file_path
+      end 
     end 
-    Student.all.each do |student|
-      
+    school_year = params[:school_year] ? params[:school_year] : Student.get_school_year(Time.now)
+    Student.get_students_by_sy(school_year).where('lower(student_class) in (?)', @@student_filter).each do |student|
+      @star_tests = student.star_tests.order('test_date')
+      if @star_tests.count > 0 
+        create_report(student.gender, "#{Rails.root}/app/assets/STAR_testing/star_literarcy_all/#{student.get_first_name}_#{student.last_name}.docx")
+      end
     end 
-    @student = Student.all.first
-    if @student 
-      @star_tests = @student.star_tests.order('test_date')
-    end 
-    create_report(@student.gender, "#{Rails.root}/app/assets/STAR_testing/star_literarcy_all/#{@student.first_name}_#{@student.last_name}.docx")
     #File.delete 'app/assets/STAR_testing/abc.zip'
     respond_to do |format|
       format.html { head :no_content }

@@ -77,6 +77,10 @@ class StudentTest < ActiveSupport::TestCase
     student.first_name = "Mary-Maginn"
     result = student.get_first_name
     assert_equal "Mary-Maginn", result
+    # test single quote 
+    student.first_name = "Danielle 'Dani'"
+    result = student.get_first_name
+    assert_equal "Danielle", result
   end 
 
   test "should get school year" do 

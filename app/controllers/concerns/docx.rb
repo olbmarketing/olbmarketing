@@ -90,7 +90,7 @@ module Docx
   end 
 
   def change_gender(gender, main_doc)
-    if gender == "girl"
+    if gender == "girl" || gender == 'F'
       change_docx_text(main_doc, 'he_she', 'she')
       change_docx_text(main_doc, 'He_She', 'She')
       change_docx_text(main_doc, 'his_her', 'her')

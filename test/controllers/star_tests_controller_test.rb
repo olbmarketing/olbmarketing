@@ -4,7 +4,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   fixtures :users
   setup do
     @star_test = star_tests(:one)
-    @first_student = students(:one)
+    @first_student = students(:five)
     @second_student = students(:two)
     @new_star_test = {
       student: @first_student,
@@ -23,6 +23,14 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
       early_numeracy: 94
     }
     login_setup
+
+    if File.directory?('app/assets/STAR_testing/star_literarcy_all')
+      Dir['app/assets/STAR_testing/star_literarcy_all/*'].each do |file_path|
+        File.delete file_path
+      end 
+      Dir.delete 'app/assets/STAR_testing/star_literarcy_all'
+    end 
+
   end
 
   test "should get index" do
@@ -128,14 +136,16 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   test "should get all STAR Literarcy reports" do 
     #get star_tests_students_url(student_id: @first_student.id)
     get "/star_tests/all_star_literarcy_download"
-    # should create new folder 
-    # new folder should contailn one file abc.docx
-    # new folder should contain all files 
+    # should create new folder --
+    # new folder should contailn one file abc.docx -- 
+    # fname1_lname1.docx should get correct gender --
+    # new folder should contain all files --
     # should create zip file 
     # should return zip file
     assert File.directory?('app/assets/STAR_testing/star_literarcy_all'), 'should create new folder'
-    assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname1_lname1.docx'), 'should create fname1_lname1.docx'
-    assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname2_lname2.docx'), 'should create fname2_lname2.docx'
+    assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname5_lname5.docx'), 'should create fname1_lname1.docx'
+    assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname6_lname6.docx'), 'should create fname2_lname2.docx'
+    assert_equal 2, Dir['app/assets/STAR_testing/star_literarcy_all/*'].count, 'should create 2 files only'
     #assert_file 'app/controllers/star_tests_controller.rb'
     assert_response :success
   end 

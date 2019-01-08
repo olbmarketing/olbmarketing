@@ -50,8 +50,8 @@ two:
 
 three:
   id: 3
-  first_name: fname1
-  last_name: lname1
+  first_name: fname3
+  last_name: lname3
   school_year: 2015-16
 
 four:
@@ -61,16 +61,39 @@ four:
   school_year: 2015-16
   address: MyString
 
-five: 
+five:
   id: 5
-  first_name: fname4
-  last_name: lname4
+  first_name: fname5
+  last_name: lname5
   school_year: <%= Student.get_school_year(Time.now) %>
+  student_class: amprek
   address: MyString
+  student_class: amprek
+  gender: F
 
-six: 
+six:
   id: 6
-  first_name: fname4
-  last_name: lname4
+  first_name: fname6
+  last_name: lname6
   school_year: <%= Student.get_school_year(Time.now) %>
   address: MyString
+  student_class: K
+  gender: M
+
+seven:
+  id: 7
+  first_name: fname7
+  last_name: lname7
+  school_year: <%= Student.get_school_year(Time.now) %>
+  address: MyString
+  student_class: Toddler
+  gender: M
+  
+eight:
+  id: 8
+  first_name: fname8
+  last_name: lname8
+  school_year: <%= Student.get_school_year(Time.now) %>
+  address: MyString
+  student_class: amprek
+  gender: M

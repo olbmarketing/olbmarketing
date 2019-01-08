@@ -174,6 +174,8 @@ class Student < ApplicationRecord
     result = input_name
     if input_name.split("'").count > 1
       result = input_name.split("'")[0].strip
+    elsif input_name.split('"').count > 1
+      result = input_name.split('"')[0].strip
     end
     result
   end
