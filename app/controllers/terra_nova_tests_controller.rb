@@ -79,7 +79,7 @@ class TerraNovaTestsController < ApplicationController
     create_report(params[:gender])
     send_file(
       "#{Rails.root}/app/assets/Terra_Nova_testing/new.docx", 
-      filename: "#{@student.first_name}_#{@student.last_name}_Terra_Nova.docx", 
+      filename: "#{@student.get_first_name}_#{@student.last_name}_Terra_Nova.docx", 
       type: "application/docx"
     )
   end

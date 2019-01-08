@@ -172,8 +172,8 @@ class Student < ApplicationRecord
   def get_first_name
     input_name = send(:first_name)
     result = input_name
-    if input_name.split('"').count > 1
-      result = input_name.split('"')[0].strip
+    if input_name.split("'").count > 1
+      result = input_name.split("'")[0].strip
     end
     result
   end

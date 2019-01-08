@@ -1,6 +1,12 @@
 class TerraNovaTest < ApplicationRecord
   belongs_to :student
   validates :test_date, presence: true
+  after_initialize :init
+
+  def init 
+    self.reading_national_percentile ||= 0
+    self.math_national_percentile ||= 0
+  end 
 
   # special create that add test result level for each category
   def self.s_create!(my_hash)
