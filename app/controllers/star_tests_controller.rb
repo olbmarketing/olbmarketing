@@ -113,20 +113,32 @@ class StarTestsController < ApplicationController
   # GET /star_tests/all_star_literarcy_download 
   def all_star_literarcy_download
     #File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
-    if !File.directory?('app/assets/STAR_testing/star_literarcy_all')
-      Dir.mkdir 'app/assets/STAR_testing/star_literarcy_all'
+    folder = 'app/assets/STAR_testing/star_literarcy_all'
+    input_filenames = Dir[folder + '*']
+    zipfile_name = folder + '.zip'
+    if !File.directory?(folder)
+      Dir.mkdir folder
     else 
-      Dir['app/assets/STAR_testing/star_literarcy_all/*'].each do |file_path|
+      Dir[folder + '*'].each do |file_path|
         File.delete file_path
       end 
+    end 
+    if File.exist? zipfile_name 
+      File.delete zipfile_name
     end 
     school_year = params[:school_year] ? params[:school_year] : Student.get_school_year(Time.now)
     Student.get_students_by_sy(school_year).where('lower(student_class) in (?)', @@student_filter).each do |student|
       @star_tests = student.star_tests.order('test_date')
       if @star_tests.count > 0 
-        create_report(student.gender, "#{Rails.root}/app/assets/STAR_testing/star_literarcy_all/#{student.get_first_name}_#{student.last_name}.docx")
+        create_report(student.gender, "#{Rails.root}/#{folder}/#{student.get_first_name}_#{student.last_name}.docx")
       end
     end 
+    
+    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+      input_filenames.each do |filename|
+        zipfile.add(File.basename(filename), filename)
+      end
+    end
     #File.delete 'app/assets/STAR_testing/abc.zip'
     respond_to do |format|
       format.html { head :no_content }
