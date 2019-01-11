@@ -113,13 +113,13 @@ class StarTestsController < ApplicationController
   # GET /star_tests/all_star_literarcy_download 
   def all_star_literarcy_download
     #File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
-    folder = 'app/assets/STAR_testing/star_literarcy_all'
-    input_filenames = Dir[folder + '*']
+    folder = "app/assets/STAR_testing/star_literarcy_all"
+    input_filenames = Dir["#{Rails.root}/#{folder}" + '/*']
     zipfile_name = folder + '.zip'
     if !File.directory?(folder)
       Dir.mkdir folder
     else 
-      Dir[folder + '*'].each do |file_path|
+      Dir[folder + '/*'].each do |file_path|
         File.delete file_path
       end 
     end 
@@ -133,7 +133,6 @@ class StarTestsController < ApplicationController
         create_report(student.gender, "#{Rails.root}/#{folder}/#{student.get_first_name}_#{student.last_name}.docx")
       end
     end 
-    
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
       input_filenames.each do |filename|
         zipfile.add(File.basename(filename), filename)

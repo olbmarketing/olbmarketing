@@ -23,14 +23,6 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
       early_numeracy: 94
     }
     login_setup
-
-    if File.directory?('app/assets/STAR_testing/star_literarcy_all')
-      Dir['app/assets/STAR_testing/star_literarcy_all/*'].each do |file_path|
-        File.delete file_path
-      end 
-      Dir.delete 'app/assets/STAR_testing/star_literarcy_all'
-    end 
-
   end
 
   test "should get index" do
