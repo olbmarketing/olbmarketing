@@ -133,7 +133,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     # fname1_lname1.docx should get correct gender --
     # new folder should contain all files --
     # should create zip file --
-    # should return zip file
+    # should return zip file --
     # should return zip file based on input school year
     assert File.directory?('app/assets/STAR_testing/star_literarcy_all'), 'should create new folder'
     assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname5_lname5.docx'), 'should create fname5_lname5.docx'
@@ -141,6 +141,7 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     assert File.exist?('app/assets/STAR_testing/star_literarcy_all.zip'), 'should create zip file'
     assert_equal 2, Dir['app/assets/STAR_testing/star_literarcy_all/*'].count, 'should create 2 files only'
     #assert_file 'app/controllers/star_tests_controller.rb'
+    assert_not_empty @response.body
     assert_response :success
   end 
  

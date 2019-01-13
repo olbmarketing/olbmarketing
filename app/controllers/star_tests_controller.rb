@@ -114,7 +114,6 @@ class StarTestsController < ApplicationController
   def all_star_literarcy_download
     #File.open('app/assets/STAR_testing/star_literarcy_all.zip', 'w')
     folder = "app/assets/STAR_testing/star_literarcy_all"
-    input_filenames = Dir["#{Rails.root}/#{folder}" + '/*']
     zipfile_name = folder + '.zip'
     if !File.directory?(folder)
       Dir.mkdir folder
@@ -133,16 +132,21 @@ class StarTestsController < ApplicationController
         create_report(student.gender, "#{Rails.root}/#{folder}/#{student.get_first_name}_#{student.last_name}.docx")
       end
     end 
+    input_filenames = Dir["#{Rails.root}/#{folder}" + '/*']
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
       input_filenames.each do |filename|
         zipfile.add(File.basename(filename), filename)
       end
+      if input_filenames.count == 0 
+        zipfile.get_output_stream("No_Test_Found") { |f| f.write "No test found for this school year" }
+      end 
     end
     #File.delete 'app/assets/STAR_testing/abc.zip'
-    respond_to do |format|
-      format.html { head :no_content }
-      format.json { head :no_content }
-    end
+    send_file(
+      "#{Rails.root}/app/assets/STAR_testing/star_literarcy_all.zip", 
+      filename: "star_literarcy_all.zip", 
+      type: 'application/zip'
+    )
   end 
 
   private
