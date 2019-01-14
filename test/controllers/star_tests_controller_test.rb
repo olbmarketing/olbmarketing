@@ -134,13 +134,20 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     # new folder should contain all files --
     # should create zip file --
     # should return zip file --
-    # should return zip file based on input school year
+    # should return zip file based on input school year -- 
     assert File.directory?('app/assets/STAR_testing/star_literarcy_all'), 'should create new folder'
     assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname5_lname5.docx'), 'should create fname5_lname5.docx'
     assert File.exist?('app/assets/STAR_testing/star_literarcy_all/fname6_lname6.docx'), 'should create fname6_lname6.docx'
     assert File.exist?('app/assets/STAR_testing/star_literarcy_all.zip'), 'should create zip file'
     assert_equal 2, Dir['app/assets/STAR_testing/star_literarcy_all/*'].count, 'should create 2 files only'
     #assert_file 'app/controllers/star_tests_controller.rb'
+    assert_not_empty @response.body
+    assert_response :success
+  end 
+
+  test "should get no STAR Literarcy report for 2015-16" do 
+    get "/star_tests/all_star_literarcy_download?school_year=2015-16"
+    assert @response.body.include?('No_Test_Found'), 'should create No_Test_Found'
     assert_not_empty @response.body
     assert_response :success
   end 
