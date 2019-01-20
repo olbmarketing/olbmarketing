@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :students do
     collection {post :import}
   end
-	root to: 'sessions#new'
+	root to: 'static_pages#dashboard'
 
 	# these routes are for showing users a login form, logging them in, and logging them out.
   	get '/login' => 'sessions#new'
