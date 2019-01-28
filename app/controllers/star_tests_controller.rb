@@ -149,6 +149,14 @@ class StarTestsController < ApplicationController
     )
   end 
 
+  # GET /star_tests/star_test_csv_by_student 
+  def star_test_csv_by_student
+    respond_to do |format|
+      format.html { head :no_content }
+      format.json { head :no_content }
+    end
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_star_test

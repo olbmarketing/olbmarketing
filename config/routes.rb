@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # need to be placed before resources :star_tests 
   get 'star_tests/download_report_docx'
   get 'star_tests/all_star_literarcy_download'
+  get 'star_tests/star_test_csv_by_student'
   get 'star_reading_tests/download_report_docx'
   get 'star_math_tests/download_report_docx'
   get 'star_tests/report' => 'star_tests#report'
