@@ -154,6 +154,8 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get STAR Test csv file for student five" do
     get "/star_tests/star_test_csv_by_student?student_id=5"
+    assert_not_empty @response.body
+    puts @response.body
     assert_response :success
   end 
  

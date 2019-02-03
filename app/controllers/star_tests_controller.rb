@@ -151,9 +151,18 @@ class StarTestsController < ApplicationController
 
   # GET /star_tests/star_test_csv_by_student 
   def star_test_csv_by_student
+    student = Student.find(params[:student_id])
+    @star_tests = student.star_tests.order('test_date')
+    csv_str = CSV.generate do |csv|
+      attr_names = @star_tests.attribute_names
+      csv << attr_names
+      @star_tests.each do |st|
+        csv << st.attributes.values
+      end 
+    end 
+
     respond_to do |format|
-      format.html { head :no_content }
-      format.json { head :no_content }
+      format.all  { send_data csv_str, filename: "#{student.first_name}_#{student.last_name}_star_tests.csv" }
     end
   end 
 
