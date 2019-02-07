@@ -6,6 +6,8 @@ class StarTestsController < ApplicationController
 
   @@student_filter = ['amprek', 'pmprek', 'k', 'pm prek']
 
+  @@star_test_disp_col_names = StarTest.attribute_names - ['id', 'student_id', 'created_at', 'updated_at']
+
   # GET /star_tests
   # GET /star_tests.json
   def index
@@ -154,10 +156,11 @@ class StarTestsController < ApplicationController
     student = Student.find(params[:student_id])
     @star_tests = student.star_tests.order('test_date')
     csv_str = CSV.generate do |csv|
-      attr_names = @star_tests.attribute_names
+      attr_names = ['first_name', 'last_name'] + @@star_test_disp_col_names
       csv << attr_names
       @star_tests.each do |st|
-        csv << st.attributes.values
+        my_attributes = st.attributes.select {|k, v|  @@star_test_disp_col_names.include?(k)}
+        csv << [student.first_name, student.last_name] + my_attributes.values
       end 
     end 
 
