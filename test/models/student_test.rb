@@ -128,7 +128,7 @@ class StudentTest < ActiveSupport::TestCase
 
   test "should get current school year students" do 
     current_sy_students_count = Student.get_students_by_sy(Student.get_school_year(Time.now)).count
-    assert_equal 2, current_sy_students_count, ["the count needs to be 2"]
+    assert_equal 3, current_sy_students_count, ["the count needs to be 2"]
   end 
 
   test "should get 2000-01 school year students" do 
@@ -140,5 +140,53 @@ class StudentTest < ActiveSupport::TestCase
     current_sy_students_count = Student.get_students_by_sy('2015-16').count
     assert_equal 4, current_sy_students_count, ["the count needs to be 4"]
   end 
+
+  test "should get last year student" do 
+    current_student = Student.where("id = ?", 5).first
+    #puts Student.get_school_year(Time.now - (60*60*24*365))
+    last_year_student = current_student.get_prev_year_student
+    assert_not_nil last_year_student
+    assert_equal 9, last_year_student.id
+  end 
+
+  test "should get last year student - no student" do 
+    current_student = Student.where("id = ?", 9).first
+    #puts Student.get_school_year(Time.now - (60*60*24*365))
+    last_year_student = current_student.get_prev_year_student
+    assert_nil last_year_student
+  end 
+
+  test "should get previous school_year " do 
+    school_year = '2018-19'
+    prev_school_year = Student.school_year_add(school_year, -1)
+    assert_equal '2017-18', prev_school_year
+  end 
+
+  test "should get previous school_year - boundary case 1 " do 
+    school_year = '2000-01'
+    prev_school_year = Student.school_year_add(school_year, -1)
+    assert_equal '1999-00', prev_school_year
+  end 
+
+  test "should get previous school_year - boundary case 2 " do 
+    school_year = '1999-00'
+    prev_school_year = Student.school_year_add(school_year, -1)
+    assert_equal '1998-99', prev_school_year
+  end 
+
+  test "should get next school_year " do 
+    school_year = '2018-19'
+    prev_school_year = Student.school_year_add(school_year, 1)
+    assert_equal '2019-20', prev_school_year
+  end 
+
+  test "should get next school_year - boundary case 1" do 
+    school_year = '1998-99'
+    prev_school_year = Student.school_year_add(school_year, 1)
+    assert_equal '1999-00', prev_school_year
+  end 
+
+
+  
 
 end

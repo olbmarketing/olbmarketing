@@ -97,3 +97,12 @@ eight:
   address: MyString
   student_class: amprek
   gender: M
+
+nine:
+  id: 9
+  first_name: fname5
+  last_name: lname5
+  school_year: <%= Student.get_school_year(Time.now - (60*60*24*365)) %>
+  address: MyString
+  student_class: amprek
+  gender: M

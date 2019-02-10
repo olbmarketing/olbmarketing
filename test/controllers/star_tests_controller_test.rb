@@ -153,6 +153,8 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
   end 
 
   test "should get STAR Test csv file for student five" do
+    # should get star tests for current year --
+    # should get star tests for last year 
     get "/star_tests/star_test_csv_by_student?student_id=5"
     assert_not_empty @response.body
     puts @response.body

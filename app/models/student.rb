@@ -168,6 +168,15 @@ class Student < ApplicationRecord
     Student.where(school_year: school_year).order('last_name')
   end 
 
+  def self.school_year_add(school_year, num)
+    year_array = school_year.split '-'
+    year_0 = year_array[0].to_i
+    year_1 = year_array[1].to_i
+    new_year_0 = '%02d' % ( (year_0 + num) % 10000 )
+    new_year_1 = '%02d' % ( (year_1 + num) % 100 )
+    "#{new_year_0}-#{new_year_1}"
+  end
+
   # sometimes first name can contain nicknames. want to get legal first name only
   def get_first_name
     input_name = send(:first_name)
@@ -179,5 +188,19 @@ class Student < ApplicationRecord
     end
     result
   end
+
+  def get_prev_year_student
+    first_name = send(:first_name)
+    last_name = send(:last_name)
+    school_year = send(:school_year)
+    prev_school_year = Student.school_year_add(school_year, -1)
+    query_result = Student.where('school_year = ? AND first_name = ? AND last_name = ? ', prev_school_year, first_name, last_name )
+    if query_result.count > 0 
+      query_result.first
+    else 
+      nil 
+    end 
+
+  end 
 
 end
