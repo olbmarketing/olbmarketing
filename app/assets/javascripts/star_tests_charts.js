@@ -70,7 +70,7 @@ function drawChart() {
 
     // Create the data table.
     var data = google.visualization.arrayToDataTable(transposed_table);
-    /*
+    /* 
     var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses', 'Profit'],
           ['2014', 1000, 400, 200],
