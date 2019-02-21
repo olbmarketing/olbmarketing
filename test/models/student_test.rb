@@ -128,7 +128,7 @@ class StudentTest < ActiveSupport::TestCase
 
   test "should get current school year students" do 
     current_sy_students_count = Student.get_students_by_sy(Student.get_school_year(Time.now)).count
-    assert_equal 3, current_sy_students_count, ["the count needs to be 2"]
+    assert_equal 4, current_sy_students_count, ["the count needs to be 4"]
   end 
 
   test "should get 2000-01 school year students" do 
