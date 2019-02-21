@@ -152,12 +152,33 @@ class StarTestsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end 
 
+  test "should get STAR Test csv file for student eight" do
+    # should get star tests for current year -- no tests
+    # should get star tests for last year -- no tests 
+    get "/star_tests/star_test_csv_by_student?student_id=8"
+    assert_not_empty @response.body
+    assert_equal 1, @response.body.lines.count, 'should have only 1 line for header'
+    #puts @response.body
+    assert_response :success
+  end 
+
+  test "should get STAR Test csv file for student six" do
+    # should get star tests for current year -- 2 tests
+    # should get star tests for last year -- no tests 
+    get "/star_tests/star_test_csv_by_student?student_id=6"
+    assert_not_empty @response.body
+    assert_equal 1 + 2, @response.body.lines.count, 'should have 2 tests'
+    #puts @response.body
+    assert_response :success
+  end 
+
   test "should get STAR Test csv file for student five" do
-    # should get star tests for current year --
-    # should get star tests for last year 
+    # should get star tests for current year -- 2 tests
+    # should get star tests for last year -- 1 tests 
     get "/star_tests/star_test_csv_by_student?student_id=5"
     assert_not_empty @response.body
-    puts @response.body
+    assert_equal 1 + 3 + 1, @response.body.lines.count, 'should have 4 tests'
+    #puts @response.body
     assert_response :success
   end 
  

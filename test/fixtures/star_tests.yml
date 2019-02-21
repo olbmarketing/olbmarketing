@@ -84,3 +84,20 @@ five:
   sentence_level_comprehension: 1
   paragraph_level_comprehension: 1
   early_numeracy: 92
+
+six:
+  id: 6
+  student_id: 9
+  test_date: 2015-10-15
+  scaled_score: 521
+  developmental_stage: MyString
+  alphabetic_principle: 1
+  concept_of_word: 1
+  visual_discrimination: 1
+  phonemic_awareness: 1
+  phonics: 1
+  structural_analysis: 1
+  vocabulary: 1
+  sentence_level_comprehension: 1
+  paragraph_level_comprehension: 1
+  early_numeracy: 92

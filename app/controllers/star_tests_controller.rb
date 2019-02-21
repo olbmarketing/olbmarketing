@@ -154,14 +154,24 @@ class StarTestsController < ApplicationController
   # GET /star_tests/star_test_csv_by_student 
   def star_test_csv_by_student
     student = Student.find(params[:student_id])
-    @star_tests = student.star_tests.order('test_date')
     csv_str = CSV.generate do |csv|
       attr_names = ['first_name', 'last_name'] + @@star_test_disp_col_names
       csv << attr_names
+      # get previous year student 
+      prev_sy_student = student.get_prev_year_student
+      if prev_sy_student
+        prev_sy_student.star_tests.order('test_date').each do |st|
+          my_attributes = st.attributes.select {|k, v|  @@star_test_disp_col_names.include?(k)}
+          csv << [prev_sy_student.first_name, prev_sy_student.last_name] + my_attributes.values
+        end
+      end 
+      # get current year student 
+      @star_tests = student.star_tests.order('test_date')
       @star_tests.each do |st|
         my_attributes = st.attributes.select {|k, v|  @@star_test_disp_col_names.include?(k)}
         csv << [student.first_name, student.last_name] + my_attributes.values
       end 
+      
     end 
 
     respond_to do |format|
