@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby "2.5.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record
@@ -12,7 +11,7 @@ gem 'pg', '~> 0.19.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Added bootstrap Gem
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -84,5 +83,5 @@ gem 'geocoder'
 gem 'minitest', '~> 5.10.3'
 
 # fix vulnerability 
-gem 'loofah', '~> 2.2', '>= 2.2.3'
+gem 'loofah', '~> 2.3', '>= 2.3.1'
 gem 'rack', '>= 2.0.6'
