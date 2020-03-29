@@ -70,7 +70,7 @@ gem 'nokogiri', '~> 1.10.8'
 # for testing
 gem 'rails-controller-testing'
 # chart making stuff
-gem 'chartkick', '~> 1.2.4'
+gem 'chartkick', '~> 3.3.0'
 gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
 # for date formating
