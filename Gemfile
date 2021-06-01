@@ -9,7 +9,7 @@ gem 'pg', '~> 0.19.0'
 
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3.8'
 # Added bootstrap Gem
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
