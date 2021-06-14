@@ -11,7 +11,7 @@ gem 'pg', '~> 0.19.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Added bootstrap Gem
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
