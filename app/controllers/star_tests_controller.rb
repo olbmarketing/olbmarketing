@@ -267,11 +267,11 @@ class StarTestsController < ApplicationController
 
     def get_reader(score)
       result = ''
-      if score >= 200 && score <= 682
+      if score >= 300 && score <= 487
         result = 'Early Emergent Reader'
-      elsif score >= 683 && score <= 785
+      elsif score >= 488 && score <= 674
         result = 'Late Emergent Reader'
-      elsif score >= 785 && score <= 851
+      elsif score >= 675 && score <= 774
         result = 'Transitional Reader'
       else 
         result = 'Probable Reader'
