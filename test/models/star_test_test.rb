@@ -29,7 +29,7 @@ class StarTestTest < ActiveSupport::TestCase
 
   test "scaled score must be valid" do 
     star_test = StarTest.new(@new_star_test)
-    wrong_scores = [-1, 100, 901, 1000]
+    wrong_scores = [-1, 100, 1101, 1200]
     correct_scores = [300, 501, 900]
     wrong_scores.each do |wrong_score| 
       star_test.scaled_score = wrong_score
