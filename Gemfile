@@ -83,5 +83,5 @@ gem 'geocoder'
 gem 'minitest', '~> 5.10.3'
 
 # fix vulnerability 
-gem 'loofah', '~> 2.3', '>= 2.3.1'
+gem 'loofah', '~> 2.19'
 gem 'rack', '>= 2.0.6'
